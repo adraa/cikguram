@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from '@/components/ui/AppIcon';
 
 const faqs = [
@@ -26,7 +24,7 @@ const faqs = [
   },
   {
     q: 'How do I register and save RM299?',
-    a: 'Simply fill in the reservation form on this page or contact Cikgu Ram directly via WhatsApp at +60 10-963 8803. Online registration qualifies you for the RM299 discount automatically. This offer is time-limited so register as soon as possible.',
+    a: 'Simply fill in the reservation form on this page. Online registration qualifies you for the RM299 discount automatically. This offer is time-limited so register as soon as possible.',
   },
   {
     q: 'What documents do I need to register?',
@@ -35,8 +33,6 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   return (
     <section id="faq" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-bg" />
@@ -52,42 +48,27 @@ export default function FAQSection() {
           </p>
         </div>
 
-        {/* FAQ list */}
+        {/* FAQ list — native <details> for zero-JS accordion */}
         <div className="space-y-3 sm:space-y-4 reveal delay-100">
-          {faqs?.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div
-                key={i}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'bg-white border-[#CC0000]/25 shadow-card'
-                    : 'bg-[#F8F8F6] border-black/6 active:border-black/12'
-                }`}
-              >
-                <button
-                  className="w-full flex items-center justify-between gap-4 sm:gap-5 p-5 sm:p-6 text-left min-h-[60px]"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  suppressHydrationWarning
-                >
-                  <span className={`font-display font-600 text-sm sm:text-base leading-snug tracking-tight transition-colors duration-300 ${isOpen ? 'text-[#111111]' : 'text-black/70'}`}>
-                    {faq?.q}
-                  </span>
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? 'bg-[#CC0000] rotate-180' : 'bg-black/6'}`}>
-                    <Icon name="ChevronDownIcon" size={14} variant="outline" className={isOpen ? 'text-white' : 'text-black/35'} />
-                  </div>
-                </button>
-                <div className={`faq-answer ${isOpen ? 'open' : ''}`}>
-                  <div className="px-5 sm:px-6 pb-5 sm:pb-6">
-                    <p className="text-black/55 font-body text-sm leading-[1.7]">
-                      {faq?.a}
-                    </p>
-                  </div>
+          {faqs.map((faq, i) => (
+            <details
+              key={i}
+              open={i === 0}
+              className="group rounded-2xl border border-black/6 bg-[#F8F8F6] overflow-hidden open:bg-white open:border-[#CC0000]/25 open:shadow-card transition-all duration-300"
+            >
+              <summary className="flex items-center justify-between gap-4 sm:gap-5 p-5 sm:p-6 cursor-pointer min-h-[60px] select-none list-none [&::-webkit-details-marker]:hidden">
+                <span className="font-display font-600 text-sm sm:text-base leading-snug tracking-tight text-black/70 group-open:text-[#111111] transition-colors duration-300">
+                  {faq.q}
+                </span>
+                <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-black/6 group-open:bg-[#CC0000] group-open:rotate-180 transition-all duration-300">
+                  <Icon name="ChevronDownIcon" size={14} variant="outline" className="text-black/35 group-open:text-white" />
                 </div>
+              </summary>
+              <div className="px-5 sm:px-6 pb-5 sm:pb-6">
+                <p className="text-black/55 font-body text-sm leading-[1.7]">{faq.a}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
 
         {/* Still have questions */}
@@ -103,7 +84,7 @@ export default function FAQSection() {
             href="https://wa.me/601096388803?text=Hi%20Cikgu%20Ram%2C%20I%20have%20a%20question%20about%20getting%20my%20driving%20license."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#1A7A3C] hover:bg-[#22A050] transition-colors duration-300 text-white font-display font-700 text-sm shadow-sm w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#1A7A3C] hover:bg-[#22A050] transition-colors duration-300 text-white font-display font-700 text-sm shadow-sm w-full sm:w-auto justify-center min-h-[48px]"
           >
             <Icon name="ChatBubbleLeftRightIcon" size={16} variant="solid" />
             WhatsApp Cikgu Ram

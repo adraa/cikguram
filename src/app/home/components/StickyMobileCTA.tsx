@@ -36,7 +36,7 @@ export default function StickyMobileCTA() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 sm:hidden p-3 bg-white border-t border-black/8 shadow-[0_-4px_24px_rgba(0,0,0,0.10)] transition-transform duration-300 ${
+      className={`fixed bottom-0 left-0 right-0 z-50 sm:hidden px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-white border-t border-black/8 shadow-[0_-4px_24px_rgba(0,0,0,0.10)] transition-transform duration-300 ${
         visible ? 'translate-y-0' : 'translate-y-full'
       }`}
       aria-hidden={!visible}

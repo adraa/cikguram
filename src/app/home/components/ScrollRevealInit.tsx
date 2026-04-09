@@ -4,12 +4,7 @@ import { useEffect } from 'react';
 
 export default function ScrollRevealInit() {
   useEffect(() => {
-    const selectors = ['.reveal', '.reveal-left', '.reveal-right', '.reveal-scale'];
-    const allElements: Element[] = [];
-
-    selectors.forEach(sel => {
-      document.querySelectorAll(sel).forEach(el => allElements.push(el));
-    });
+    const allElements = document.querySelectorAll(':is(.reveal, .reveal-left, .reveal-right, .reveal-scale)');
 
     const observer = new IntersectionObserver(
       (entries) => {

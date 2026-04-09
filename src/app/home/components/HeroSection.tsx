@@ -21,42 +21,33 @@ export default function HeroSection() {
 
       {/* Content — doubled vertical breathing room */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 sm:pt-40 pb-20 sm:pb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+        <div className="flex flex-col items-center text-center">
 
-          {/* Left: Main copy */}
-          <div className="lg:col-span-7">
+          {/* Main copy */}
+          <div className="w-full max-w-5xl mx-auto text-center">
             {/* Road sign badge */}
-            <div className="reveal mb-3 sm:mb-4">
-              <span className="road-sign-badge font-semibold">
-                <span className="flex items-center gap-1">
-                  <span className="traffic-dot" />
-                </span>
-                <strong>Get Your License in 1 Month &amp; 2 Weeks</strong>
+            <div className="reveal mb-3 sm:mb-4 flex justify-center">
+              <span className="inline-flex items-center gap-2.5 px-5 py-[7px] rounded-full bg-[#E8B800] border border-black/20 text-[#111111] font-display font-700 text-[11px] tracking-[0.13em] uppercase" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 4px rgba(0,0,0,0.10)' }}>
+                <span className="traffic-dot" style={{ width: 7, height: 7 }} />
+                Get Your License in 1 Month &amp; 2 Weeks
               </span>
             </div>
 
-            {/* Scarcity / urgency line */}
-            <div className="reveal mb-5 sm:mb-8 flex items-center gap-2">
-              <span className="traffic-dot" style={{ width: 6, height: 6 }} />
-              <span className="text-xs sm:text-sm font-body font-600 text-[#B8900A]">
-                Only 4 spots remaining this month
-              </span>
-            </div>
-
-            {/* Headline — dramatically larger on desktop with tighter leading */}
-            <h1 className="reveal delay-100 font-display font-900 leading-[0.92] tracking-tight mb-7 sm:mb-8">
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
+            {/* Headline */}
+            <h1 className="reveal delay-100 font-display font-900 tracking-tight mb-7 sm:mb-8 flex flex-col items-center gap-0">
+              <span className="whitespace-nowrap leading-[0.92] text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
                 Guaranteed Fastest
               </span>
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.1]">
-                To Get Your<br />Driving License.
+              <span className="whitespace-nowrap leading-[1.1] text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase">
+                Way To Get Your
+              </span>
+              <span className="whitespace-nowrap leading-[1.1] text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase">
+                Driving License.
               </span>
             </h1>
 
-            {/* Sub — increased contrast gap vs headline */}
-
             {/* CTAs — full width on mobile */}
-            <div className="reveal delay-300 flex flex-col sm:flex-row gap-3">
+            <div className="reveal delay-300 flex flex-col sm:flex-row gap-3 justify-center w-full">
               <a
                 href="#register"
                 className="btn-primary flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-xl text-base font-display font-700 w-full sm:w-auto">
@@ -71,7 +62,7 @@ export default function HeroSection() {
             </div>
 
             {/* Trust signals */}
-            <div className="reveal delay-400 flex flex-wrap items-center gap-4 sm:gap-5 mt-6 sm:mt-8">
+            <div className="reveal delay-400 flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-6 sm:mt-8">
               {[
                 { icon: 'CheckBadgeIcon', label: 'JPJ Certified' },
                 { icon: 'TruckIcon', label: 'Free Transport' },

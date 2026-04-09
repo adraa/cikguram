@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-4">
           {/* Logo + Brand */}
-          <Link href="/" className="flex items-center gap-2.5" title="CikguRam Home">
+          <Link href="/home" className="flex items-center gap-2.5">
             <AppLogo size={28} />
             <span className="font-display text-sm font-700 text-black/70 tracking-tight">
               CikguRam
@@ -21,10 +21,10 @@ export default function Footer() {
 
           {/* Links — wrap on mobile */}
           <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm font-600 text-black/40 font-display">
-            <a href="#pricing" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center" title="View pricing plans">View Pricing</a>
-            <a href="#process" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center" title="Learn how the process works">How It Works</a>
-            <a href="#faq" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center" title="Read frequently asked questions">FAQ</a>
-            <a href="#register" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center" title="Register for driving license course">Register</a>
+            <a href="#pricing" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center">Pricing</a>
+            <a href="#process" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center">Process</a>
+            <a href="#faq" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center">FAQ</a>
+            <a href="#register" className="hover:text-[#CC0000] transition-colors min-h-[44px] flex items-center">Register</a>
           </nav>
 
           {/* Social + Copyright */}
@@ -34,8 +34,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-black/35 hover:text-[#1A7A3C] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label="Contact CikguRam on WhatsApp"
-              title="Chat with us on WhatsApp"
+              aria-label="WhatsApp"
             >
               <Icon name="ChatBubbleLeftRightIcon" size={18} variant="outline" />
             </a>

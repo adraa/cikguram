@@ -37,8 +37,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['DM Sans', 'sans-serif'],
-        body: ['Manrope', 'sans-serif'],
+        display: ['var(--font-display)', 'DM Sans', 'sans-serif'],
+        body: ['var(--font-body)', 'Manrope', 'sans-serif'],
       },
       fontSize: {
         '7xl': ['4.5rem', { lineHeight: '1' }],
