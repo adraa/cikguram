@@ -22,6 +22,7 @@ export default function ReserveFormSection() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,6 +32,11 @@ export default function ReserveFormSection() {
     e.preventDefault();
     setSubmitted(true);
   };
+
+  // Calculate form completion progress
+  const requiredFields = ['name', 'phone', 'licenseType'];
+  const filledRequired = requiredFields.filter(field => formData[field as keyof FormData].trim() !== '').length;
+  const progressPercent = Math.round((filledRequired / requiredFields.length) * 100);
 
   return (
     <section id="register" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
@@ -133,6 +139,24 @@ export default function ReserveFormSection() {
                 onSubmit={handleSubmit}
                 className="light-card rounded-2xl p-5 sm:p-8 border-t-4 border-t-[#E8B800]"
               >
+                {/* Progress bar */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-display font-600 text-black/45 uppercase tracking-widest">
+                      Form Progress
+                    </span>
+                    <span className="text-xs font-display font-700 text-[#CC0000]">
+                      {progressPercent}% Complete
+                    </span>
+                  </div>
+                  <div className="h-2 bg-black/5 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-[#CC0000] to-[#FF2222] transition-all duration-500 ease-out rounded-full"
+                      style={{ width: `${progressPercent}%` }}
+                    />
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   {/* Name */}
                   <div>
@@ -144,12 +168,22 @@ export default function ReserveFormSection() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onFocus={() => setFocusedField('name')}
+                      onBlur={() => setFocusedField(null)}
                       required
-                      placeholder="Ahmad bin Abdullah"
-                      className="form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px]"
+                      placeholder="e.g. Ahmad bin Abdullah"
+                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                        formData.name ? 'border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
+                      }`}
                       suppressHydrationWarning
                       autoComplete="name"
                     />
+                    {formData.name && (
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
+                        <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Phone */}
@@ -162,43 +196,80 @@ export default function ReserveFormSection() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      onFocus={() => setFocusedField('phone')}
+                      onBlur={() => setFocusedField(null)}
                       required
-                      placeholder="+60 12-345 6789"
-                      className="form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px]"
+                      placeholder="e.g. 012-345 6789"
+                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                        formData.phone ? 'border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
+                      }`}
                       suppressHydrationWarning
                       autoComplete="tel"
                       inputMode="tel"
                     />
+                    {formData.phone && (
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
+                        <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                {/* Email */}
-                <div className="mb-4">
-                  <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                    className="form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px]"
-                    suppressHydrationWarning
-                    autoComplete="email"
-                    inputMode="email"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  {/* Email */}
+                  <div>
+                    <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
+                      Email <span className="text-black/25">(Optional)</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder="e.g. ahmad@email.com"
+                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                        formData.email ? 'border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
+                      }`}
+                      suppressHydrationWarning
+                      autoComplete="email"
+                      inputMode="email"
+                    />
+                  </div>
+
+                  {/* Location */}
+                  <div>
+                    <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
+                      Your Area <span className="text-black/25">(Optional)</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField('location')}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder="e.g. Shah Alam"
+                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                        formData.location ? 'border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
+                      }`}
+                      suppressHydrationWarning
+                      autoComplete="address-level2"
+                    />
+                  </div>
                 </div>
 
-                {/* License type */}
-                <div className="mb-4">
+                {/* License type - moved to bottom, decision deferred */}
+                <div className="mb-5">
                   <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
-                    License Type *
+                    Preferred License Type *
                   </label>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { value: 'D', label: 'Manual Car (D)', sub: 'Full flexibility' },
-                      { value: 'DA', label: 'Auto Car (DA)', sub: 'Easier to learn' },
+                      { value: 'D', label: 'Manual (D)', sub: 'Full flexibility', icon: 'Cog6ToothIcon' },
+                      { value: 'DA', label: 'Auto (DA)', sub: 'Easier to learn', icon: 'BoltIcon' },
                     ].map((opt) => (
                       <label key={opt.value} className="cursor-pointer">
                         <input
@@ -211,67 +282,75 @@ export default function ReserveFormSection() {
                           suppressHydrationWarning
                         />
                         <div
-                          className={`p-3 sm:p-3 rounded-xl border transition-all duration-200 min-h-[60px] flex flex-col justify-center ${
+                          className={`p-4 rounded-xl border-2 transition-all duration-200 min-h-[72px] flex items-center gap-3 ${
                             formData.licenseType === opt.value
-                              ? 'border-[#CC0000]/50 bg-[#CC0000]/6'
-                              : 'border-black/8 bg-white'
+                              ? 'border-[#CC0000] bg-[#CC0000]/6 shadow-sm'
+                              : 'border-black/8 bg-white hover:border-black/15'
                           }`}
                         >
-                          <div className={`font-display font-700 text-sm ${formData.licenseType === opt.value ? 'text-[#CC0000]' : 'text-black/65'}`}>
-                            {opt.label}
+                          <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
+                            formData.licenseType === opt.value ? 'bg-[#CC0000]' : 'bg-black/5'
+                          }`}>
+                            <Icon 
+                              name={opt.icon as Parameters<typeof Icon>[0]['name']} 
+                              size={18} 
+                              variant="solid" 
+                              className={formData.licenseType === opt.value ? 'text-white' : 'text-black/40'}
+                            />
                           </div>
-                          <div className="text-xs text-black/35 font-body mt-0.5">{opt.sub}</div>
+                          <div>
+                            <div className={`font-display font-700 text-sm leading-tight ${
+                              formData.licenseType === opt.value ? 'text-[#CC0000]' : 'text-black/65'
+                            }`}>
+                              {opt.label}
+                            </div>
+                            <div className="text-xs text-black/40 font-body mt-0.5">{opt.sub}</div>
+                          </div>
                         </div>
                       </label>
                     ))}
                   </div>
                 </div>
 
-                {/* Location */}
-                <div className="mb-4">
-                  <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
-                    Your Location / Area
-                  </label>
-                  <input
-                    type="text"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    placeholder="e.g. Klang, Shah Alam, Petaling Jaya"
-                    className="form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px]"
-                    suppressHydrationWarning
-                    autoComplete="address-level2"
-                  />
-                </div>
-
-                {/* Message */}
-                <div className="mb-5 sm:mb-6">
-                  <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
-                    Additional Notes
-                  </label>
+                {/* Message - collapsed by default */}
+                <details className="mb-5 sm:mb-6 group">
+                  <summary className="cursor-pointer list-none flex items-center justify-between p-3 rounded-xl border border-black/8 hover:border-black/15 transition-colors">
+                    <span className="text-xs font-display font-600 text-black/55 uppercase tracking-widest">
+                      Add a message (optional)
+                    </span>
+                    <Icon 
+                      name="ChevronDownIcon" 
+                      size={16} 
+                      variant="outline" 
+                      className="text-black/40 transition-transform group-open:rotate-180" 
+                    />
+                  </summary>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={3}
                     placeholder="Any questions or special requirements..."
-                    className="form-input w-full px-4 py-3 rounded-xl text-sm resize-none"
+                    className="form-input w-full px-4 py-3 rounded-xl text-sm resize-none mt-3"
                     suppressHydrationWarning
                   />
-                </div>
+                </details>
 
                 <button
                   type="submit"
-                  className="btn-primary flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-display font-700"
+                  className="btn-primary flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-display font-700 shadow-lg hover:shadow-xl"
                   suppressHydrationWarning
                 >
                   <Icon name="BoltIcon" size={18} variant="solid" />
                   Reserve My Spot — Save RM299
                 </button>
 
-                <p className="text-center text-xs text-black/30 font-body mt-3">
-                  No payment required now. Cikgu Ram will contact you to confirm.
-                </p>
+                <div className="mt-4 flex items-start gap-2 px-2">
+                  <Icon name="LockClosedIcon" size={14} variant="solid" className="text-black/25 shrink-0 mt-0.5" />
+                  <p className="text-xs text-black/40 font-body leading-relaxed">
+                    Your information is secure and will only be used to contact you about your registration. No payment required now.
+                  </p>
+                </div>
               </form>
             )}
           </div>
