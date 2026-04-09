@@ -6,9 +6,9 @@ import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 
 const navLinks = [
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Instructor', href: '#instructor' },
-  { label: 'Process', href: '#process' },
+  { label: 'View Pricing', href: '#pricing' },
+  { label: 'Meet Instructor', href: '#instructor' },
+  { label: 'How It Works', href: '#process' },
   { label: 'FAQ', href: '#faq' },
 ];
 
@@ -47,7 +47,7 @@ export default function Header() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group">
+          <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group" title="CikguRam Home">
             <AppLogo size={30} onClick={() => {}} />
             <div className="flex flex-col">
               <span className="font-display text-sm sm:text-base font-800 text-[#111111] tracking-tight leading-none">
@@ -66,6 +66,7 @@ export default function Header() {
                 key={link?.label}
                 href={link?.href}
                 className="text-sm font-600 text-black/55 hover:text-[#CC0000] transition-colors duration-200 tracking-tight font-display"
+                title={link?.label}
               >
                 {link?.label}
               </a>
@@ -77,6 +78,7 @@ export default function Header() {
             <a
               href="#register"
               className="btn-primary hidden sm:flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-display font-700"
+              title="Register for driving license course"
             >
               Register Now
               <Icon name="ArrowRightIcon" size={16} variant="outline" />
@@ -85,6 +87,7 @@ export default function Header() {
             <a
               href="#register"
               className="sm:hidden btn-primary flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-display font-700"
+              title="Register for driving license course"
             >
               Register
             </a>
@@ -92,7 +95,7 @@ export default function Header() {
             <button
               className="md:hidden text-black/60 hover:text-[#CC0000] transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
               suppressHydrationWarning
             >
               {menuOpen ? (
@@ -130,6 +133,7 @@ export default function Header() {
                 href={link?.href}
                 onClick={handleNavClick}
                 className="text-lg font-display font-600 text-black/70 hover:text-[#CC0000] py-3.5 border-b border-black/6 transition-colors min-h-[52px] flex items-center"
+                title={link?.label}
               >
                 {link?.label}
               </a>
@@ -139,6 +143,7 @@ export default function Header() {
             href="#register"
             onClick={handleNavClick}
             className="btn-primary mt-8 flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-base font-display font-700 w-full"
+            title="Register for driving license course"
           >
             Register Now
             <Icon name="ArrowRightIcon" size={18} variant="outline" />
@@ -149,6 +154,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-black/45 hover:text-[#CC0000] transition-colors text-sm min-h-[44px]"
+              title="Contact via WhatsApp"
             >
               <Icon name="ChatBubbleLeftRightIcon" size={18} variant="outline" />
               +60 10-963 8803
