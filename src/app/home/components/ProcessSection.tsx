@@ -90,8 +90,8 @@ const steps: ProcessStep[] = [
 
 const statusConfig = {
   required: { label: 'Required', color: 'text-[#111111]', bg: 'bg-black/6', border: 'border-black/12' },
-  test: { label: 'Test', color: 'text-[#B8900A]', bg: 'bg-[#E8B800]/10', border: 'border-[#E8B800]/30' },
-  practical: { label: 'Practical', color: 'text-[#1A7A3C]', bg: 'bg-[#1A7A3C]/8', border: 'border-[#1A7A3C]/20' },
+  test: { label: 'Test', color: 'text-[#7D6008]', bg: 'bg-[#C9A020]/10', border: 'border-[#C9A020]/30' },
+  practical: { label: 'Practical', color: 'text-[#CC0000]', bg: 'bg-[#CC0000]/8', border: 'border-[#CC0000]/20' },
   final: { label: 'Final', color: 'text-[#CC0000]', bg: 'bg-[#CC0000]/8', border: 'border-[#CC0000]/20' },
 };
 
@@ -106,7 +106,7 @@ export default function ProcessSection() {
         {/* Header */}
         <div className="text-center mb-10 sm:mb-16 reveal">
           <span className="section-label">Step by Step</span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
+          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
             Your Road to a P-License
           </h2>
           <p className="text-black/65 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
@@ -141,7 +141,7 @@ export default function ProcessSection() {
                 <div className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5">
                   {/* Step number */}
                   <div
-                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 font-display font-800 text-sm transition-colors duration-300 ${
+                    className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-display font-800 text-sm transition-colors duration-300 ${
                       isExpanded ? 'bg-[#CC0000] text-white' : 'bg-black/8 text-black/50'
                     }`}
                   >
@@ -151,7 +151,7 @@ export default function ProcessSection() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="text-[10px] text-black/30 font-display font-600 uppercase tracking-[0.14em]">
+                      <span className="text-[11px] text-black/30 font-display font-600 uppercase tracking-[0.14em]">
                         {step.phase}
                       </span>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-display font-600 ${config.bg} ${config.border} border ${config.color}`}>
@@ -199,7 +199,7 @@ export default function ProcessSection() {
 
         {/* Bottom CTA */}
         <div className="mt-10 sm:mt-14 text-center reveal delay-200">
-          <p className="text-black/50 font-body text-sm mb-5 leading-relaxed">
+          <p className="text-black/60 font-body text-sm mb-5 leading-relaxed">
             Ready to start your journey? Register now and get your P-License faster than you think.
           </p>
           <a

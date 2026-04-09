@@ -90,7 +90,7 @@ export default function ReserveFormSection() {
           <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
             Start Your License Journey Today
           </h2>
-          <p className="text-black/50 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="text-black/60 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
             Fill in the form below and Cikgu Ram will contact you within 24 hours to confirm your spot.
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function ReserveFormSection() {
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-0.5">
               {[1, 2, 3, 4, 5].map(s => (
-                <Icon key={s} name="StarIcon" size={12} variant="solid" className="text-[#E8B800]" />
+                <Icon key={s} name="StarIcon" size={12} variant="solid" className="text-[#C9A020]" />
               ))}
               <span className="ml-1.5 text-xs font-display font-700 text-[#111111]">4.9 / 5.0</span>
             </div>
@@ -154,14 +154,11 @@ export default function ReserveFormSection() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="light-card rounded-2xl p-5 sm:p-8 border-t-4 border-t-[#E8B800]"
+              className="light-card rounded-2xl p-6 sm:p-8 border-t-4 border-t-[#C9A020]"
             >
               {/* Progress bar */}
               <div className="mb-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-display font-600 text-black/45 uppercase tracking-widest">
-                    Form Progress
-                  </span>
+                <div className="flex justify-end mb-2">
                   <span className="text-xs font-display font-700 text-[#CC0000]">
                     {progressPercent}% Complete
                   </span>
@@ -175,10 +172,10 @@ export default function ReserveFormSection() {
               </div>
 
               {/* Name + Phone — side by side on sm+ */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
+                  <label className="block text-xs font-display font-600 text-black/60 uppercase tracking-widest mb-2.5">
                     Full Name *
                   </label>
                   <input
@@ -206,7 +203,7 @@ export default function ReserveFormSection() {
 
                 {/* Phone */}
                 <div>
-                  <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
+                  <label className="block text-xs font-display font-600 text-black/60 uppercase tracking-widest mb-2.5">
                     Phone Number *
                   </label>
                   <input
@@ -235,8 +232,8 @@ export default function ReserveFormSection() {
               </div>
 
               {/* License type */}
-              <div className="mb-6">
-                <label className="block text-xs font-display font-600 text-black/45 uppercase tracking-widest mb-2">
+              <div className="mb-8">
+                <label className="block text-xs font-display font-600 text-black/60 uppercase tracking-widest mb-2.5">
                   Preferred License Type *
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -283,21 +280,6 @@ export default function ReserveFormSection() {
                     </label>
                   ))}
                 </div>
-              </div>
-
-              {/* Key benefits — inline, replaces removed left panel */}
-              <div className="grid grid-cols-2 gap-2 mb-6">
-                {[
-                  { icon: 'CheckCircleIcon', text: 'RM299 discount applied' },
-                  { icon: 'CheckCircleIcon', text: 'Free transport included' },
-                  { icon: 'CheckCircleIcon', text: 'Flexible schedule' },
-                  { icon: 'CheckCircleIcon', text: 'No hidden fees' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <Icon name={item.icon as Parameters<typeof Icon>[0]['name']} size={14} variant="solid" className="text-[#1A7A3C] shrink-0" />
-                    <span className="text-xs text-black/55 font-body">{item.text}</span>
-                  </div>
-                ))}
               </div>
 
               <button

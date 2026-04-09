@@ -43,7 +43,7 @@ export default function Header() {
         }`}
       >
         {/* Top accent stripe — road yellow */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#E8B800]" />
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C9A020]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
@@ -81,13 +81,6 @@ export default function Header() {
               Register Now
               <Icon name="ArrowRightIcon" size={16} variant="outline" />
             </a>
-            {/* Mobile: compact register link */}
-            <a
-              href="#register"
-              className="sm:hidden btn-primary flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-display font-700"
-            >
-              Register
-            </a>
             {/* Mobile hamburger */}
             <button
               className="md:hidden text-black/60 hover:text-[#CC0000] transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
@@ -121,7 +114,7 @@ export default function Header() {
           }`}
         >
           {/* Yellow top stripe */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-[#E8B800]" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-[#C9A020]" />
 
           <nav className="flex flex-col gap-1">
             {navLinks?.map((link) => (

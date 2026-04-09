@@ -15,7 +15,7 @@ import ScrollRevealInit from './components/ScrollRevealInit';
 
 export default function HomePage() {
   return (
-    <main className="bg-white min-h-screen overflow-x-hidden pb-20 sm:pb-0">
+    <main className="bg-white min-h-screen overflow-x-hidden">
       <Header />
       <HeroSection />
       <PricingCard />
@@ -26,8 +26,7 @@ export default function HomePage() {
       <TestimonialsSection />
       <FAQSection />
       <ReserveFormSection />
-      <StickyMobileCTA />
-      <Footer />
+<Footer />
       <ScrollRevealInit />
     </main>
   );

@@ -34,7 +34,7 @@ const testimonials = [
     text: 'As a working adult with a busy schedule, I appreciated the flexible timing. Cikgu Ram worked around my work hours. Got my license in under 2 months. The RM2,349 package covers absolutely everything.',
     license: 'D License (Manual)',
     duration: 'Completed in 7 weeks',
-    accentColor: 'border-t-[#E8B800]',
+    accentColor: 'border-t-[#C9A020]',
   },
 ];
 
@@ -51,8 +51,8 @@ export default function TestimonialsSection() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:divide-x sm:divide-white/10 mb-16 sm:mb-20 reveal">
           {[
             { value: '600+', label: 'Students Passed', color: 'text-[#CC0000]' },
-            { value: '98%', label: 'Pass Rate', color: 'text-[#E8B800]' },
-            { value: '5★', label: 'Avg Rating', color: 'text-[#E8B800]' },
+            { value: '98%', label: 'Pass Rate', color: 'text-[#C9A020]' },
+            { value: '5★', label: 'Avg Rating', color: 'text-[#C9A020]' },
             { value: '10+', label: 'Years Teaching', color: 'text-[#1A7A3C]' },
           ]?.map((stat) =>
             <div key={stat?.label} className="text-center py-5 sm:py-8">
@@ -64,7 +64,7 @@ export default function TestimonialsSection() {
 
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 reveal">
-          <span className="inline-flex items-center gap-2 text-[11px] font-display font-700 uppercase tracking-[0.18em] text-white/55 border border-white/10 rounded-full px-4 py-1.5 mb-5">
+          <span className="inline-flex items-center gap-2 text-[11px] font-display font-700 uppercase tracking-[0.18em] text-white/70 border border-white/10 rounded-full px-4 py-1.5 mb-5">
             Student Reviews
           </span>
           <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white mt-2 mb-4 tracking-tight leading-[1.1]">
@@ -80,12 +80,12 @@ export default function TestimonialsSection() {
           {testimonials?.map((t, i) =>
             <div
               key={t?.name}
-              className={`reveal delay-${i * 100 + 100} flex flex-col rounded-2xl p-6 sm:p-7 border-t-4 ${t?.accentColor} bg-white/5 border border-white/8 backdrop-blur-sm`}>
+              className={`reveal delay-${i * 100 + 100} flex flex-col rounded-2xl p-7 sm:p-8 border-t-4 ${t?.accentColor} bg-white/5 border border-white/8 backdrop-blur-sm`}>
 
               {/* Stars */}
               <div className="flex items-center gap-1 mb-4 sm:mb-5">
                 {Array.from({ length: t?.rating })?.map((_, si) =>
-                  <Icon key={si} name="StarIcon" size={14} variant="solid" className="text-[#E8B800]" />
+                  <Icon key={si} name="StarIcon" size={14} variant="solid" className="text-[#C9A020]" />
                 )}
               </div>
 
@@ -117,7 +117,7 @@ export default function TestimonialsSection() {
                 </div>
                 <div>
                   <div className="font-display font-700 text-white text-sm tracking-tight">{t?.name}</div>
-                  <div className="text-xs text-white/50 font-body mt-0.5 tracking-wide">{t?.location}</div>
+                  <div className="text-xs text-white/60 font-body mt-0.5 tracking-wide">{t?.location}</div>
                 </div>
                 <div className="ml-auto">
                   <Icon name="CheckBadgeIcon" size={16} variant="solid" className="text-[#1A7A3C]" />

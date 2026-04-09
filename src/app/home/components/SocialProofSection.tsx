@@ -4,13 +4,13 @@ import Icon from '@/components/ui/AppIcon';
 
 const stats = [
   { value: '600+', label: 'Successful Drivers', icon: 'UserGroupIcon', color: 'text-[#CC0000]', bg: 'bg-[#CC0000]/8' },
-  { value: '10+', label: 'Years Experience', icon: 'AcademicCapIcon', color: 'text-[#E8B800]', bg: 'bg-[#E8B800]/10' },
+  { value: '10+', label: 'Years Experience', icon: 'AcademicCapIcon', color: 'text-[#C9A020]', bg: 'bg-[#C9A020]/10' },
   { value: '98%', label: 'Pass Rate', icon: 'TrophyIcon', color: 'text-[#1A7A3C]', bg: 'bg-[#1A7A3C]/8' },
 ];
 
 export default function SocialProofSection() {
   return (
-    <section id="instructor" className="py-12 sm:py-16 bg-white relative overflow-hidden">
+    <section id="instructor" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-bg" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -19,7 +19,7 @@ export default function SocialProofSection() {
           {stats.map((stat) =>
             <div
               key={stat.label}
-              className={`light-card rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center transition-all duration-300 border-t-4 ${stat.color === 'text-[#CC0000]' ? 'border-t-[#CC0000]' : stat.color === 'text-[#E8B800]' ? 'border-t-[#E8B800]' : 'border-t-[#1A7A3C]'}`}>
+              className={`light-card rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 text-center transition-all duration-300 border-t-4 ${stat.color === 'text-[#CC0000]' ? 'border-t-[#CC0000]' : stat.color === 'text-[#C9A020]' ? 'border-t-[#C9A020]' : 'border-t-[#1A7A3C]'}`}>
               <Icon
                 name={stat.icon as Parameters<typeof Icon>[0]['name']}
                 size={20}
@@ -28,7 +28,7 @@ export default function SocialProofSection() {
               <div className={`font-display font-800 text-2xl sm:text-3xl md:text-4xl ${stat.color} mb-0.5`}>
                 {stat.value}
               </div>
-              <div className="text-[10px] sm:text-xs md:text-sm text-black/45 font-body leading-tight">{stat.label}</div>
+              <div className="text-xs sm:text-sm text-black/45 font-body leading-tight">{stat.label}</div>
             </div>
           )}
         </div>
@@ -59,7 +59,7 @@ export default function SocialProofSection() {
                   </div>
                   <div className="ml-auto flex items-center gap-0.5">
                     {[1, 2, 3, 4, 5].map((s) =>
-                      <Icon key={s} name="StarIcon" size={11} variant="solid" className="text-[#E8B800]" />
+                      <Icon key={s} name="StarIcon" size={11} variant="solid" className="text-[#C9A020]" />
                     )}
                   </div>
                 </div>
@@ -70,11 +70,11 @@ export default function SocialProofSection() {
           {/* Content side */}
           <div className="reveal-right">
             <span className="section-label">Meet Your Instructor</span>
-            <h2 className="font-display font-800 text-2xl sm:text-3xl md:text-4xl text-[#111111] mt-2 mb-4 tracking-tight leading-tight">
+            <h2 className="font-display font-700 text-2xl sm:text-3xl md:text-4xl text-[#111111] mt-2 mb-4 tracking-tight leading-tight">
               Learn with Cikgu Ram,<br />
-              <span className="text-gradient-red">Drive Like a Pro.</span>
+              <span className="text-[#CC0000]">Drive Like a Pro.</span>
             </h2>
-            <p className="text-black/55 font-body leading-relaxed mb-5 sm:mb-6 text-sm sm:text-base">
+            <p className="text-black/65 font-body leading-relaxed mb-5 sm:mb-6 text-sm sm:text-base">
               With over 10 years of experience training drivers across Malaysia, Cikgu Ram
               has developed a proven system that gets students through their JPJ test
               faster and with more confidence. His patient, structured teaching style

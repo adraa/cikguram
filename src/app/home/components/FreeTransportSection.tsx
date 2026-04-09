@@ -11,7 +11,7 @@ const transportPoints = [
 
 export default function FreeTransportSection() {
   return (
-    <section className="py-4 sm:py-6 relative overflow-hidden">
+    <section className="py-0 relative overflow-hidden">
       <div className="relative min-h-[420px] sm:min-h-[480px] flex items-center">
         {/* Background image */}
         <div className="absolute inset-0">
@@ -38,14 +38,14 @@ export default function FreeTransportSection() {
               {/* Label */}
               <div className="mb-4 sm:mb-5">
                 <span className="road-sign-badge">
-                  <Icon name="TruckIcon" size={12} variant="solid" className="text-[#E8B800]" />
+                  <Icon name="TruckIcon" size={12} variant="solid" className="text-[#C9A020]" />
                   Free Service
                 </span>
               </div>
 
               <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white mb-3 sm:mb-4 tracking-tight leading-[1.1]">
                 Free Transport<br />
-                <span className="text-[#E8B800]">Service Provided.</span>
+                <span className="text-[#C9A020]">Service Provided.</span>
               </h2>
               <p className="text-white/65 font-body text-sm sm:text-base leading-[1.7] mb-6 sm:mb-8 max-w-lg">
                 No car? No problem. We provide free pick-up and drop-off for every training session.
@@ -57,12 +57,12 @@ export default function FreeTransportSection() {
                   <div
                     key={i}
                     className="flex items-center gap-3 p-3 rounded-xl bg-white/6 border border-white/10">
-                    <div className="w-8 h-8 rounded-lg bg-[#E8B800]/15 flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-[#C9A020]/15 flex items-center justify-center shrink-0">
                       <Icon
                         name={point.icon as Parameters<typeof Icon>[0]['name']}
                         size={16}
                         variant="solid"
-                        className="text-[#E8B800]" />
+                        className="text-[#C9A020]" />
                     </div>
                     <span className="text-sm text-white/75 font-body">{point.text}</span>
                   </div>
@@ -81,8 +81,8 @@ export default function FreeTransportSection() {
             {/* Right: visual accent — desktop only */}
             <div className="reveal-right hidden lg:flex flex-col items-end gap-4">
               <div className="bg-white/8 backdrop-blur-sm border border-white/12 rounded-2xl p-8 text-center max-w-xs">
-                <div className="w-16 h-16 rounded-2xl bg-[#E8B800]/15 flex items-center justify-center mx-auto mb-4">
-                  <Icon name="TruckIcon" size={32} variant="solid" className="text-[#E8B800]" />
+                <div className="w-16 h-16 rounded-2xl bg-[#C9A020]/15 flex items-center justify-center mx-auto mb-4">
+                  <Icon name="TruckIcon" size={32} variant="solid" className="text-[#C9A020]" />
                 </div>
                 <div className="font-display font-800 text-5xl text-white mb-1 tracking-tight">FREE</div>
                 <div className="text-white/50 font-body text-sm tracking-wide">Transport Service</div>
