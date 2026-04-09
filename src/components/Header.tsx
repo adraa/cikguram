@@ -143,17 +143,6 @@ export default function Header() {
             Register Now
             <Icon name="ArrowRightIcon" size={18} variant="outline" />
           </a>
-          <div className="mt-auto">
-            <a
-              href="https://wa.me/601096388803"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-black/45 hover:text-[#CC0000] transition-colors text-sm min-h-[44px]"
-            >
-              <Icon name="ChatBubbleLeftRightIcon" size={18} variant="outline" />
-              +60 10-963 8803
-            </a>
-          </div>
         </div>
       </div>
     </>

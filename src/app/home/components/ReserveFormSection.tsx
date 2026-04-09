@@ -127,14 +127,6 @@ export default function ReserveFormSection() {
           </div>
         </div>
 
-        {/* ── Urgency / scarcity band ── */}
-        <div className="flex items-center justify-center gap-2 mb-4 px-4 py-2.5 rounded-xl bg-[#E8B800]/12 border border-[#E8B800]/30 reveal">
-          <span className="traffic-dot shrink-0" />
-          <p className="text-xs sm:text-sm font-display font-700 text-[#B8900A] text-center">
-            Only 4 spots remaining this month &middot; Offer closes when spots fill
-          </p>
-        </div>
-
         {/* ── Form card ── */}
         <div className="reveal-scale">
           {submitted ? (
@@ -327,26 +319,6 @@ export default function ReserveFormSection() {
           )}
         </div>
 
-        {/* ── Contact directly — below form ── */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 reveal">
-          <a
-            href="https://wa.me/601096388803"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-black/50 hover:text-[#1A7A3C] transition-colors text-sm font-body min-h-[44px]"
-          >
-            <Icon name="ChatBubbleLeftRightIcon" size={15} variant="outline" className="text-[#1A7A3C]" />
-            +60 10-963 8803
-          </a>
-          <span className="hidden sm:block w-px h-4 bg-black/12" />
-          <a
-            href="mailto:staracad.888@gmail.com"
-            className="flex items-center gap-2 text-black/50 hover:text-[#CC0000] transition-colors text-sm font-body min-h-[44px]"
-          >
-            <Icon name="EnvelopeIcon" size={15} variant="outline" className="text-[#CC0000]" />
-            staracad.888@gmail.com
-          </a>
-        </div>
       </div>
     </section>
   );
