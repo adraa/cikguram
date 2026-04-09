@@ -8,7 +8,7 @@
   --color-primary: #CC0000;
   --color-primary-dark: #990000;
   --color-primary-light: #FF2222;
-  --color-accent: #E8B800;
+  --color-accent: #C9A020;
   --color-road-green: #1A7A3C;
   --color-bg: #FFFFFF;
   --color-surface: #F8F8F6;
@@ -326,7 +326,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #E8B800;
+  background: #C9A020;
   color: #111111;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
@@ -401,7 +401,7 @@ h1, h2, h3, h4, h5, h6 {
 .yellow-line {
   width: 48px;
   height: 3px;
-  background: #E8B800;
+  background: #C9A020;
   border-radius: 2px;
 }
 
@@ -501,10 +501,10 @@ h1, h2, h3, h4, h5, h6 {
 .section-label {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: rgba(17, 17, 17, 0.40);
+  color: #6B6B6B;
 }
 
 /* Section heading — explicit line-height for large display sizes */
@@ -538,8 +538,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 4px;
   background: repeating-linear-gradient(
     90deg,
-    #E8B800 0px,
-    #E8B800 32px,
+    #C9A020 0px,
+    #C9A020 32px,
     transparent 32px,
     transparent 52px
   );

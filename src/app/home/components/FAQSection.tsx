@@ -40,10 +40,10 @@ export default function FAQSection() {
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14 reveal">
           <span className="section-label">Got Questions?</span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
+          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
             Frequently Asked Questions
           </h2>
-          <p className="text-black/50 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="text-black/60 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
             Everything you need to know about getting your driving license with Cikgu Ram.
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function FAQSection() {
               className="group rounded-2xl border border-black/6 bg-[#F8F8F6] overflow-hidden open:bg-white open:border-[#CC0000]/25 open:shadow-card transition-all duration-300"
             >
               <summary className="flex items-center justify-between gap-4 sm:gap-5 p-5 sm:p-6 cursor-pointer min-h-[60px] select-none list-none [&::-webkit-details-marker]:hidden">
-                <span className="font-display font-600 text-sm sm:text-base leading-snug tracking-tight text-black/70 group-open:text-[#111111] transition-colors duration-300">
+                <span className="font-display font-700 text-base sm:text-[17px] leading-snug tracking-tight text-black/70 group-open:text-[#111111] transition-colors duration-300">
                   {faq.q}
                 </span>
                 <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-black/6 group-open:bg-[#CC0000] group-open:rotate-180 transition-all duration-300">
@@ -73,11 +73,11 @@ export default function FAQSection() {
 
         {/* Still have questions */}
         <div className="mt-10 sm:mt-14 p-6 sm:p-8 rounded-2xl bg-[#F8F8F6] border border-black/8 text-center reveal delay-200">
-          <Icon name="ChatBubbleLeftRightIcon" size={28} variant="solid" className="text-[#1A7A3C] mx-auto mb-4" />
+          <Icon name="ChatBubbleLeftRightIcon" size={28} variant="solid" className="text-[#CC0000] mx-auto mb-4" />
           <h3 className="font-display font-700 text-[#111111] text-base sm:text-lg mb-2.5 tracking-tight">
             Still have questions?
           </h3>
-          <p className="text-black/50 font-body text-sm mb-5 leading-relaxed">
+          <p className="text-black/60 font-body text-sm mb-5 leading-relaxed">
             Chat directly with Cikgu Ram on WhatsApp. He typically replies within minutes.
           </p>
           <a

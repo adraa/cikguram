@@ -50,7 +50,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
       <div className={`countdown-digit text-2xl sm:text-3xl font-display font-800 text-[#111111] tabular-nums ${ticking ? 'tick' : ''}`}>
         {display}
       </div>
-      <div className="text-[10px] text-black/35 uppercase tracking-[0.14em] font-display font-600 mt-1">{label}</div>
+      <div className="text-[11px] text-black/30 uppercase tracking-[0.14em] font-display font-600 mt-1">{label}</div>
     </div>
   );
 }
@@ -79,7 +79,7 @@ export default function PricingCard() {
         {/* Section label */}
         <div className="text-center mb-8 sm:mb-12 reveal">
           <span className="section-label" style={{ color: '#CC0000' }}>Limited Time Offer</span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 tracking-tight leading-[1.1]">
+          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 tracking-tight leading-[1.1]">
             Register Online &amp; Save <span className="text-[#CC0000]">RM299</span>
           </h2>
         </div>
@@ -87,7 +87,7 @@ export default function PricingCard() {
         {/* Main pricing card */}
         <div className="reveal delay-100 relative rounded-2xl overflow-hidden border border-black/8 bg-white shadow-card">
           {/* Top accent bar — road yellow */}
-          <div className="h-1.5 w-full bg-[#E8B800]" />
+          <div className="h-1.5 w-full bg-[#C9A020]" />
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
             {/* Left: Price + Timer */}
@@ -102,18 +102,19 @@ export default function PricingCard() {
 
               {/* Price */}
               <div>
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="font-display font-800 text-4xl sm:text-5xl md:text-6xl text-[#111111] tracking-tight">
-                    RM2,349
+                <div className="flex items-start gap-1 mb-2 leading-none">
+                  <span className="font-display font-400 text-xl text-black/30 mt-2.5 shrink-0">RM</span>
+                  <span className="font-display font-black text-[4rem] sm:text-[5rem] md:text-[5.5rem] text-[#111111] tracking-tight leading-none">
+                    2,349
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-black/45 line-through text-base sm:text-lg font-body">RM2,648</span>
+                  <span className="text-black/40 line-through text-sm font-body">RM2,648</span>
                   <span className="px-2 py-0.5 rounded bg-[#CC0000] text-white text-xs font-display font-700">
                     SAVE RM299
                   </span>
                 </div>
-                <p className="text-black/40 text-sm font-body mt-3 leading-relaxed">
+                <p className="text-black/60 text-sm font-body mt-3 leading-relaxed">
                   All-in package · No hidden fees · Free transport
                 </p>
               </div>
@@ -122,7 +123,7 @@ export default function PricingCard() {
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <Icon name="ClockIcon" size={14} variant="outline" className="text-[#CC0000]" />
-                  <span className="text-[10px] text-black/40 font-display font-600 uppercase tracking-[0.14em]">
+                  <span className="text-[11px] text-black/30 font-display font-600 uppercase tracking-[0.14em]">
                     Offer expires in
                   </span>
                 </div>
@@ -144,9 +145,9 @@ export default function PricingCard() {
                 Register Now
               </a>
 
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#E8B800]/10 border border-[#E8B800]/30">
-                <Icon name="ExclamationTriangleIcon" size={14} variant="solid" className="text-[#B8900A] mt-0.5 shrink-0" />
-                <p className="text-xs text-[#B8900A] font-body leading-relaxed">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#C9A020]/10 border border-[#C9A020]/30">
+                <Icon name="ExclamationTriangleIcon" size={14} variant="solid" className="text-[#7D6008] mt-0.5 shrink-0" />
+                <p className="text-xs text-[#7D6008] font-body leading-relaxed">
                   Only 4 spots left this month. Once filled, price returns to RM2,648.
                 </p>
               </div>
@@ -172,9 +173,9 @@ export default function PricingCard() {
               </div>
 
               {/* Free transport callout */}
-              <div className="mt-6 sm:mt-8 p-5 rounded-xl bg-[#1A7A3C]/6 border border-[#1A7A3C]/20 flex items-center gap-4">
-                <div className="w-11 h-11 rounded-lg bg-[#1A7A3C]/12 flex items-center justify-center shrink-0">
-                  <Icon name="TruckIcon" size={22} variant="solid" className="text-[#1A7A3C]" />
+              <div className="mt-6 sm:mt-8 p-5 rounded-xl bg-[#CC0000]/6 border border-[#CC0000]/15 flex items-center gap-4">
+                <div className="w-11 h-11 rounded-lg bg-[#CC0000]/10 flex items-center justify-center shrink-0">
+                  <Icon name="TruckIcon" size={22} variant="solid" className="text-[#CC0000]" />
                 </div>
                 <div>
                   <div className="font-display font-700 text-[#111111] text-sm tracking-tight">Free Transport Provided</div>

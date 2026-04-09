@@ -14,7 +14,7 @@ module.exports = {
           light: '#FF2222',
         },
         accent: {
-          DEFAULT: '#E8B800',
+          DEFAULT: '#C9A020',
           light: '#FFD700',
           dark: '#B8900A',
         },
@@ -22,7 +22,7 @@ module.exports = {
           green: '#1A7A3C',
           'green-light': '#22A050',
           black: '#111111',
-          yellow: '#E8B800',
+          yellow: '#C9A020',
           red: '#CC0000',
         },
         surface: {
