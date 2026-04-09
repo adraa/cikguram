@@ -5,76 +5,79 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-white"
+      className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-[#F8F8F6]"
       aria-label="Hero section">
 
-      {/* Decorative elements — desktop only for performance */}
-      <div className="absolute inset-0 grid-bg opacity-100 hidden lg:block" />
-      <div className="glow-blob w-[500px] h-[400px] bg-red-100 top-0 right-0 opacity-60 hidden lg:block" style={{ zIndex: 0 }} />
-      <div className="glow-blob w-[400px] h-[300px] bg-yellow-50 bottom-0 left-0 opacity-80 hidden lg:block" style={{ zIndex: 0 }} />
-      <div className="beam-border-h hidden lg:block" style={{ zIndex: 5 }} />
+      {/* Content — centered layout */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-16 sm:py-20 lg:py-24">
+        <div className="flex flex-col items-center justify-center text-center">
 
-      {/* Content — optimized spacing for mobile */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
-        <div className="flex flex-col items-center justify-center">
+          {/* Gold pill badge */}
+          <div className="reveal mb-4 sm:mb-6">
+            <span className="road-sign-badge font-bold text-xs sm:text-sm">
+              GET YOUR LICENSE IN 1 MONTH &amp; 2 WEEKS
+            </span>
+          </div>
 
-          {/* Main copy — centered */}
-          <div className="w-full max-w-3xl text-center">
-            {/* Road sign badge */}
-            <div className="reveal mb-5 sm:mb-8">
-              <span className="road-sign-badge font-semibold">
-                <span className="flex items-center gap-1">
-                  <span className="traffic-dot" />
-                </span>
-                <strong>Get Your License in 1 Month &amp; 2 Weeks</strong>
-              </span>
-            </div>
+          {/* Headline — exactly matching reference */}
+          <h1 className="reveal delay-100 font-display font-black leading-[0.9] tracking-tight mb-8 sm:mb-10 lg:mb-12">
+            <span className="block text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#CC0000] italic uppercase mb-2">
+              GUARANTEED FASTEST.
+            </span>
+            <span className="block text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#111111] uppercase">
+              WAY TO GET YOUR DRIVING LICENSE.
+            </span>
+          </h1>
 
-            {/* Headline — mobile-optimized sizes */}
-            <h1 className="reveal delay-100 font-display font-900 leading-[0.95] sm:leading-[0.92] tracking-tight mb-6 sm:mb-8">
-              <span className="block text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
-                Guaranteed Fastest
-              </span>
-              <span className="block text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.15] sm:leading-[1.1]">
-                To Get Your<br />Driving License.
-              </span>
-            </h1>
+          {/* Hero Image */}
+          <div className="reveal delay-200 w-full max-w-5xl mb-8 sm:mb-10 lg:mb-12">
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cikguram-lp-hero.png-XCgN3tCxaHdwKiiTy0gvA0EDM3nbv4.jpeg"
+              alt="Hand holding P-plate over red car on racing track with palm trees at sunset"
+              className="w-full h-auto rounded-2xl shadow-2xl"
+              loading="eager"
+            />
+          </div>
 
-            {/* Sub — increased contrast gap vs headline */}
-
-            {/* CTAs — centered and full width on mobile */}
-            <div className="reveal delay-300 flex flex-col sm:flex-row gap-3 justify-center">
+          {/* CTAs — side by side with arrows */}
+          <div className="reveal delay-300 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-8 sm:mb-10">
+            <div className="flex items-center gap-3">
+              <Icon name="ArrowDownIcon" size={24} variant="outline" className="text-black/40 hidden sm:block" />
               <a
                 href="#register"
-                className="btn-primary flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-xl text-base font-display font-700 w-full sm:w-auto">
-                Register Now — Save RM299
-                <Icon name="ArrowRightIcon" size={18} variant="outline" />
+                className="btn-primary flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base sm:text-lg font-display font-700 whitespace-nowrap">
+                CLAIM RM299 DISCOUNT NOW
               </a>
+            </div>
+            
+            <div className="flex items-center gap-3">
               <a
-                href="#process"
-                className="btn-secondary flex items-center justify-center gap-2 px-6 sm:px-8 py-4 rounded-xl text-base font-display font-600 w-full sm:w-auto">
-                See How It Works
+                href="#instructor"
+                className="text-base sm:text-lg font-display font-700 text-[#111111] hover:text-[#CC0000] transition-colors flex items-center gap-2">
+                MEET CIKGU RAM
+                <Icon name="ArrowDownIcon" size={20} variant="outline" />
               </a>
+              <Icon name="ArrowDownIcon" size={24} variant="outline" className="text-black/40 hidden sm:block" />
             </div>
+          </div>
 
-            {/* Trust signals */}
-            <div className="reveal delay-400 flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-6 sm:mt-8">
-              {[
-                { icon: 'CheckBadgeIcon', label: 'JPJ Certified' },
-                { icon: 'TruckIcon', label: 'Free Transport' },
-                { icon: 'UserGroupIcon', label: '600+ Passed' }
-              ].map((item) =>
-                <div key={item.label} className="flex items-center gap-1.5">
-                  <Icon name={item.icon as Parameters<typeof Icon>[0]['name']} size={18} variant="solid" className="text-[#CC0000]" />
-                  <span className="text-xs text-black/65 font-display font-600 tracking-wide">{item.label}</span>
-                </div>
-              )}
-            </div>
+          {/* Trust badges — bottom row */}
+          <div className="reveal delay-400 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+            {[
+              { icon: 'CheckCircleIcon', label: 'JPJ Certified' },
+              { icon: 'TruckIcon', label: 'Free Transport' },
+              { icon: 'CheckCircleIcon', label: '600+ Passed' }
+            ].map((item) =>
+              <div key={item.label} className="flex items-center gap-2">
+                <Icon name={item.icon as Parameters<typeof Icon>[0]['name']} size={24} variant="solid" className="text-[#111111]" />
+                <span className="text-sm sm:text-base text-black/80 font-display font-700">{item.label}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator — hidden on small mobile */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 opacity-40 hidden sm:flex">
         <span className="text-xs text-black/40 tracking-widest uppercase font-body">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-black/30 to-transparent" />
