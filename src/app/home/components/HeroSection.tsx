@@ -9,32 +9,32 @@ export default function HeroSection() {
       className="relative min-h-[100svh] overflow-hidden flex flex-col"
       aria-label="Hero section">
 
-      {/* Background image — fills the whole section */}
+      {/* Background image — fills the whole section, biased down to keep car+hand visible */}
       <Image
         src="/hero-car.webp"
         alt="Get your P license with Cikgu Ram"
         fill
-        className="object-cover object-center"
+        className="object-cover object-[center_65%]"
         priority
       />
 
-      {/* Softer gradient to let the background image shine through more, like the reference image */}
+      {/* Gradient: solid white at top for text, fades quickly to let image dominate bottom 60%+ */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0.15) 60%, transparent 80%)',
+            'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.92) 18%, rgba(255,255,255,0.5) 32%, rgba(255,255,255,0.1) 45%, transparent 55%)',
         }}
       />
 
       {/* All content sits above the gradient */}
       <div className="relative z-10 w-full flex-1 flex flex-col">
 
-        {/* Text content — top area */}
-        <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center px-5 sm:px-8 lg:px-10 pt-20 sm:pt-24 pb-5 sm:pb-6">
+        {/* Text content — compact top area to leave room for image */}
+        <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center px-5 sm:px-8 lg:px-10 pt-24 sm:pt-28 pb-5 sm:pb-6">
 
-          {/* Maintained Gold Pill Badge */}
-          <div className="reveal mb-4 sm:mb-6">
+          {/* Gold Pill Badge */}
+          <div className="reveal mb-3 sm:mb-4">
             <span
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#C9A020] border border-black/20 text-[#111111] font-display font-600 tracking-[0.05em] uppercase shadow-sm"
               style={{ fontSize: 'clamp(10px, 2.5vw, 12px)' }}>
@@ -43,8 +43,8 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Maintained 4-line Headline */}
-          <h1 className="font-display font-black tracking-tight mb-8 sm:mb-10 flex flex-col items-center">
+          {/* 4-line Headline */}
+          <h1 className="font-display font-black tracking-tight mb-6 sm:mb-8 flex flex-col items-center">
             <span
               className="block leading-[0.9] text-[#CC0000] italic uppercase whitespace-nowrap drop-shadow-sm"
               style={{ fontSize: 'clamp(3rem, 10vw, 6rem)', letterSpacing: '-0.02em' }}>
@@ -67,7 +67,7 @@ export default function HeroSection() {
             </span>
           </h1>
 
-          {/* CTAs styled to match the image layout (one solid red pill, one text link) */}
+          {/* CTAs — text shadow ensures readability in the gradient transition zone */}
           <div className="reveal delay-200 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6">
             <a
               href="#register"
@@ -76,7 +76,8 @@ export default function HeroSection() {
             </a>
             <a
               href="#process"
-              className="flex items-center justify-center gap-1.5 text-[#111111] hover:text-[#CC0000] text-sm sm:text-base font-display font-black uppercase tracking-wider whitespace-nowrap transition-colors">
+              className="flex items-center justify-center gap-1.5 text-[#111111] hover:text-[#CC0000] text-sm sm:text-base font-display font-black uppercase tracking-wider whitespace-nowrap transition-colors"
+              style={{ textShadow: '0 1px 8px rgba(255,255,255,0.8)' }}>
               Meet Cikgu Ram ↓
             </a>
           </div>
