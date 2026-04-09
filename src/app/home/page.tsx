@@ -3,18 +3,16 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import HeroSection from './components/HeroSection';
 import PricingCard from './components/PricingCard';
-
-// Lazy load below-fold components for faster initial paint
-const SocialProofSection = dynamic(() => import('./components/SocialProofSection'), { ssr: true });
-const FeaturesSection = dynamic(() => import('./components/FeaturesSection'), { ssr: true });
-const FreeTransportSection = dynamic(() => import('./components/FreeTransportSection'), { ssr: true });
-const ProcessSection = dynamic(() => import('./components/ProcessSection'), { ssr: true });
-const TestimonialsSection = dynamic(() => import('./components/TestimonialsSection'), { ssr: true });
-const FAQSection = dynamic(() => import('./components/FAQSection'), { ssr: true });
-const ReserveFormSection = dynamic(() => import('./components/ReserveFormSection'), { ssr: true });
-const WhatsAppCTA = dynamic(() => import('./components/WhatsAppCTA'), { ssr: true });
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
-const ScrollRevealInit = dynamic(() => import('./components/ScrollRevealInit'), { ssr: false });
+import SocialProofSection from './components/SocialProofSection';
+import FeaturesSection from './components/FeaturesSection';
+import FreeTransportSection from './components/FreeTransportSection';
+import ProcessSection from './components/ProcessSection';
+import TestimonialsSection from './components/TestimonialsSection';
+import FAQSection from './components/FAQSection';
+import ReserveFormSection from './components/ReserveFormSection';
+import WhatsAppCTA from './components/WhatsAppCTA';
+import Footer from '@/components/Footer';
+import ScrollRevealInit from './components/ScrollRevealInit';
 
 export default function HomePage() {
   return (
