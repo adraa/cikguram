@@ -21,10 +21,10 @@ export default function HeroSection() {
 
       {/* Content — doubled vertical breathing room */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 sm:pt-40 pb-20 sm:pb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+        <div className="flex flex-col items-center justify-center">
 
-          {/* Left: Main copy */}
-          <div className="lg:col-span-7">
+          {/* Main copy — centered */}
+          <div className="w-full max-w-3xl text-center">
             {/* Road sign badge */}
             <div className="reveal mb-5 sm:mb-8">
               <span className="road-sign-badge font-semibold">
@@ -47,8 +47,8 @@ export default function HeroSection() {
 
             {/* Sub — increased contrast gap vs headline */}
 
-            {/* CTAs — full width on mobile */}
-            <div className="reveal delay-300 flex flex-col sm:flex-row gap-3">
+            {/* CTAs — centered and full width on mobile */}
+            <div className="reveal delay-300 flex flex-col sm:flex-row gap-3 justify-center">
               <a
                 href="#register"
                 className="btn-primary flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-xl text-base font-display font-700 w-full sm:w-auto">
@@ -63,7 +63,7 @@ export default function HeroSection() {
             </div>
 
             {/* Trust signals */}
-            <div className="reveal delay-400 flex flex-wrap items-center gap-4 sm:gap-5 mt-6 sm:mt-8">
+            <div className="reveal delay-400 flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-6 sm:mt-8">
               {[
                 { icon: 'CheckBadgeIcon', label: 'JPJ Certified' },
                 { icon: 'TruckIcon', label: 'Free Transport' },
@@ -76,8 +76,6 @@ export default function HeroSection() {
               )}
             </div>
           </div>
-
-
         </div>
       </div>
 
