@@ -9,21 +9,21 @@ export default function HeroSection() {
       className="relative min-h-[100svh] overflow-hidden flex flex-col"
       aria-label="Hero section">
 
-      {/* Background image — fills the whole section, biased down to keep car+hand visible */}
+      {/* Background image — focal point at 45% to show the car+hand, not just road */}
       <Image
         src="/hero-car.webp"
         alt="Get your P license with Cikgu Ram"
         fill
-        className="object-cover object-[center_65%]"
+        className="object-cover object-[center_45%]"
         priority
       />
 
-      {/* Gradient: solid white at top for text, fades quickly to let image dominate bottom 60%+ */}
+      {/* Gradient: solid white top ~30% for crisp text, then rapid fade to reveal image */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.92) 18%, rgba(255,255,255,0.5) 32%, rgba(255,255,255,0.1) 45%, transparent 55%)',
+            'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 25%, rgba(255,255,255,0.85) 35%, rgba(255,255,255,0.3) 48%, transparent 58%)',
         }}
       />
 
