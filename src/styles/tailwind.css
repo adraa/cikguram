@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 640px) {
   .grid-bg {
-    display: none;
+    background-image: none;
   }
 }
 
@@ -212,10 +212,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* On mobile, use simpler fade-only reveal for performance */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .reveal.visible,
   .reveal-left.visible,
-  .reveal-right.visible {
-    animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  .reveal-right.visible,
+  .reveal-scale.visible {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Remove animation delays on mobile */
+  .delay-100, .delay-200, .delay-300, .delay-400, .delay-500, .delay-600 {
+    animation-delay: 0s;
   }
 }
 
@@ -586,8 +595,32 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Reduce section padding on mobile */
   section {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Optimize font sizes for mobile readability */
+  body {
+    font-size: 16px;
+  }
+  
+  /* Reduce large heading sizes on mobile */
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+  
+  h2 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+  
+  /* Faster transitions on mobile */
+  * {
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Disable hover effects that can be janky on touch */
+  .testimonial-card:hover {
+    transform: none;
   }
 }
 

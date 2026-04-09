@@ -72,14 +72,14 @@ export default function PricingCard() {
   const timeLeft = useCountdown(23);
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg" />
+    <section id="pricing" className="py-12 sm:py-16 lg:py-24 bg-[#F8F8F6] relative overflow-hidden">
+      <div className="absolute inset-0 grid-bg hidden lg:block" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section label */}
-        <div className="text-center mb-8 sm:mb-12 reveal">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12 reveal">
           <span className="section-label" style={{ color: '#CC0000' }}>Limited Time Offer</span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 tracking-tight leading-[1.1]">
+          <h2 className="font-display font-800 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#111111] mt-3 tracking-tight leading-[1.15] sm:leading-[1.1]">
             Register Online &amp; Save <span className="text-[#CC0000]">RM299</span>
           </h2>
         </div>

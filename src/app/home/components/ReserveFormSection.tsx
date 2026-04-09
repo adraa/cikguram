@@ -39,16 +39,15 @@ export default function ReserveFormSection() {
   const progressPercent = Math.round((filledRequired / requiredFields.length) * 100);
 
   return (
-    <section id="register" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg" />
-      {/* Red accent blob — desktop only */}
-      <div className="glow-blob w-[400px] h-[400px] bg-red-100 top-1/2 right-0 -translate-y-1/2 opacity-50 hidden sm:block" />
+    <section id="register" className="py-12 sm:py-16 lg:py-24 bg-[#F8F8F6] relative overflow-hidden">
+      <div className="absolute inset-0 grid-bg hidden lg:block" />
+      <div className="glow-blob w-[400px] h-[400px] bg-red-100 top-1/2 right-0 -translate-y-1/2 opacity-50 hidden lg:block" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-10 sm:mb-14 reveal">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-14 reveal">
           <span className="section-label">Reserve Your Spot</span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
+          <h2 className="font-display font-800 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#111111] mt-3 mb-3 sm:mb-4 tracking-tight leading-[1.15] sm:leading-[1.1]">
             Start Your License Journey Today
           </h2>
           <p className="text-black/50 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
@@ -137,10 +136,10 @@ export default function ReserveFormSection() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="light-card rounded-2xl p-5 sm:p-8 border-t-4 border-t-[#E8B800]"
+                className="light-card rounded-2xl p-4 sm:p-6 lg:p-8 border-t-4 border-t-[#E8B800]"
               >
                 {/* Progress bar */}
-                <div className="mb-6">
+                <div className="mb-5 sm:mb-6">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-display font-600 text-black/45 uppercase tracking-widest">
                       Form Progress
@@ -151,7 +150,7 @@ export default function ReserveFormSection() {
                   </div>
                   <div className="h-2 bg-black/5 rounded-full overflow-hidden">
                     <div 
-                      className="h-full bg-gradient-to-r from-[#CC0000] to-[#FF2222] transition-all duration-500 ease-out rounded-full"
+                      className="h-full bg-gradient-to-r from-[#CC0000] to-[#FF2222] transition-all duration-300 ease-out rounded-full will-change-[width]"
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>

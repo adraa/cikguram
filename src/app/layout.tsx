@@ -8,6 +8,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: '#CC0000',
+  viewportFit: 'cover',
 };
 
 export const metadata: Metadata = {
@@ -31,7 +32,13 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
+        <link 
+          rel="preload" 
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=Manrope:wght@400;500;600;700&display=swap" 
+          as="style"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        
         <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcikguram3493back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18" />
         <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" /></head>
       <body>{children}

@@ -8,19 +8,14 @@ export default function HeroSection() {
       className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-white"
       aria-label="Hero section">
 
-      {/* Subtle grid background — hidden on mobile for perf */}
-      <div className="absolute inset-0 grid-bg opacity-100 hidden sm:block" />
+      {/* Decorative elements — desktop only for performance */}
+      <div className="absolute inset-0 grid-bg opacity-100 hidden lg:block" />
+      <div className="glow-blob w-[500px] h-[400px] bg-red-100 top-0 right-0 opacity-60 hidden lg:block" style={{ zIndex: 0 }} />
+      <div className="glow-blob w-[400px] h-[300px] bg-yellow-50 bottom-0 left-0 opacity-80 hidden lg:block" style={{ zIndex: 0 }} />
+      <div className="beam-border-h hidden lg:block" style={{ zIndex: 5 }} />
 
-      {/* Red accent blob — top right, desktop only */}
-      <div className="glow-blob w-[500px] h-[400px] bg-red-100 top-0 right-0 opacity-60 hidden sm:block" style={{ zIndex: 0 }} />
-      {/* Yellow accent blob — bottom left, desktop only */}
-      <div className="glow-blob w-[400px] h-[300px] bg-yellow-50 bottom-0 left-0 opacity-80 hidden sm:block" style={{ zIndex: 0 }} />
-
-      {/* Bottom road stripe */}
-      <div className="beam-border-h" style={{ zIndex: 5 }} />
-
-      {/* Content — doubled vertical breathing room */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 sm:pt-40 pb-20 sm:pb-32">
+      {/* Content — optimized spacing for mobile */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
         <div className="flex flex-col items-center justify-center">
 
           {/* Main copy — centered */}
@@ -35,12 +30,12 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* Headline — dramatically larger on desktop with tighter leading */}
-            <h1 className="reveal delay-100 font-display font-900 leading-[0.92] tracking-tight mb-7 sm:mb-8">
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
+            {/* Headline — mobile-optimized sizes */}
+            <h1 className="reveal delay-100 font-display font-900 leading-[0.95] sm:leading-[0.92] tracking-tight mb-6 sm:mb-8">
+              <span className="block text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
                 Guaranteed Fastest
               </span>
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.1]">
+              <span className="block text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.15] sm:leading-[1.1]">
                 To Get Your<br />Driving License.
               </span>
             </h1>
