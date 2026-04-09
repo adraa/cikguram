@@ -26,12 +26,20 @@ export default function HeroSection() {
           {/* Left: Main copy */}
           <div className="lg:col-span-7">
             {/* Road sign badge */}
-            <div className="reveal mb-5 sm:mb-8">
+            <div className="reveal mb-3 sm:mb-4">
               <span className="road-sign-badge font-semibold">
                 <span className="flex items-center gap-1">
                   <span className="traffic-dot" />
                 </span>
                 <strong>Get Your License in 1 Month &amp; 2 Weeks</strong>
+              </span>
+            </div>
+
+            {/* Scarcity / urgency line */}
+            <div className="reveal mb-5 sm:mb-8 flex items-center gap-2">
+              <span className="traffic-dot" style={{ width: 6, height: 6 }} />
+              <span className="text-xs sm:text-sm font-body font-600 text-[#B8900A]">
+                Only 4 spots remaining this month
               </span>
             </div>
 
