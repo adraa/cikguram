@@ -36,18 +36,12 @@ export default function HeroSection() {
             </div>
 
             {/* Headline — dramatically larger on desktop with tighter leading */}
-            <h1 className="reveal delay-100 font-display font-800 text-[#111111] leading-[0.92] tracking-tight mb-7 sm:mb-8">
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem]">
-                Guaranteed
+            <h1 className="reveal delay-100 font-display font-900 leading-[0.92] tracking-tight mb-7 sm:mb-8">
+              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
+                Guaranteed Fastest
               </span>
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-gradient-red">
-                Fastest Way
-              </span>
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem]">
-                to Get Your
-              </span>
-              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000]">
-                Driving License.
+              <span className="block text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.1]">
+                To Get Your<br />Driving License.
               </span>
             </h1>
 
