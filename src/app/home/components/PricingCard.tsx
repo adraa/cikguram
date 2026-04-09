@@ -147,7 +147,7 @@ export default function PricingCard() {
               <div className="flex items-start gap-3 p-4 rounded-lg bg-[#E8B800]/10 border border-[#E8B800]/30">
                 <Icon name="ExclamationTriangleIcon" size={14} variant="solid" className="text-[#B8900A] mt-0.5 shrink-0" />
                 <p className="text-xs text-[#B8900A] font-body leading-relaxed">
-                  Limited spots available. This price is only valid for online registration.
+                  Only 4 spots left this month. Once filled, price returns to RM2,648.
                 </p>
               </div>
             </div>
