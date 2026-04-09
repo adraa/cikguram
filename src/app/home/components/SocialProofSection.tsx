@@ -44,7 +44,7 @@ export default function SocialProofSection() {
                 fill
                 className="object-cover img-zoom"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
-                loading="lazy" />
+                priority />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               {/* Name badge */}

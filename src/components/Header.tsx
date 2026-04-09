@@ -65,7 +65,7 @@ export default function Header() {
               <a
                 key={link?.label}
                 href={link?.href}
-                className="text-sm font-600 text-black/55 hover:text-[#CC0000] transition-colors duration-200 tracking-tight font-display"
+                className="text-sm font-600 text-black/55 hover:text-[#CC0000] transition-colors duration-200 tracking-tight font-display min-h-[44px] flex items-center"
               >
                 {link?.label}
               </a>
@@ -76,7 +76,7 @@ export default function Header() {
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="#register"
-              className="btn-primary hidden sm:flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-display font-700"
+              className="btn-primary hidden sm:flex items-center gap-2 px-4 sm:px-5 py-3 rounded-lg text-sm font-display font-700 min-h-[44px]"
             >
               Register Now
               <Icon name="ArrowRightIcon" size={16} variant="outline" />

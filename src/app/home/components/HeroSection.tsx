@@ -34,14 +34,14 @@ export default function HeroSection() {
             </div>
 
             {/* Headline */}
-            <h1 className="reveal delay-100 font-display font-900 leading-[0.92] tracking-tight mb-7 sm:mb-8">
-              <span className="block w-fit mx-auto whitespace-nowrap text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
+            <h1 className="reveal delay-100 font-display font-900 tracking-tight mb-7 sm:mb-8 flex flex-col items-center gap-0">
+              <span className="whitespace-nowrap leading-[0.92] text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6rem] text-[#CC0000] italic font-black uppercase">
                 Guaranteed Fastest
               </span>
-              <span className="block w-fit mx-auto whitespace-nowrap text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.1]">
+              <span className="whitespace-nowrap leading-[1.1] text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase">
                 Way To Get Your
               </span>
-              <span className="block w-fit mx-auto whitespace-nowrap text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase leading-[1.1]">
+              <span className="whitespace-nowrap leading-[1.1] text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6rem] text-[#111111] font-black uppercase">
                 Driving License.
               </span>
             </h1>

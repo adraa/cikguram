@@ -21,7 +21,7 @@ export default function FreeTransportSection() {
             fill
             className="object-cover"
             sizes="100vw"
-            loading="lazy" />
+            priority />
           {/* Dark overlay — this section stays dark for contrast */}
           <div className="absolute inset-0 bg-[#111111]/88" />
         </div>
