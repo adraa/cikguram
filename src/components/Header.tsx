@@ -47,7 +47,7 @@ export default function Header() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group" title="CikguRam Home">
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group" title="CikguRam Home">
             <AppLogo size={30} onClick={() => {}} />
             <div className="flex flex-col">
               <span className="font-display text-sm sm:text-base font-800 text-[#111111] tracking-tight leading-none">

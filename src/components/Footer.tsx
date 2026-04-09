@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-4">
           {/* Logo + Brand */}
-          <Link href="/home" className="flex items-center gap-2.5" title="CikguRam Home">
+          <Link href="/" className="flex items-center gap-2.5" title="CikguRam Home">
             <AppLogo size={28} />
             <span className="font-display text-sm font-700 text-black/70 tracking-tight">
               CikguRam
