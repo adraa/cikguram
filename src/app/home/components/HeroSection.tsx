@@ -77,50 +77,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: Single cohesive horizontal proof panel */}
-          <div className="lg:col-span-5 reveal-right delay-200">
-            <div className="light-card rounded-2xl overflow-hidden">
-              {/* Proof panel header */}
-              <div className="bg-[#111111] px-6 py-4 flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CC0000] animate-pulse" />
-                <span className="text-[10px] font-display font-700 uppercase tracking-[0.18em] text-white/55">
-                  Proven Results
-                </span>
-              </div>
 
-              {/* Three stats in a horizontal row */}
-              <div className="grid grid-cols-3 divide-x divide-black/6 px-2 py-6 sm:py-8">
-                <div className="text-center px-4">
-                  <div className="font-display font-800 text-2xl sm:text-3xl text-[#1A7A3C] tracking-tight">600<span className="text-[#CC0000]">+</span></div>
-                  <div className="text-[10px] text-black/60 font-display font-600 mt-1.5 leading-tight tracking-wide">Licensed&lt;br/&gt;Drivers</div>
-                </div>
-                <div className="text-center px-4">
-                  <div className="font-display font-800 text-2xl sm:text-3xl text-[#111111] tracking-tight">98<span className="text-[#CC0000]">%</span></div>
-                  <div className="text-[10px] text-black/60 font-display font-600 mt-1.5 leading-tight tracking-wide">First-Try&lt;br/&gt;Pass Rate</div>
-                </div>
-                <div className="text-center px-4">
-                  <div className="font-display font-800 text-2xl sm:text-3xl text-[#111111] tracking-tight">RM<span className="text-[#9A6E00]">299</span></div>
-                  <div className="text-[10px] text-black/60 font-display font-600 mt-1.5 leading-tight tracking-wide">Online&lt;br/&gt;Savings</div>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-black/6 mx-6" />
-
-              {/* Savings CTA row */}
-              <div className="flex items-center gap-4 px-6 py-5">
-                <div className="w-10 h-10 rounded-xl bg-[#CC0000]/10 flex items-center justify-center shrink-0">
-                  <Icon name="TagIcon" size={20} variant="solid" className="text-[#CC0000]" />
-                </div>
-                <div className="flex-1">
-                  <div className="font-display font-700 text-[#111111] text-sm tracking-tight">
-                    Save <span className="text-[#CC0000]">RM299</span> — Register Online Today
-                  </div>
-                  <div className="text-[11px] text-black/55 font-body mt-1 leading-relaxed">Full package from RM2,349 · Limited slots</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
