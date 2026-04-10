@@ -1,5 +1,9 @@
 # Next.js
 
+## 🎯 Development Priority
+This project is **mobile-first**. Always build for mobile screens first, then scale up.
+See `.cursor/rules/mobile-first.mdc` for the full AI coding rules.
+
 A modern Next.js 15 application built with TypeScript and Tailwind CSS.
 
 ## 🚀 Features
