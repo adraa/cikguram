@@ -108,7 +108,7 @@ export default function HeroSection() {
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.18)] border border-black/6 overflow-hidden">
           <div className="grid grid-cols-3 divide-x divide-black/8">
             {[
-              { highlight: '★ 5.0', label: 'Google Rating', gold: true },
+              { highlight: '★ 4.9', label: 'Google Rating', gold: true },
               { highlight: '💪 10 Yrs', label: 'Experience', gold: false },
               { highlight: '❤️ 500+', label: 'Students Passed', gold: false },
             ].map((item) => (
