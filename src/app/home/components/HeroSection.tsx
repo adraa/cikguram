@@ -52,40 +52,24 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Headline — SPDY-inspired: condensed, aggressive italic, speed lines */}
-          <h1 className="sm:mb-5 flex flex-col items-center" style={{ fontFamily: 'var(--font-headline)', fontWeight: 900 }}>
-            <span
-              className="block leading-[0.88] italic uppercase whitespace-nowrap bg-clip-text text-transparent pr-[0.15em]"
-              style={{
-                fontSize: 'clamp(3.8rem, 11vw, 5.5rem)',
-                letterSpacing: '-0.03em',
-                backgroundImage: 'linear-gradient(to right, #F08000, #FF9A00)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                transform: 'skewX(-6deg)',
-              }}>
-              Guaranteed
-            </span>
-            <span
-              className="block leading-[0.88] italic uppercase whitespace-nowrap bg-clip-text text-transparent pr-[0.15em]"
-              style={{
-                fontSize: 'clamp(3.8rem, 11vw, 5.5rem)',
-                letterSpacing: '-0.03em',
-                backgroundImage: 'linear-gradient(to right, #F08000, #FF9A00)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                transform: 'skewX(-6deg)',
-              }}>
-              Fastest
-            </span>
+          {/* Headline — image-based for pixel-perfect speed typography */}
+          <h1 className="sm:mb-5 flex flex-col items-center">
+            <Image
+              src="/hero-headline.png"
+              alt="Guaranteed Fastest"
+              width={520}
+              height={160}
+              className="w-[clamp(280px,80vw,520px)] h-auto"
+              priority
+            />
             <span
               className="block font-body not-italic text-white/90 tracking-wide leading-snug mt-2"
-              style={{ fontSize: 'clamp(1.25rem, 4.2vw, 1.6rem)', letterSpacing: '0.04em', fontWeight: 600, textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.8)' }}>
+              style={{ fontFamily: 'var(--font-headline)', fontSize: 'clamp(1.25rem, 4.2vw, 1.6rem)', letterSpacing: '0.04em', fontWeight: 600, textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.8)' }}>
               Way To Get Your
             </span>
             <span
               className="block font-body not-italic text-white/90 tracking-wide leading-snug"
-              style={{ fontSize: 'clamp(1.25rem, 4.2vw, 1.6rem)', letterSpacing: '0.04em', fontWeight: 600, textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.8)' }}>
+              style={{ fontFamily: 'var(--font-headline)', fontSize: 'clamp(1.25rem, 4.2vw, 1.6rem)', letterSpacing: '0.04em', fontWeight: 600, textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.8)' }}>
               Driving License
             </span>
           </h1>
