@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+
 export default function HeroSection() {
   return (
     <section
@@ -37,13 +38,13 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 w-full flex-1 flex flex-col">
+      <div className="relative z-10 w-full flex-1 flex flex-col justify-center">
 
-        {/* Text content */}
-        <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center gap-3 px-5 sm:px-8 lg:px-10 pt-[24px] sm:pt-14 pb-4 sm:pb-10">
+        {/* Content block — vertically centred in hero */}
+        <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center gap-3 px-5 sm:px-8 lg:px-10 pt-20 sm:pt-[22vh] pb-4 sm:pb-10">
 
-          {/* Badge pill — kept exactly as-is */}
-          <div className="reveal sm:mt-6">
+          {/* Badge pill */}
+          <div className="reveal">
             <span
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-black/12 text-[#111111] font-display font-semibold tracking-[0.05em] uppercase shadow-sm"
               style={{ fontSize: 'clamp(10px, 2.5vw, 12px)' }}>
@@ -52,29 +53,33 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Headline — SPDY-inspired: condensed, aggressive italic, speed lines */}
-          <h1 className="sm:mb-5 flex flex-col items-center" style={{ fontFamily: 'var(--font-headline)', fontWeight: 900 }}>
+          {/* Headline — pure CSS typography, no image box */}
+          <h1 className="flex flex-col items-center" style={{ fontFamily: 'var(--font-headline)', fontWeight: 900 }}>
             <span
-              className="block leading-[0.88] italic uppercase whitespace-nowrap bg-clip-text text-transparent pr-[0.15em]"
+              className="block leading-[0.92] italic uppercase whitespace-nowrap"
               style={{
-                fontSize: 'clamp(3.8rem, 11vw, 5.5rem)',
-                letterSpacing: '-0.03em',
-                backgroundImage: 'linear-gradient(to right, #F08000, #FF9A00)',
+                fontSize: 'clamp(3.2rem, 12vw, 6rem)',
+                letterSpacing: '-0.02em',
+                backgroundImage: 'linear-gradient(to right, #CC2200, #FF4D00, #FF8000, #E8AA00)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 transform: 'skewX(-6deg)',
+                paddingRight: '0.25em',
               }}>
               Guaranteed
             </span>
             <span
-              className="block leading-[0.88] italic uppercase whitespace-nowrap bg-clip-text text-transparent pr-[0.15em]"
+              className="block leading-[0.92] italic uppercase whitespace-nowrap"
               style={{
-                fontSize: 'clamp(3.8rem, 11vw, 5.5rem)',
-                letterSpacing: '-0.03em',
-                backgroundImage: 'linear-gradient(to right, #F08000, #FF9A00)',
+                fontSize: 'clamp(3.2rem, 12vw, 6rem)',
+                letterSpacing: '-0.02em',
+                backgroundImage: 'linear-gradient(to right, #CC2200, #FF4D00, #FF8000, #E8AA00)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 transform: 'skewX(-6deg)',
+                paddingRight: '0.25em',
               }}>
               Fastest
             </span>
@@ -90,35 +95,34 @@ export default function HeroSection() {
             </span>
           </h1>
 
-          {/* Mobile CTAs — right below headline, button first then urgency */}
-          <div className="sm:hidden flex flex-col items-center gap-2 w-full max-w-[320px]">
-            <a
-              href="#register"
-              className="w-full min-h-[44px] bg-[#FF2020] hover:bg-[#E01010] text-white flex items-center justify-center gap-2 px-1 py-3 rounded-xl text-[14px] font-display font-black uppercase tracking-wider whitespace-nowrap shadow-[0_4px_16px_rgba(255,32,32,0.45)] transition-all active:scale-[0.98]">
-              Claim RM299 Discount Now <span className="cta-arrow">↓</span>
-            </a>
+          {/* Mobile CTA block — urgency ABOVE button */}
+          <div className="sm:hidden flex flex-col items-center gap-2 w-full max-w-[320px] mt-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#CC0000] shrink-0 animate-pulse" />
               <span className="text-white text-[11px] font-display font-semibold tracking-wide whitespace-nowrap drop-shadow-sm">
                 Only 4 spots left this month
               </span>
             </div>
+            <a
+              href="#register"
+              className="w-full min-h-[44px] bg-[#FF2020] hover:bg-[#E01010] text-white flex items-center justify-center gap-2 px-1 py-3 rounded-xl text-[14px] font-display font-black uppercase tracking-wider whitespace-nowrap shadow-[0_4px_16px_rgba(255,32,32,0.45)] transition-all active:scale-[0.98]">
+              Claim RM299 Discount Now <span className="cta-arrow">↓</span>
+            </a>
           </div>
 
         </div>
 
-        {/* Spacer — pushes CTAs to bottom */}
+        {/* Spacer — pushes bottom bar down */}
         <div className="flex-1" />
 
-        {/* CTA row — pinned to bottom of hero */}
+        {/* Bottom bar — pinned to bottom of hero */}
         <div className="w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pb-1 sm:pb-10 flex flex-col items-center gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
-          {/* Secondary — mobile: plain text, desktop: small button card */}
           <a
             href="#process"
             className="order-3 sm:order-1 text-[#111111] bg-white/90 hover:bg-white px-3 py-1 sm:px-4 sm:py-2 rounded-lg shadow-sm border border-black/10 text-[10px] sm:text-xs font-display font-semibold uppercase tracking-[0.06em] whitespace-nowrap transition-all duration-200 backdrop-blur-sm hover:shadow-md hover:text-[#111111]">
             Meet Cikgu Ram ↓
           </a>
-          {/* Right side: urgency above CTA, perfectly aligned — desktop only */}
+          {/* Desktop CTA — urgency ABOVE button */}
           <div className="hidden sm:flex order-1 sm:order-2 flex-col items-center gap-1 sm:w-auto">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#CC0000] shrink-0 animate-pulse" />
@@ -128,7 +132,7 @@ export default function HeroSection() {
             </div>
             <a
               href="#register"
-              className="w-full sm:w-auto min-h-[44px] sm:min-h-[44px] bg-[#FF2020] hover:bg-[#E01010] text-white flex items-center justify-center gap-2 px-6 sm:px-6 py-3 sm:py-3 rounded-xl text-[14px] sm:text-[14px] font-display font-black uppercase tracking-wider whitespace-nowrap shadow-[0_4px_16px_rgba(255,32,32,0.45)] transition-all hover:-translate-y-0.5 active:scale-[0.98]">
+              className="w-full sm:w-auto min-h-[44px] bg-[#FF2020] hover:bg-[#E01010] text-white flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-[14px] font-display font-black uppercase tracking-wider whitespace-nowrap shadow-[0_4px_16px_rgba(255,32,32,0.45)] transition-all hover:-translate-y-0.5 active:scale-[0.98]">
               Claim RM299 Discount Now <span className="cta-arrow">↓</span>
             </a>
           </div>
