@@ -10,7 +10,7 @@ import ProcessSection from './components/ProcessSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
 import ReserveFormSection from './components/ReserveFormSection';
-import StickyMobileCTA from './components/StickyMobileCTA';
+
 import ScrollRevealInit from './components/ScrollRevealInit';
 
 export default function HomePage() {
