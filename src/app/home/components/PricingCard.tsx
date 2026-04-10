@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
 
 interface TimeLeft {
@@ -30,42 +31,35 @@ function useCountdown(targetHours: number): TimeLeft {
   return timeLeft;
 }
 
-function CountdownUnit({ value, label }: { value: number; label: string }) {
-  const [prev, setPrev] = useState(value);
-  const [ticking, setTicking] = useState(false);
-
-  useEffect(() => {
-    if (value !== prev) {
-      setTicking(true);
-      const t = setTimeout(() => setTicking(false), 300);
-      setPrev(value);
-      return () => clearTimeout(t);
-    }
-  }, [value, prev]);
-
-  const display = String(value).padStart(2, '0');
-
+function InlineCountdown({ timeLeft }: { timeLeft: TimeLeft }) {
+  const fmt = (n: number) => String(n).padStart(2, '0');
   return (
-    <div className="flex flex-col items-center">
-      <div className={`countdown-digit text-2xl sm:text-3xl font-display font-800 text-[#111111] tabular-nums ${ticking ? 'tick' : ''}`}>
-        {display}
-      </div>
-      <div className="text-[11px] text-black/30 uppercase tracking-[0.14em] font-display font-600 mt-1">{label}</div>
-    </div>
+    <span className="inline-flex items-center gap-0.5 text-[13px] font-display font-700 text-[#CC0000] tabular-nums">
+      <span className="mr-0.5 text-[13px] leading-none">⏰</span>
+      {fmt(timeLeft.hours)}
+      <span className="opacity-60 mx-0.5">:</span>
+      {fmt(timeLeft.minutes)}
+      <span className="opacity-60 mx-0.5">:</span>
+      {fmt(timeLeft.seconds)}
+    </span>
   );
 }
 
-const packageIncludes = [
-  'KPP Theory Course (6 Hours)',
-  'Computerised Theory Test (Undang-Undang)',
-  'Learner\'s Driving License (LDL)',
-  'KPP02 Practical Circuit Training',
-  'KPP03 On-Road Practical Training',
-  'Pre-Test Evaluation',
-  'JPJ Practical Test (Circuit + Road)',
-  'All Processing Fees Included',
+const coreItems = [
+  'KPP Theory Classes (KPP01)',
+  'Computer Theory Test (KPP01)',
+  'KPP02 & KPP03 Practical',
+  'QTI Pre-Test',
+  'JPJ Practical Test',
+  'JPJ Road Test Preparation',
+];
+
+const bonusItems = [
+  '2-Hours of Additional Training',
+  'Computer Theory Test Retake',
+  'QTI Pre-Test Retake',
+  'JPJ Practical Test Retake',
   'WhatsApp Support Throughout',
-  'Free Transport Provided',
 ];
 
 export default function PricingCard() {
@@ -78,114 +72,113 @@ export default function PricingCard() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section label */}
         <div className="text-center mb-8 sm:mb-12 reveal">
-          <span className="section-label" style={{ color: '#CC0000' }}>Limited Time Offer</span>
-          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 tracking-tight leading-[1.1]">
-            Register Online &amp; Save <span className="text-[#CC0000]">RM299</span>
+          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] tracking-tight leading-[1.15]">
+            The Discount Is Real.<br />
+            The Deadline Isn&apos;t <span className="text-[#CC0000]">Far.</span>
           </h2>
         </div>
 
-        {/* Main pricing card */}
-        <div className="reveal delay-100 relative rounded-2xl overflow-hidden border border-black/8 bg-white shadow-card">
-          {/* Top accent bar — road yellow */}
-          <div className="h-1.5 w-full bg-[#C9A020]" />
+        {/* Main pricing card — no overflow-hidden so price pill can bleed over image */}
+        <div className="reveal delay-100 max-w-2xl mx-auto rounded-2xl border border-black/8 bg-white shadow-card relative">
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
-            {/* Left: Price + Timer */}
-            <div className="lg:col-span-2 p-6 sm:p-10 border-b lg:border-b-0 lg:border-r border-black/6 flex flex-col justify-between gap-6 sm:gap-8 bg-[#F8F8F6]">
-              {/* License type badges */}
-              <div className="flex flex-wrap gap-2">
-                <span className="road-sign-badge-red">Manual Car (D)</span>
-                <span className="px-3 py-1 rounded text-xs font-display font-600 bg-black/6 text-black/50 border border-black/8">
-                  Auto Car (DA)
+          {/* ── Hero image — square gives enough height to show faces, car, and road ── */}
+          <div className="relative aspect-[1/1] sm:aspect-[3/2] overflow-hidden rounded-t-2xl">
+            <Image
+              src="/pricing-students.webp"
+              alt="Students holding P-plates in front of CikguRam's car RAM 308"
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 672px"
+              quality={88}
+            />
+            {/* Bottom-only gradient anchors the price pill — top is clear so faces show */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.75) 100%)',
+              }}
+            />
+          </div>
+
+          {/* ── Price pill — negative margin pulls it halfway over the image bottom ── */}
+          <div className="relative -mt-14 mx-5 z-10">
+            <div className="bg-white rounded-2xl px-5 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.14)] border border-black/8">
+              <div className="flex items-start gap-1 leading-none">
+                <span className="font-display font-400 text-base text-black/30 mt-2.5 shrink-0">RM</span>
+                <span className="font-display font-black text-[3rem] sm:text-[3.5rem] text-[#111111] tracking-tight leading-none">
+                  2,349
                 </span>
               </div>
-
-              {/* Price */}
-              <div>
-                <div className="flex items-start gap-1 mb-2 leading-none">
-                  <span className="font-display font-400 text-xl text-black/30 mt-2.5 shrink-0">RM</span>
-                  <span className="font-display font-black text-[4rem] sm:text-[5rem] md:text-[5.5rem] text-[#111111] tracking-tight leading-none">
-                    2,349
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-black/40 line-through text-sm font-body">RM2,648</span>
-                  <span className="px-2 py-0.5 rounded bg-[#CC0000] text-white text-xs font-display font-700">
-                    SAVE RM299
-                  </span>
-                </div>
-                <p className="text-black/60 text-sm font-body mt-3 leading-relaxed">
-                  All-in package · No hidden fees · Free transport
-                </p>
+              <div className="flex items-center flex-wrap gap-x-2.5 gap-y-1.5 mt-1.5">
+                <span className="text-black/40 line-through text-sm font-body">RM2,648</span>
+                <span className="px-2 py-0.5 rounded bg-[#CC0000] text-white text-xs font-display font-700 shrink-0">
+                  SAVE RM299
+                </span>
+                <InlineCountdown timeLeft={timeLeft} />
               </div>
-
-              {/* Countdown */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Icon name="ClockIcon" size={14} variant="outline" className="text-[#CC0000]" />
-                  <span className="text-[11px] text-black/30 font-display font-600 uppercase tracking-[0.14em]">
-                    Offer expires in
-                  </span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <CountdownUnit value={timeLeft.hours} label="Hrs" />
-                  <span className="text-2xl font-display font-300 text-black/25 mb-4">:</span>
-                  <CountdownUnit value={timeLeft.minutes} label="Min" />
-                  <span className="text-2xl font-display font-300 text-black/25 mb-4">:</span>
-                  <CountdownUnit value={timeLeft.seconds} label="Sec" />
-                </div>
-              </div>
-
-              {/* CTA — full width, large touch target */}
-              <a
-                href="#register"
-                className="btn-primary flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-display font-700"
-              >
-                <Icon name="BoltIcon" size={18} variant="solid" />
-                Register Now
-              </a>
-
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-[#C9A020]/10 border border-[#C9A020]/30">
-                <Icon name="ExclamationTriangleIcon" size={14} variant="solid" className="text-[#7D6008] mt-0.5 shrink-0" />
-                <p className="text-xs text-[#7D6008] font-body leading-relaxed">
-                  Only 4 spots left this month. Once filled, price returns to RM2,648.
-                </p>
-              </div>
-            </div>
-
-            {/* Right: Package includes */}
-            <div className="lg:col-span-3 p-6 sm:p-10 bg-white">
-              <div className="flex items-center gap-3 mb-6 sm:mb-8">
-                <Icon name="GiftIcon" size={20} variant="solid" className="text-[#CC0000]" />
-                <h3 className="font-display font-800 text-[#111111] text-lg tracking-tight">
-                  Everything Included
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {packageIncludes.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-4 h-4 rounded-full bg-[#1A7A3C]/15 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="CheckIcon" size={10} variant="solid" className="text-[#1A7A3C]" />
-                    </div>
-                    <span className="text-sm text-black/65 font-body leading-[1.5]">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Free transport callout */}
-              <div className="mt-6 sm:mt-8 p-5 rounded-xl bg-[#CC0000]/6 border border-[#CC0000]/15 flex items-center gap-4">
-                <div className="w-11 h-11 rounded-lg bg-[#CC0000]/10 flex items-center justify-center shrink-0">
-                  <Icon name="TruckIcon" size={22} variant="solid" className="text-[#CC0000]" />
-                </div>
-                <div>
-                  <div className="font-display font-700 text-[#111111] text-sm tracking-tight">Free Transport Provided</div>
-                  <div className="text-xs text-black/45 font-body mt-1 leading-relaxed">
-                    Pick-up &amp; drop-off service included in your package
-                  </div>
-                </div>
-              </div>
+              <p className="text-black/45 text-[11px] font-body mt-1.5">Complete Package · Zero Hidden Fees</p>
             </div>
           </div>
+
+          {/* ── Checklist: core items — single column, divider between each row ── */}
+          <div className="pt-5">
+            {coreItems.map((item, i) => (
+              <div
+                key={item}
+                className={`flex items-center gap-3 px-6 py-3 ${i < coreItems.length - 1 ? 'border-b border-black/6' : ''}`}
+              >
+                <div className="w-5 h-5 rounded-full bg-[#1A7A3C]/12 flex items-center justify-center shrink-0">
+                  <Icon name="CheckIcon" size={11} variant="solid" className="text-[#1A7A3C]" />
+                </div>
+                <span className="text-sm text-black/70 font-body">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* ── BONUS divider bar — full width, feels like a section break ── */}
+          <div className="flex items-center gap-2.5 px-6 py-3 bg-[#C9A020] mt-2">
+            <Icon name="GiftIcon" size={14} variant="solid" className="text-white shrink-0" />
+            <span className="text-[11px] font-display font-700 text-white uppercase tracking-[0.14em]">
+              Bonus — Included Free
+            </span>
+          </div>
+
+          {/* ── Bonus items — single column, divider between each row ── */}
+          <div>
+            {bonusItems.map((item, i) => (
+              <div
+                key={item}
+                className={`flex items-center gap-3 px-6 py-3 bg-[#FEFBF0] ${i < bonusItems.length - 1 ? 'border-b border-[#C9A020]/18' : ''}`}
+              >
+                <div className="w-5 h-5 rounded-full bg-[#C9A020]/20 flex items-center justify-center shrink-0">
+                  <Icon name="CheckIcon" size={11} variant="solid" className="text-[#7D6008]" />
+                </div>
+                <span className="text-sm text-[#5C4A00] font-body">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* ── CTA ── */}
+          <div className="px-6 pt-5 pb-5">
+            <a
+              href="#register"
+              className="btn-primary flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-display font-700"
+            >
+              <Icon name="BoltIcon" size={18} variant="solid" />
+              Secure My Spot Now
+            </a>
+          </div>
+
+          {/* ── Scarcity bar — dark/serious, left red border, rounded-b-2xl ── */}
+          <div className="flex items-start gap-3.5 px-5 py-4 bg-[#111111] rounded-b-2xl overflow-hidden">
+            <Icon name="ExclamationTriangleIcon" size={15} variant="solid" className="text-[#CC0000] mt-0.5 shrink-0" />
+            <p className="text-xs text-white/80 font-body leading-relaxed">
+              <span className="font-display font-700 text-white">15 students max per month.</span>{' '}
+              Cikgu Ram limits intake to guarantee personal attention. Spots for this month are filling up now.
+            </p>
+          </div>
+
         </div>
       </div>
     </section>

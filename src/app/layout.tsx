@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { DM_Sans, Manrope } from 'next/font/google';
+import { DM_Sans, Manrope, Barlow_Condensed } from 'next/font/google';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -16,6 +16,14 @@ const manrope = Manrope({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-body',
+  display: 'swap',
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-headline',
   display: 'swap',
 });
 
@@ -40,7 +48,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${manrope.variable}`}>
+      <html lang="en" className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable}`}>
       <body>
         {children}
         <Script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcikguram3493back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18" strategy="lazyOnload" />
