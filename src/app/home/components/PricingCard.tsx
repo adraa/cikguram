@@ -84,7 +84,7 @@ export default function PricingCard() {
           {/* ── Hero image — square gives enough height to show faces, car, and road ── */}
           <div className="relative aspect-[1/1] sm:aspect-[3/2] overflow-hidden rounded-t-2xl">
             <Image
-              src="/pricing-students.webp"
+              src="/hero-desktop.webp"
               alt="Students holding P-plates in front of CikguRam's car RAM 308"
               fill
               className="object-cover object-top"
