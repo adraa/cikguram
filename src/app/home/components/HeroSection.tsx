@@ -60,10 +60,11 @@ export default function HeroSection() {
               style={{
                 fontSize: 'clamp(3.2rem, 12vw, 6rem)',
                 letterSpacing: '-0.02em',
-                backgroundImage: 'linear-gradient(to right, #CC2200, #FF4D00, #FF8000, #E8AA00)',
+                backgroundImage: 'linear-gradient(to right, #FF2200, #FF4D00, #FF7A00, #E8AA00)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                WebkitTextStroke: '1.5px #000000',
                 transform: 'skewX(-6deg)',
                 paddingRight: '0.25em',
               }}>
@@ -74,10 +75,11 @@ export default function HeroSection() {
               style={{
                 fontSize: 'clamp(3.2rem, 12vw, 6rem)',
                 letterSpacing: '-0.02em',
-                backgroundImage: 'linear-gradient(to right, #CC2200, #FF4D00, #FF8000, #E8AA00)',
+                backgroundImage: 'linear-gradient(to right, #FF2200, #FF4D00, #FF7A00, #E8AA00)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                WebkitTextStroke: '1.5px #000000',
                 transform: 'skewX(-6deg)',
                 paddingRight: '0.25em',
               }}>

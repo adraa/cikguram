@@ -496,8 +496,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Form input — light */
 .form-input {
-  background: #FFFFFF;
-  border: 1.5px solid rgba(0,0,0,0.12);
+  background: #FAFAFA;
+  border: 2px solid #C9A020;
   color: #111111;
   font-family: 'Manrope', sans-serif;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -506,11 +506,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .form-input:focus {
   outline: none;
-  border-color: #CC0000;
-  box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.08);
+  border-color: #C9A020;
+  box-shadow: 0 0 0 3px rgba(201, 160, 32, 0.12);
 }
 .form-input::placeholder {
-  color: rgba(17,17,17,0.35);
+  color: #767676;
 }
 
 /* Section label */

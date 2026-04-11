@@ -19,13 +19,21 @@ export default function HomePage() {
       <Header />
       <HeroSection />
       <PricingCard />
+
+      {/* ── Section break — pricing → register ── */}
+      <div className="bg-[#F8F8F6] py-8">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <div className="h-px bg-gradient-to-r from-transparent via-black/12 to-transparent" />
+        </div>
+      </div>
+
+      <ReserveFormSection />
       <SocialProofSection />
       <FeaturesSection />
       <FreeTransportSection />
       <ProcessSection />
       <TestimonialsSection />
       <FAQSection />
-      <ReserveFormSection />
 <Footer />
       <ScrollRevealInit />
     </main>

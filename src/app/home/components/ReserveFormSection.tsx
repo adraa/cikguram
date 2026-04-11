@@ -41,6 +41,8 @@ const PROOF_AVATARS = [
 interface FormData {
   name: string;
   phone: string;
+  category: string;
+  citizenship: string;
   licenseType: string;
 }
 
@@ -48,12 +50,13 @@ export default function ReserveFormSection() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
+    category: '',
+    citizenship: 'Malaysian',
     licenseType: 'D',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -72,59 +75,22 @@ export default function ReserveFormSection() {
     setSubmitted(true);
   };
 
-  // Progress: 3 required fields — name, phone, licenseType (licenseType always pre-filled to 'D')
-  const requiredFields: (keyof FormData)[] = ['name', 'phone', 'licenseType'];
-  const filledRequired = requiredFields.filter(f => formData[f].trim() !== '').length;
-  const progressPercent = Math.round((filledRequired / requiredFields.length) * 100);
-
   return (
-    <section id="register" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
+    <section id="register" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-bg" />
       <div className="glow-blob w-[400px] h-[400px] bg-red-100 top-1/2 right-0 -translate-y-1/2 opacity-50 hidden sm:block" />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* ── Section header ── */}
-        <div className="text-center mb-6 sm:mb-8 reveal">
-          <span className="section-label">Reserve Your Spot</span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
-            Start Your License Journey Today
+        <div className="text-center mb-8 sm:mb-10 reveal">
+          {/* Barlow Condensed creates typographic distinction against the sans-serif form body */}
+          <h2 className="font-headline font-800 text-[32px] sm:text-[36px] md:text-[40px] text-[#111111] mt-3 mb-4 tracking-tight leading-[1.15]">
+            Begin Your Driving Journey
           </h2>
-          <p className="text-black/60 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
-            Fill in the form below and Cikgu Ram will contact you within 24 hours to confirm your spot.
+          <p className="text-black/60 font-body max-w-[420px] mx-auto text-[15px] sm:text-[18px] leading-[1.6]">
+            Expect a personal message from Cikgu Ram within 24 hours to finalize your schedule.
           </p>
-        </div>
-
-        {/* ── Social proof strip ── */}
-        <div className="flex items-center justify-center gap-3 mb-6 reveal">
-          {/* Stacked avatars */}
-          <div className="flex -space-x-2">
-            {PROOF_AVATARS.map((src, i) => (
-              <div
-                key={i}
-                className="w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-sm"
-              >
-                <AppImage
-                  src={src}
-                  alt="Student"
-                  width={32}
-                  height={32}
-                  className="object-cover w-full h-full"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-          {/* Stars + copy */}
-          <div className="flex flex-col items-start">
-            <div className="flex items-center gap-0.5">
-              {[1, 2, 3, 4, 5].map(s => (
-                <Icon key={s} name="StarIcon" size={12} variant="solid" className="text-[#C9A020]" />
-              ))}
-              <span className="ml-1.5 text-xs font-display font-700 text-[#111111]">4.9 / 5.0</span>
-            </div>
-            <span className="text-xs text-black/50 font-body mt-0.5">Join 600+ licensed drivers</span>
-          </div>
         </div>
 
         {/* ── Form card ── */}
@@ -154,148 +120,242 @@ export default function ReserveFormSection() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="light-card rounded-2xl p-6 sm:p-8 border-t-4 border-t-[#C9A020]"
+              className="light-card rounded-2xl overflow-hidden border-t-4 border-t-[#C9A020]"
             >
-              {/* Progress bar */}
-              <div className="mb-6">
-                <div className="flex justify-end mb-2">
-                  <span className="text-xs font-display font-700 text-[#CC0000]">
-                    {progressPercent}% Complete
-                  </span>
-                </div>
-                <div className="h-2 bg-black/5 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-[#CC0000] to-[#FF2222] transition-all duration-500 ease-out rounded-full"
-                    style={{ width: `${progressPercent}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Name + Phone — side by side on sm+ */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                {/* Name */}
-                <div>
-                  <label className="block text-xs font-display font-600 text-black/60 uppercase tracking-widest mb-2.5">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField('name')}
-                    onBlur={() => setFocusedField(null)}
-                    required
-                    placeholder="e.g. Ahmad bin Abdullah"
-                    className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
-                      formData.name ? 'border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
-                    }`}
-                    suppressHydrationWarning
-                    autoComplete="name"
-                  />
-                  {formData.name && (
-                    <div className="flex items-center gap-1.5 mt-1.5">
-                      <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
-                      <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label className="block text-xs font-display font-600 text-black/60 uppercase tracking-widest mb-2.5">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField('phone')}
-                    onBlur={() => setFocusedField(null)}
-                    required
-                    placeholder="e.g. 012-345 6789"
-                    className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
-                      formData.phone ? 'border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
-                    }`}
-                    suppressHydrationWarning
-                    autoComplete="tel"
-                    inputMode="tel"
-                  />
-                  {formData.phone && (
-                    <div className="flex items-center gap-1.5 mt-1.5">
-                      <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
-                      <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* License type */}
-              <div className="mb-8">
-                <label className="block text-xs font-display font-600 text-black/60 uppercase tracking-widest mb-2.5">
-                  Preferred License Type *
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { value: 'D',  label: 'Manual (D)',  sub: 'Full flexibility',  icon: 'Cog6ToothIcon' },
-                    { value: 'DA', label: 'Auto (DA)',   sub: 'Easier to learn',   icon: 'BoltIcon' },
-                  ].map((opt) => (
-                    <label key={opt.value} className="cursor-pointer">
-                      <input
-                        type="radio"
-                        name="licenseType"
-                        value={opt.value}
-                        checked={formData.licenseType === opt.value}
-                        onChange={handleChange}
-                        className="sr-only"
-                        suppressHydrationWarning
-                      />
-                      <div
-                        className={`p-4 rounded-xl border-2 transition-all duration-200 min-h-[72px] flex items-center gap-3 ${
-                          formData.licenseType === opt.value
-                            ? 'border-[#CC0000] bg-[#CC0000]/6 shadow-sm'
-                            : 'border-black/8 bg-white hover:border-black/15'
-                        }`}
-                      >
-                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
-                          formData.licenseType === opt.value ? 'bg-[#CC0000]' : 'bg-black/5'
-                        }`}>
-                          <Icon
-                            name={opt.icon as Parameters<typeof Icon>[0]['name']}
-                            size={18}
-                            variant="solid"
-                            className={formData.licenseType === opt.value ? 'text-white' : 'text-black/40'}
-                          />
-                        </div>
-                        <div>
-                          <div className={`font-display font-700 text-sm leading-tight ${
-                            formData.licenseType === opt.value ? 'text-[#CC0000]' : 'text-black/65'
-                          }`}>
-                            {opt.label}
-                          </div>
-                          <div className="text-xs text-black/40 font-body mt-0.5">{opt.sub}</div>
-                        </div>
-                      </div>
+              {/* ── Form fields ── */}
+              {/* 32px padding signals considered design, not a template */}
+              <div className="p-8">
+                {/* Name + Phone + Category — full-width stacked */}
+                {/* mb-7 (28px) before license section signals a visual zone shift */}
+                <div className="flex flex-col gap-4 mb-7">
+                  {/* Name */}
+                  <div>
+                    <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
+                      Full Name<span className="text-[#EF4444]"> *</span>
                     </label>
-                  ))}
+                    <input
+                      id="full-name-input"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g. Ahmad bin Abdullah"
+                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                        formData.name ? '!border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
+                      }`}
+                      suppressHydrationWarning
+                      autoComplete="name"
+                    />
+                    {formData.name && (
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
+                        <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
+                      Phone Number<span className="text-[#EF4444]"> *</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g. 012-345 6789"
+                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                        formData.phone ? '!border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
+                      }`}
+                      suppressHydrationWarning
+                      autoComplete="tel"
+                      inputMode="tel"
+                    />
+                    {formData.phone && (
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
+                        <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Category */}
+                  <div>
+                    <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
+                      I am a<span className="text-[#EF4444]"> *</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        required
+                        className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all appearance-none pr-10 ${
+                          formData.category ? '!border-[#1A7A3C]' : ''
+                        }`}
+                        suppressHydrationWarning
+                      >
+                        <option value="" disabled>Select your category...</option>
+                        <option value="University Student">University Student</option>
+                        <option value="Parent registering for a teen">Parent registering for a teen</option>
+                        <option value="Working Professional">Working Professional</option>
+                      </select>
+                      <Icon
+                        name="ChevronDownIcon"
+                        size={16}
+                        variant="solid"
+                        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-black/40"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              <button
-                type="submit"
-                className="btn-primary flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-display font-700 shadow-lg hover:shadow-xl"
-                suppressHydrationWarning
-              >
-                <Icon name="BoltIcon" size={18} variant="solid" />
-                Reserve My Spot — Save RM299
-              </button>
+                {/* ── Citizenship selector — sliding pill ── */}
+                <div className="mb-7">
+                  <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
+                    Citizenship<span className="text-[#EF4444]"> *</span>
+                  </label>
+                  {/* p-1.5 = 6px padding; gap-1.5 = 6px → pill width = calc(50% - 9px) */}
+                  <div className="relative flex bg-[#EDE8D0] rounded-2xl p-1.5 gap-1.5">
+                    {/* Sliding gold pill — GPU-composited via transform only */}
+                    <div
+                      aria-hidden
+                      className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#C9A020] shadow-[0_3px_12px_rgba(201,160,32,0.45)]"
+                      style={{
+                        width: 'calc(50% - 9px)',
+                        left: 6,
+                        transform: formData.citizenship === 'Malaysian'
+                          ? 'translateX(0px)'
+                          : 'translateX(calc(100% + 6px))',
+                        transition: 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        willChange: 'transform',
+                      }}
+                    />
+                    {[
+                      { value: 'Malaysian',    label: 'Malaysian',     flag: '🇲🇾' },
+                      { value: 'Non-Malaysian', label: 'Non-Malaysian', flag: '🌍' },
+                    ].map((opt) => {
+                      const isSelected = formData.citizenship === opt.value;
+                      return (
+                        <label key={opt.value} className="relative z-10 flex-1 cursor-pointer select-none">
+                          <input
+                            type="radio"
+                            name="citizenship"
+                            value={opt.value}
+                            checked={isSelected}
+                            onChange={handleChange}
+                            className="sr-only"
+                            suppressHydrationWarning
+                          />
+                          <div className="flex items-center justify-center gap-2 py-3.5 px-3 min-h-[54px] transition-transform duration-100 active:scale-[0.96]">
+                            <span className="text-[18px] leading-none">{opt.flag}</span>
+                            <span
+                              className="font-display font-700 text-[13.5px] leading-none tracking-[-0.01em]"
+                              style={{
+                                color: isSelected ? '#ffffff' : '#6B6355',
+                                transition: 'color 200ms ease',
+                              }}
+                            >
+                              {opt.label}
+                            </span>
+                          </div>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
 
-              <div className="mt-4 flex items-start gap-2 px-2">
-                <Icon name="LockClosedIcon" size={14} variant="solid" className="text-black/25 shrink-0 mt-0.5" />
-                <p className="text-xs text-black/40 font-body leading-relaxed">
-                  Your information is secure and will only be used to contact you about your registration. No payment required now.
-                </p>
+                {/* ── License type selector — sliding pill ── */}
+                <div className="mb-8">
+                  <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
+                    License Type<span className="text-[#EF4444]"> *</span>
+                  </label>
+                  <div className="relative flex bg-[#EDE8D0] rounded-2xl p-1.5 gap-1.5">
+                    {/* Sliding gold pill */}
+                    <div
+                      aria-hidden
+                      className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#C9A020] shadow-[0_3px_12px_rgba(201,160,32,0.45)]"
+                      style={{
+                        width: 'calc(50% - 9px)',
+                        left: 6,
+                        transform: formData.licenseType === 'D'
+                          ? 'translateX(0px)'
+                          : 'translateX(calc(100% + 6px))',
+                        transition: 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        willChange: 'transform',
+                      }}
+                    />
+                    {[
+                      { value: 'D',  label: 'Manual',    letter: 'D'  },
+                      { value: 'DA', label: 'Automatic', letter: 'DA' },
+                    ].map((opt) => {
+                      const isSelected = formData.licenseType === opt.value;
+                      return (
+                        <label key={opt.value} className="relative z-10 flex-1 cursor-pointer select-none">
+                          <input
+                            type="radio"
+                            name="licenseType"
+                            value={opt.value}
+                            checked={isSelected}
+                            onChange={handleChange}
+                            className="sr-only"
+                            suppressHydrationWarning
+                          />
+                          <div className="flex items-center justify-center gap-2.5 py-3.5 px-3 min-h-[54px] transition-transform duration-100 active:scale-[0.96]">
+                            {/* License class badge */}
+                            <div
+                              className="w-7 h-7 rounded-[8px] flex items-center justify-center shrink-0"
+                              style={{
+                                background: isSelected ? 'rgba(255,255,255,0.22)' : '#1A1A1A',
+                                transition: 'background 250ms ease',
+                              }}
+                            >
+                              <span
+                                className={`font-display font-black leading-none tracking-tight ${opt.letter === 'DA' ? 'text-[10px]' : 'text-[13px]'}`}
+                                style={{
+                                  color: isSelected ? '#ffffff' : '#C9A020',
+                                  transition: 'color 200ms ease',
+                                }}
+                              >
+                                {opt.letter}
+                              </span>
+                            </div>
+                            <span
+                              className="font-display font-700 text-[13.5px] leading-none tracking-[-0.01em]"
+                              style={{
+                                color: isSelected ? '#ffffff' : '#6B6355',
+                                transition: 'color 200ms ease',
+                              }}
+                            >
+                              {opt.label}
+                            </span>
+                          </div>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="btn-primary flex items-center justify-center gap-2 min-w-[220px] px-10 py-3.5 rounded-2xl text-[15px] font-display font-700"
+                    suppressHydrationWarning
+                  >
+                    Submit
+                  </button>
+                </div>
+
+                <div className="mt-4 flex items-start gap-1.5 px-2">
+                  <Icon name="LockClosedIcon" size={13} variant="solid" className="text-black/25 shrink-0 mt-0.5" />
+                  {/* #767676 meets WCAG AA minimum contrast on white */}
+                  <p className="text-[12px] text-[#767676] font-body leading-relaxed">
+                    Your information is secure. No payment required now.
+                  </p>
+                </div>
               </div>
             </form>
           )}

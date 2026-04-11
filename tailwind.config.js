@@ -39,6 +39,7 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-display)', 'DM Sans', 'sans-serif'],
         body: ['var(--font-body)', 'Manrope', 'sans-serif'],
+        headline: ['var(--font-headline)', 'Barlow Condensed', 'sans-serif'],
       },
       fontSize: {
         '7xl': ['4.5rem', { lineHeight: '1' }],
