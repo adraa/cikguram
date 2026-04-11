@@ -27,8 +27,8 @@ export default function Header() {
         <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group">
           <AppLogo size={26} onClick={() => {}} />
           <div className="flex flex-col">
-            <span className="font-display text-[13px] sm:text-sm font-800 text-[#111111] tracking-tight leading-none">
-              CikguRam
+            <span className="block font-space text-[13px] font-700 italic leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
+              CIKGU RAM 🇲🇾
             </span>
             <span className="text-[8px] sm:text-[9px] text-black/40 font-body tracking-widest uppercase leading-none mt-0.5">
               Westport Driving Academy

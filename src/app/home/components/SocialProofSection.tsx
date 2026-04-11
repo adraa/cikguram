@@ -1,53 +1,15 @@
 import React from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
-import Image from 'next/image';
 
 export default function SocialProofSection() {
   return (
     <section id="instructor" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-bg" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Trust bar */}
-        <div className="w-full max-w-xs sm:max-w-sm mx-auto bg-white rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.10)] border border-black/8 overflow-hidden mb-12 sm:mb-16 reveal">
-          <div className="grid grid-cols-3 divide-x divide-black/8">
-            <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
-              <div className="flex items-center">
-                {[
-                  { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png', alt: 'Nurul Ain' },
-                  { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png', alt: 'Vikram' },
-                  { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png', alt: 'Wei Xian' },
-                ].map((av, i) => (
-                  <div
-                    key={av.alt}
-                    className="w-7 h-7 rounded-full border-2 border-white overflow-hidden shrink-0"
-                    style={{ marginLeft: i > 0 ? '-5px' : 0, zIndex: 3 - i }}>
-                    <Image src={av.src} alt={av.alt} width={28} height={28} className="object-cover w-full h-full" />
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-baseline gap-0.5">
-                <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">4.9</span>
-                <span className="text-[#C9A020] text-[12px] leading-none ml-0.5">★</span>
-              </div>
-              <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight">Google Rating</span>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
-              <span className="text-[14px] leading-none">💪</span>
-              <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">10+</span>
-              <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight text-center">Years<br />Experience</span>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
-              <span className="text-[14px] leading-none">❤️</span>
-              <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">600+</span>
-              <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight text-center">Students<br />Passed</span>
-            </div>
-          </div>
-        </div>
-
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
         {/* Instructor profile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-10 items-center">
           {/* Image side */}
           <div className="reveal-left relative">
             <div className="relative rounded-2xl overflow-hidden img-zoom-wrap border border-black/8 aspect-[4/3] shadow-card">
@@ -58,22 +20,23 @@ export default function SocialProofSection() {
                 className="object-cover img-zoom"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
                 priority />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              {/* Name badge */}
-              <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
-                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 sm:p-4 flex items-center gap-3 shadow-card border border-black/6">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#CC0000] flex items-center justify-center shrink-0">
-                    <Icon name="UserIcon" size={18} variant="solid" className="text-white" />
+              {/* Gradient overlay — keeps credential card readable on photo */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+              {/* Trust module — compact chip, intrinsic width, centred (not full-bleed) */}
+              <div className="pointer-events-none absolute bottom-4 left-0 right-0 z-10 flex justify-center px-4 sm:bottom-5 sm:px-5">
+                <div className="pointer-events-auto inline-flex max-w-[min(100%,21rem)] items-center gap-3 rounded-2xl border border-black/[0.08] bg-[#F8F7F5]/95 px-3.5 py-2.5 shadow-[0_6px_24px_rgba(0,0,0,0.07)] backdrop-blur-sm sm:gap-3 sm:px-4 sm:py-2.5">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CC0000]">
+                    <Icon name="UserIcon" size={17} variant="solid" className="text-white" />
                   </div>
-                  <div>
-                    <div className="font-display font-700 text-[#111111] text-sm">Cikgu Ram</div>
-                    <div className="text-xs text-black/45 font-body">Lead Instructor · JPJ Certified</div>
-                  </div>
-                  <div className="ml-auto flex items-center gap-0.5">
-                    {[1, 2, 3, 4, 5].map((s) =>
-                      <Icon key={s} name="StarIcon" size={11} variant="solid" className="text-[#C9A020]" />
-                    )}
+                  <div className="min-w-0 text-left">
+                    <span className="block font-space text-[13px] font-700 italic leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
+                      CIKGU RAM 🇲🇾
+                    </span>
+                    <p className="mt-1 text-balance text-[11px] font-body leading-[1.35] text-[#444444] sm:text-[11px]">
+                      Licensed Driving School Instructor
+                      <br />
+                      Westport Driving Academy
+                    </p>
                   </div>
                 </div>
               </div>
@@ -81,45 +44,51 @@ export default function SocialProofSection() {
           </div>
 
           {/* Content side */}
-          <div className="reveal-right">
-            <span className="section-label">Meet Your Instructor</span>
-            <h2 className="font-display font-700 text-2xl sm:text-3xl md:text-4xl text-[#111111] mt-2 mb-4 tracking-tight leading-tight">
-              Learn with Cikgu Ram,<br />
-              <span className="text-[#CC0000]">Drive Like a Pro.</span>
+          <div className="reveal-right max-lg:pt-6">
+            <h2 className="font-display mb-6 tracking-tight">
+              <span className="block text-[17px] sm:text-[18px] text-[#111111] font-normal leading-snug mb-1.5">
+                Learn with Cikgu Ram.
+              </span>
+              <span className="block text-[28px] sm:text-[30px] font-700 text-[#CC0000] leading-[1.15]">
+                Drive with Confidence.
+              </span>
             </h2>
-            <p className="text-black/65 font-body leading-relaxed mb-5 sm:mb-6 text-sm sm:text-base">
-              With over 10 years of experience training drivers across Malaysia, Cikgu Ram
-              has developed a proven system that gets students through their JPJ test
-              faster and with more confidence. His patient, structured teaching style
-              has helped 600+ students earn their P-License.
+            <p className="text-[15px] text-[#444444] font-body leading-[1.6] mb-5">
+              Most people delay because they're scared of failing the JPJ test. Cikgu Ram's students don't have that problem.
+            </p>
+            <p className="text-[13px] sm:text-[13px] text-[#444444] font-body leading-[1.6] mb-8">
+              With over a decade of experience at <strong className="text-[#111111] font-semibold">Westport Driving Academy</strong>, Cikgu Ram has mastered a teaching system that helps students pass their JPJ tests faster and with less stress. Based in Bukit Rotan, his patient and structured approach has successfully guided over 600+ students to their P-License.
             </p>
 
-            {/* Credentials */}
-            <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
+            {/* Benefits — scannable list */}
+            <div className="space-y-3 mb-10">
               {[
-                'JPJ-certified driving instructor',
-                'Specialist in both manual (D) and automatic (DA) license',
-                'Structured curriculum aligned with latest KPP standards',
-                'Personalised coaching for nervous first-time drivers',
-              ].map((cred, i) =>
+                'Licensed & JPJ-Certified Expert',
+                'Manual & Automatic Specialist',
+                'Latest & Modern Curriculum',
+                'Nervous-Driver Friendly',
+              ].map((cred, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#1A7A3C]/12 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon name="CheckIcon" size={11} variant="solid" className="text-[#1A7A3C]" />
-                  </div>
-                  <span className="text-sm text-black/65 font-body">{cred}</span>
+                  <Icon
+                    name="CheckIcon"
+                    size={18}
+                    variant="solid"
+                    className="text-[#1A7A3C] shrink-0 mt-0.5"
+                    aria-hidden
+                  />
+                  <span className="text-[15px] font-medium text-[#444444] font-body leading-relaxed">{cred}</span>
                 </div>
-              )}
+              ))}
             </div>
 
-            {/* WhatsApp CTA — full width on mobile */}
-            <a
-              href="https://wa.me/601096388803?text=Hi%20Cikgu%20Ram%2C%20I%27m%20interested%20in%20getting%20my%20driving%20license."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex sm:inline-flex items-center justify-center sm:justify-start gap-2.5 px-6 py-3.5 rounded-xl bg-[#1A7A3C] hover:bg-[#22A050] transition-colors duration-300 text-white font-display font-700 text-sm shadow-sm w-full sm:w-auto">
-              <Icon name="ChatBubbleLeftRightIcon" size={18} variant="solid" />
-              Chat with Cikgu Ram on WhatsApp
-            </a>
+            {/* CTA — centred when stacked (below lg); left-aligned in desktop two-column row */}
+            <div className="flex justify-center lg:justify-start">
+              <a
+                href="#register"
+                className="btn-primary inline-flex items-center justify-center min-w-[220px] px-10 py-4 rounded-2xl text-base font-display font-700 tracking-[0.5px]">
+                👆 Register Now
+              </a>
+            </div>
           </div>
         </div>
       </div>

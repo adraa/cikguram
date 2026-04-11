@@ -49,7 +49,7 @@ export default function StickyMobileCTA() {
         Claim RM299 Discount Now ↓
       </a>
       <p className="text-center text-[11px] text-black/35 font-body mt-1.5">
-        Only 4 spots left &middot; No payment needed
+        Only 6 spots left &middot; No payment needed
       </p>
     </div>
   );

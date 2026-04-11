@@ -86,12 +86,12 @@ export default function HeroSection() {
               Fastest
             </span>
             <span
-              className="block font-body not-italic text-white/90 tracking-wide leading-snug mt-2"
+              className="block font-body italic uppercase text-white/90 tracking-wide leading-snug mt-2"
               style={{ fontSize: 'clamp(1.25rem, 4.2vw, 1.6rem)', letterSpacing: '0.04em', fontWeight: 600, textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.8)' }}>
               Way To Get Your
             </span>
             <span
-              className="block font-body not-italic text-white/90 tracking-wide leading-snug"
+              className="block font-body italic uppercase text-white/90 tracking-wide leading-snug"
               style={{ fontSize: 'clamp(1.25rem, 4.2vw, 1.6rem)', letterSpacing: '0.04em', fontWeight: 600, textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.8)' }}>
               Driving License
             </span>
@@ -102,7 +102,7 @@ export default function HeroSection() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#CC0000] shrink-0 animate-pulse" />
               <span className="text-white text-[11px] font-display font-semibold tracking-wide whitespace-nowrap drop-shadow-sm">
-                Only 4 spots left this month
+                Only 6 spots left this month
               </span>
             </div>
             <a
@@ -129,7 +129,7 @@ export default function HeroSection() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#CC0000] shrink-0 animate-pulse" />
               <span className="text-white text-[11px] font-display font-semibold tracking-wide whitespace-nowrap drop-shadow-sm">
-                Only 4 spots left this month
+                Only 6 spots left this month
               </span>
             </div>
             <a

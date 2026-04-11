@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { DM_Sans, Manrope, Barlow_Condensed } from 'next/font/google';
+import { DM_Sans, Manrope, Barlow_Condensed, Space_Grotesk } from 'next/font/google';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -15,6 +15,7 @@ const dmSans = DM_Sans({
 const manrope = Manrope({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
+  style: ['normal'],
   variable: '--font-body',
   display: 'swap',
 });
@@ -24,6 +25,14 @@ const barlowCondensed = Barlow_Condensed({
   weight: ['700', '800', '900'],
   style: ['normal', 'italic'],
   variable: '--font-headline',
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal'],
+  variable: '--font-space-grotesk',
   display: 'swap',
 });
 
@@ -48,7 +57,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-      <html lang="en" className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable}`}>
+      <html
+        lang="en"
+        className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable}`}>
       <body>
         {children}
         <Script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcikguram3493back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18" strategy="lazyOnload" />

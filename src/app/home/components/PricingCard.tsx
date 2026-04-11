@@ -179,7 +179,7 @@ export default function PricingCard() {
             <div className="flex items-center gap-1.5 px-3 py-[6px] rounded-full bg-[#C9A020]/12 border border-[#C9A020]/25">
               <Icon name="GiftIcon" size={11} variant="solid" className="text-[#C9A020] shrink-0" />
               <span className="text-[10px] font-display font-700 text-[#8A6A00] uppercase tracking-[0.12em] whitespace-nowrap">
-                Bonus — Included Free
+                Bonus (Included Free)
               </span>
             </div>
             <div className="h-px flex-1 bg-[#C9A020]/35" />

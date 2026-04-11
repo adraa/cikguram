@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .font-500 { font-weight: 500; }
+  .font-700 { font-weight: 700; }
+  .font-800 { font-weight: 800; }
+  .font-900 { font-weight: 900; }
+}
+
 @keyframes arrow-bounce {
   0%, 100%  { transform: translateY(0); }
   20%       { transform: translateY(4px); }
@@ -83,13 +90,48 @@ h1, h2, h3, h4, h5, h6 {
     linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
-  /* Disable on mobile for performance */
 }
 
-@media (max-width: 640px) {
-  .grid-bg {
-    display: none;
-  }
+/* ===== Stats section: full-frame photo slideshow — left → right ===== */
+
+/*
+  Two background photos run the same keyframe at the same speed. Photo 2 is
+  offset by half the duration so it enters from the left exactly when
+  photo 1 exits right, creating a seamless two-frame loop.
+*/
+@keyframes stats-slideshow {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%);  }
+}
+
+.stats-orb {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #F8F8F6;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  -webkit-user-drag: none;
+}
+
+/* Photo 1 — starts centred (delay = -½ duration) */
+.stats-orb-1 {
+  opacity: 0.85;
+  animation: stats-slideshow 18s linear infinite;
+  animation-delay: -9s;
+}
+
+/* Photo 2 — starts off-screen left, enters as photo 1 exits right */
+.stats-orb-2 {
+  opacity: 0.82;
+  animation: stats-slideshow 18s linear infinite;
+}
+
+/* Freeze when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .stats-orb-1 { animation: none !important; transform: translateX(0);     }
+  .stats-orb-2 { animation: none !important; transform: translateX(-100%); }
 }
 
 /* Beam Border Vertical */

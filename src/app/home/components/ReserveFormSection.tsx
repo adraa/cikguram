@@ -349,7 +349,7 @@ export default function ReserveFormSection() {
                   </button>
                 </div>
 
-                <div className="mt-4 flex items-start gap-1.5 px-2">
+                <div className="mt-4 flex justify-center items-start gap-1.5 px-2">
                   <Icon name="LockClosedIcon" size={13} variant="solid" className="text-black/25 shrink-0 mt-0.5" />
                   {/* #767676 meets WCAG AA minimum contrast on white */}
                   <p className="text-[12px] text-[#767676] font-body leading-relaxed">
