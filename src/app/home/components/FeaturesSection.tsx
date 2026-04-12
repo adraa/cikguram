@@ -1,144 +1,127 @@
 import React from 'react';
-import Icon from '@/components/ui/AppIcon';
+import Image from 'next/image';
 
-// Two hero features: the most differentiating claims of this school
-const heroFeatures = [
+/** Photo-led feature cards: image, title, body, footer callout */
+const features = [
   {
-    icon: 'TruckIcon',
-    title: 'Free Transport — Every Session',
-    description: 'Pick-up and drop-off for every training session and JPJ test. No car, no problem. Just show up ready to learn.',
-    stat: '100% free · included in every package',
-    color: 'text-[#CC0000]',
-    bg: 'bg-[#CC0000]/8',
+    imageSrc:
+      'https://images.pexels.com/photos/11110472/pexels-photo-11110472.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    imageAlt: 'White passenger van parked at a curb with side door open, ready for pick-up',
+    title: 'Free Transport, Every Session',
+    description:
+      'Pick-up and drop-off for every training session and JPJ test. No car, no problem. Just show up ready to learn.',
+    footer: 'Door-to-door · every session & test',
+    footerTone: 'red' as const,
     accent: 'border-t-[#CC0000]',
   },
   {
-    icon: 'CheckBadgeIcon',
-    title: 'JPJ Test Ready — Guaranteed',
-    description: 'A full pre-test evaluation before you sit the real JPJ test. We only send you when you are ready to pass.',
-    stat: '98% pass rate · first attempt',
-    color: 'text-[#111111]',
-    bg: 'bg-black/8',
+    imageSrc: '/pricing-students.webp',
+    imageAlt: 'Group of smiling students holding Malaysian P plates in front of a training vehicle',
+    title: 'JPJ Test Ready, Guaranteed',
+    description:
+      'A full pre-test evaluation before you sit the real JPJ test. We only send you when you are ready to pass.',
+    footer: 'Pre-test evaluation before every booking',
+    footerTone: 'neutral' as const,
     accent: 'border-t-[#111111]',
   },
-];
-
-// Four supporting features: complete the picture without competing for attention
-const supportingFeatures = [
   {
-    icon: 'AcademicCapIcon',
+    imageSrc: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Students seated at desks in a classroom with laptops, collaborative learning environment',
     title: 'Theory Training (KPP)',
-    description: '6-hour KPP01 course covering Malaysian road laws, signs, and safety regulations.',
-    color: 'text-[#CC0000]',
-    bg: 'bg-[#CC0000]/8',
+    description:
+      '6-hour KPP01 course covering Malaysian road laws, signs, and safety regulations.',
+    footer: '6-hour KPP01 · materials included',
+    footerTone: 'red' as const,
     accent: 'border-t-[#CC0000]',
   },
   {
-    icon: 'MapIcon',
+    imageSrc: '/stats-bg-1.jpg',
+    imageAlt: 'Driving school training scene on a closed circuit with vehicles and road markings',
     title: 'Circuit & Road Training',
-    description: 'KPP02 circuit and KPP03 real-road sessions covering parking, hill starts, and traffic.',
-    color: 'text-[#111111]',
-    bg: 'bg-black/6',
+    description:
+      'KPP02 circuit and KPP03 real-road sessions covering parking, hill starts, and traffic.',
+    footer: 'KPP02 + KPP03 · circuit & road',
+    footerTone: 'neutral' as const,
     accent: 'border-t-[#111111]',
   },
   {
-    icon: 'CalendarDaysIcon',
+    imageSrc: 'https://images.unsplash.com/photo-1503376780353-7e669276fa82?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Performance car on an open track suggesting focused practice and flexible scheduling',
     title: 'Flexible Schedule',
     description: 'Weekday and weekend slots. We work around your school or work timetable.',
-    color: 'text-[#7D6008]',
-    bg: 'bg-[#C9A020]/10',
+    footer: 'Weekdays, weekends & evenings',
+    footerTone: 'gold' as const,
     accent: 'border-t-[#C9A020]',
   },
   {
-    icon: 'DocumentCheckIcon',
+    imageSrc: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e87b8662-1772196926946.png',
+    imageAlt: 'Professional driving instructor in polo shirt, confident posture, neutral studio background',
     title: 'All Paperwork Handled',
-    description: 'JPJ registration, LDL application, test booking — every form and fee managed for you.',
-    color: 'text-[#CC0000]',
-    bg: 'bg-[#CC0000]/8',
+    description:
+      'JPJ registration, LDL application, test booking: every form and fee managed for you.',
+    footer: 'JPJ · LDL · bookings filed for you',
+    footerTone: 'red' as const,
     accent: 'border-t-[#CC0000]',
   },
-];
+] as const;
+
+const revealDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500', 'delay-600'] as const;
+
+function footerClass(tone: (typeof features)[number]['footerTone']) {
+  if (tone === 'red') return 'text-[#CC0000]';
+  if (tone === 'gold') return 'text-[#7D6008]';
+  return 'text-[#111111]';
+}
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
+    <section id="features" className="relative overflow-hidden bg-[#F8F8F6] py-16 sm:py-24">
       <div className="absolute inset-0 grid-bg" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-10 sm:mb-14 reveal">
-          <span className="section-label">What You Get</span>
-          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] mt-3 mb-4 tracking-tight leading-[1.1]">
-            Everything You Need to Pass
+        <div className="mb-8 text-center reveal sm:mb-10">
+          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] tracking-tight leading-[1.15] mb-4">
+            Everything You Need Until You Pass
           </h2>
-          <p className="text-black/65 font-body max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
-            One package. Zero hassle. From registration to P-License in the shortest time possible.
-          </p>
         </div>
 
-        {/* Hero features — 2 large cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-5 sm:mb-6">
-          {heroFeatures.map((feature, i) => (
-            <div
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {features.map((feature, i) => (
+            <article
               key={feature.title}
-              className={`reveal light-card rounded-2xl p-8 sm:p-9 border-t-4 ${feature.accent} delay-${i * 100 + 100} flex flex-col`}>
-
-              {/* Icon */}
-              <div className={`w-13 h-13 sm:w-14 sm:h-14 rounded-xl ${feature.bg} flex items-center justify-center mb-5 sm:mb-6`}
-                style={{ width: '3.25rem', height: '3.25rem' }}>
-                <Icon
-                  name={feature.icon as Parameters<typeof Icon>[0]['name']}
-                  size={26}
-                  variant="solid"
-                  className={feature.color}
+              className={`reveal light-card flex h-full flex-col overflow-hidden rounded-2xl border-t-4 ${feature.accent} ${revealDelays[i] ?? 'delay-100'}`}
+            >
+              <div className="relative aspect-[16/10] w-full shrink-0 bg-black/5">
+                <Image
+                  src={feature.imageSrc}
+                  alt={feature.imageAlt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={i < 2}
                 />
               </div>
 
-              {/* Title + description */}
-              <h3 className="font-display font-700 text-[#111111] text-xl sm:text-2xl mb-3 leading-tight tracking-tight">
-                {feature.title}
-              </h3>
-              <p className="text-black/65 font-body text-sm sm:text-base leading-relaxed flex-1">
-                {feature.description}
-              </p>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <h3 className="mb-3 font-display font-700 text-lg tracking-tight text-[#111111] sm:text-xl">
+                  {feature.title}
+                </h3>
+                <p className="mb-5 flex-1 font-body text-sm leading-relaxed text-black/65 sm:text-[15px]">
+                  {feature.description}
+                </p>
 
-              {/* Stat — anchored to bottom */}
-              <div className="mt-6 pt-5 border-t border-black/6 flex items-center gap-2">
-                <Icon name="CheckCircleIcon" size={14} variant="solid" className={feature.color} />
-                <span className={`text-xs font-display font-700 ${feature.color} uppercase tracking-wide`}>
-                  {feature.stat}
-                </span>
+                <div className="mt-auto border-t border-black/8 pt-4">
+                  <p
+                    className={`font-display text-[15px] font-700 leading-snug tracking-tight sm:text-base ${footerClass(feature.footerTone)}`}
+                  >
+                    {feature.footer}
+                  </p>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
-
-        {/* Supporting features — compact 2×2 grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {supportingFeatures.map((feature, i) => (
-            <div
-              key={feature.title}
-              className={`reveal light-card rounded-2xl p-5 sm:p-6 border-t-2 ${feature.accent} delay-${i * 100 + 300}`}>
-
-              <div className={`w-9 h-9 rounded-xl ${feature.bg} flex items-center justify-center mb-3.5`}>
-                <Icon
-                  name={feature.icon as Parameters<typeof Icon>[0]['name']}
-                  size={18}
-                  variant="solid"
-                  className={feature.color}
-                />
-              </div>
-              <h3 className="font-display font-700 text-[#111111] text-sm sm:text-base mb-2 leading-tight tracking-tight">
-                {feature.title}
-              </h3>
-              <p className="text-black/60 font-body text-xs sm:text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
       </div>
     </section>
   );

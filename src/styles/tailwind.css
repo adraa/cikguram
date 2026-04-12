@@ -25,7 +25,7 @@
   animation-delay: 2s;
 }
 
-/* Fonts loaded via next/font/google in layout.tsx — no @import needed */
+/* Fonts loaded via next/font/google in layout.tsx: no @import needed */
 
 :root {
   --color-primary: #CC0000;
@@ -45,6 +45,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Fixed header: keeps hash targets and scrollIntoView clear of overlap */
+  scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -84,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track { background: #F8F8F6; }
 ::-webkit-scrollbar-thumb { background: #CC0000; border-radius: 2px; }
 
-/* Road sign grid pattern — very subtle, will-change for GPU compositing */
+/* Road sign grid pattern: very subtle, will-change for GPU compositing */
 .grid-bg {
   background-image:
     linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
@@ -92,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 60px 60px;
 }
 
-/* ===== Stats section: full-frame photo slideshow — left → right ===== */
+/* ===== Stats section: full-frame photo slideshow: left → right ===== */
 
 /*
   Two background photos run the same keyframe at the same speed. Photo 2 is
@@ -115,14 +117,14 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-user-drag: none;
 }
 
-/* Photo 1 — starts centred (delay = -½ duration) */
+/* Photo 1: starts centred (delay = -½ duration) */
 .stats-orb-1 {
   opacity: 0.85;
   animation: stats-slideshow 18s linear infinite;
   animation-delay: -9s;
 }
 
-/* Photo 2 — starts off-screen left, enters as photo 1 exits right */
+/* Photo 2: starts off-screen left, enters as photo 1 exits right */
 .stats-orb-2 {
   opacity: 0.82;
   animation: stats-slideshow 18s linear infinite;
@@ -132,6 +134,26 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-reduced-motion: reduce) {
   .stats-orb-1 { animation: none !important; transform: translateX(0);     }
   .stats-orb-2 { animation: none !important; transform: translateX(-100%); }
+}
+
+/* ===== Testimonials: seamless row, LTR drift; --marquee-w set in JS (incl. flex gap) ===== */
+@keyframes testimonials-marquee {
+  from { transform: translateX(calc(-1 * var(--marquee-w, 0px))); }
+  to   { transform: translateX(0); }
+}
+
+.testimonials-marquee-track {
+  width: max-content;
+  will-change: transform;
+  animation: testimonials-marquee 72s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee-track {
+    animation: none !important;
+    transform: translateX(0) !important;
+    will-change: auto;
+  }
 }
 
 /* Beam Border Vertical */
@@ -285,7 +307,7 @@ h1, h2, h3, h4, h5, h6 {
 .delay-500 { animation-delay: 0.5s; }
 .delay-600 { animation-delay: 0.6s; }
 
-/* Gradient text — red */
+/* Gradient text: red */
 .text-gradient-red {
   background: linear-gradient(135deg, #FF2222 0%, #CC0000 50%, #990000 100%);
   -webkit-background-clip: text;
@@ -293,7 +315,7 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-/* Shimmer text effect — disable on mobile for perf */
+/* Shimmer text effect: disable on mobile for perf */
 .text-shimmer {
   background: linear-gradient(90deg, #111111 0%, #CC0000 30%, #111111 60%, #CC0000 90%, #111111 100%);
   background-size: 200% auto;
@@ -312,7 +334,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Primary button — red, bold */
+/* Primary button: red, bold */
 .btn-primary {
   position: relative;
   background: #CC0000;
@@ -344,7 +366,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover::before { opacity: 1; }
 .btn-primary:active { transform: translateY(0); }
 
-/* Secondary button — outlined */
+/* Secondary button: outlined */
 .btn-secondary {
   background: transparent;
   color: #111111;
@@ -370,7 +392,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
-/* Glass card — light version */
+/* Glass card: light version */
 .glass-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
@@ -379,7 +401,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
 }
 
-/* Road sign badge — black with white text */
+/* Road sign badge: black with white text */
 .road-sign-badge {
   display: inline-flex;
   align-items: center;
@@ -396,7 +418,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #111111;
 }
 
-/* Traffic light single dot — cycles red → yellow → green */
+/* Traffic light single dot: cycles red → yellow → green */
 @keyframes trafficLight {
   0%, 30%   { background-color: #FF3B30; box-shadow: 0 0 5px #FF3B30; }
   33%, 63%  { background-color: #FFCC00; box-shadow: 0 0 5px #FFCC00; }
@@ -413,7 +435,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: trafficLight 3s infinite;
 }
 
-/* Road sign badge — red */
+/* Road sign badge: red */
 .road-sign-badge-red {
   display: inline-flex;
   align-items: center;
@@ -430,7 +452,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #FFFFFF;
 }
 
-/* Road sign badge — green */
+/* Road sign badge: green */
 .road-sign-badge-green {
   display: inline-flex;
   align-items: center;
@@ -473,7 +495,7 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 300px;
 }
 
-/* Image hover zoom — disable on mobile for performance */
+/* Image hover zoom: disable on mobile for performance */
 .img-zoom {
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -504,7 +526,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: countdown-tick 0.3s ease forwards;
 }
 
-/* Testimonial card hover — only on devices with hover */
+/* Testimonial card hover: only on devices with hover */
 .testimonial-card {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -536,7 +558,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(0);
 }
 
-/* Form input — light */
+/* Form input: light */
 .form-input {
   background: #FAFAFA;
   border: 2px solid #C9A020;
@@ -565,18 +587,18 @@ h1, h2, h3, h4, h5, h6 {
   color: #6B6B6B;
 }
 
-/* Section heading — explicit line-height for large display sizes */
+/* Section heading: explicit line-height for large display sizes */
 .section-heading {
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
 
-/* Body prose — constrained to ~65 chars for readability */
+/* Body prose: constrained to ~65 chars for readability */
 .prose-body {
   max-width: 34rem; /* ~544px ≈ 65 chars at 16px */
 }
 
-/* Glow blob — light version */
+/* Glow blob: light version */
 .glow-blob {
   position: absolute;
   border-radius: 50%;
@@ -591,7 +613,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Road stripe accent — dashed yellow line like road marking */
+/* Road stripe accent: dashed yellow line like road marking */
 .road-stripe {
   height: 4px;
   background: repeating-linear-gradient(

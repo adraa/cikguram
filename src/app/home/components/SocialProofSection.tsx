@@ -20,9 +20,9 @@ export default function SocialProofSection() {
                 className="object-cover img-zoom"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
                 priority />
-              {/* Gradient overlay — keeps credential card readable on photo */}
+              {/* Gradient overlay: keeps credential card readable on photo */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-              {/* Trust module — compact chip, intrinsic width, centred (not full-bleed) */}
+              {/* Trust module: compact chip, intrinsic width, centred (not full-bleed) */}
               <div className="pointer-events-none absolute bottom-4 left-0 right-0 z-10 flex justify-center px-4 sm:bottom-5 sm:px-5">
                 <div className="pointer-events-auto inline-flex max-w-[min(100%,21rem)] items-center gap-3 rounded-2xl border border-black/[0.08] bg-[#F8F7F5]/95 px-3.5 py-2.5 shadow-[0_6px_24px_rgba(0,0,0,0.07)] backdrop-blur-sm sm:gap-3 sm:px-4 sm:py-2.5">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CC0000]">
@@ -60,7 +60,7 @@ export default function SocialProofSection() {
               With over a decade of experience at <strong className="text-[#111111] font-semibold">Westport Driving Academy</strong>, Cikgu Ram has mastered a teaching system that helps students pass their JPJ tests faster and with less stress. Based in Bukit Rotan, his patient and structured approach has successfully guided over 600+ students to their P-License.
             </p>
 
-            {/* Benefits — scannable list */}
+            {/* Benefits: scannable list */}
             <div className="space-y-3 mb-10">
               {[
                 'Licensed & JPJ-Certified Expert',
@@ -81,12 +81,12 @@ export default function SocialProofSection() {
               ))}
             </div>
 
-            {/* CTA — centred when stacked (below lg); left-aligned in desktop two-column row */}
+            {/* CTA: centred when stacked (below lg); left-aligned in desktop two-column row */}
             <div className="flex justify-center lg:justify-start">
               <a
                 href="#register"
                 className="btn-primary inline-flex items-center justify-center min-w-[220px] px-10 py-4 rounded-2xl text-base font-display font-700 tracking-[0.5px]">
-                👆 Register Now
+                Register Now
               </a>
             </div>
           </div>

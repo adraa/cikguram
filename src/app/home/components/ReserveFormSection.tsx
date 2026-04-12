@@ -4,7 +4,7 @@
  * ReserveFormSection
  *
  * GOOGLE FORMS / SHEETS SETUP (required for submissions to reach your spreadsheet):
- * ─────────────────────────────────────────────────────────────────────────────────
+ *
  * 1. Go to forms.google.com → Create a new form
  * 2. Add 3 "Short answer" questions:  "Full Name",  "Phone Number",  "License Type"
  * 3. Click ⋮ (top-right) → "Get pre-filled link" → fill dummy values → Copy link
@@ -19,14 +19,13 @@
  *      NEXT_PUBLIC_GF_ENTRY_LICENSE=entry.XXXXXXXXXX
  *
  * 6. In Google Forms → Responses tab → click the Sheets icon to link to Google Sheets
- * ─────────────────────────────────────────────────────────────────────────────────
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
 
-// Google Forms field IDs — replace with your actual entry IDs after following setup above
+// Google Forms field IDs: replace with your actual entry IDs after following setup above
 const ENTRY_NAME    = process.env.NEXT_PUBLIC_GF_ENTRY_NAME    ?? 'entry.000000001';
 const ENTRY_PHONE   = process.env.NEXT_PUBLIC_GF_ENTRY_PHONE   ?? 'entry.000000002';
 const ENTRY_LICENSE = process.env.NEXT_PUBLIC_GF_ENTRY_LICENSE ?? 'entry.000000003';
@@ -75,6 +74,29 @@ export default function ReserveFormSection() {
     setSubmitted(true);
   };
 
+  // After smooth in-page scroll to #full-name-input, move keyboard focus to the field
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    const focusNameField = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (window.location.hash !== '#full-name-input') return;
+      const input = document.getElementById('full-name-input') as HTMLInputElement | null;
+      if (!input) return;
+      timeoutId = window.setTimeout(() => {
+        input.focus({ preventScroll: true });
+        timeoutId = undefined;
+      }, 520);
+    };
+
+    focusNameField();
+    window.addEventListener('hashchange', focusNameField);
+    return () => {
+      window.removeEventListener('hashchange', focusNameField);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <section id="register" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-bg" />
@@ -82,10 +104,9 @@ export default function ReserveFormSection() {
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
 
-        {/* ── Section header ── */}
+        {/* Section header */}
         <div className="text-center mb-8 sm:mb-10 reveal">
-          {/* Barlow Condensed creates typographic distinction against the sans-serif form body */}
-          <h2 className="font-headline font-800 text-[32px] sm:text-[36px] md:text-[40px] text-[#111111] mt-3 mb-4 tracking-tight leading-[1.15]">
+          <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] tracking-tight leading-[1.15] mb-4">
             Begin Your Driving Journey
           </h2>
           <p className="text-black/60 font-body max-w-[420px] mx-auto text-[15px] sm:text-[18px] leading-[1.6]">
@@ -93,7 +114,7 @@ export default function ReserveFormSection() {
           </p>
         </div>
 
-        {/* ── Form card ── */}
+        {/* Form card */}
         <div className="reveal-scale">
           {submitted ? (
             <div className="light-card rounded-2xl p-8 sm:p-10 text-center border border-[#1A7A3C]/20 border-t-4 border-t-[#1A7A3C]">
@@ -122,10 +143,10 @@ export default function ReserveFormSection() {
               onSubmit={handleSubmit}
               className="light-card rounded-2xl overflow-hidden border-t-4 border-t-[#C9A020]"
             >
-              {/* ── Form fields ── */}
+              {/* Form fields */}
               {/* 32px padding signals considered design, not a template */}
               <div className="p-8">
-                {/* Name + Phone + Category — full-width stacked */}
+                {/* Name + Phone + Category: full-width stacked */}
                 {/* mb-7 (28px) before license section signals a visual zone shift */}
                 <div className="flex flex-col gap-4 mb-7">
                   {/* Name */}
@@ -213,14 +234,14 @@ export default function ReserveFormSection() {
                   </div>
                 </div>
 
-                {/* ── Citizenship selector — sliding pill ── */}
+                {/* Citizenship selector (sliding pill) */}
                 <div className="mb-7">
                   <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
                     Citizenship<span className="text-[#EF4444]"> *</span>
                   </label>
                   {/* p-1.5 = 6px padding; gap-1.5 = 6px → pill width = calc(50% - 9px) */}
                   <div className="relative flex bg-[#EDE8D0] rounded-2xl p-1.5 gap-1.5">
-                    {/* Sliding gold pill — GPU-composited via transform only */}
+                    {/* Sliding gold pill: GPU-composited via transform only */}
                     <div
                       aria-hidden
                       className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#C9A020] shadow-[0_3px_12px_rgba(201,160,32,0.45)]"
@@ -268,7 +289,7 @@ export default function ReserveFormSection() {
                   </div>
                 </div>
 
-                {/* ── License type selector — sliding pill ── */}
+                {/* License type selector (sliding pill) */}
                 <div className="mb-8">
                   <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
                     License Type<span className="text-[#EF4444]"> *</span>

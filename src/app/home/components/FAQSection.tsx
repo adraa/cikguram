@@ -48,7 +48,7 @@ export default function FAQSection() {
           </p>
         </div>
 
-        {/* FAQ list — native <details> for zero-JS accordion */}
+        {/* FAQ list: native <details> for zero-JS accordion */}
         <div className="space-y-3 sm:space-y-4 reveal delay-100">
           {faqs.map((faq, i) => (
             <details

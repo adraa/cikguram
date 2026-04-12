@@ -5,7 +5,6 @@ import HeroSection from './components/HeroSection';
 import PricingCard from './components/PricingCard';
 import SocialProofSection from './components/SocialProofSection';
 import FeaturesSection from './components/FeaturesSection';
-import FreeTransportSection from './components/FreeTransportSection';
 import ProcessSection from './components/ProcessSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
@@ -21,7 +20,7 @@ export default function HomePage() {
       <HeroSection />
       <PricingCard />
 
-      {/* ── Section break — pricing → register ── */}
+      {/* Visual break between pricing and register */}
       <div className="bg-[#F8F8F6] py-8">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <div className="h-px bg-gradient-to-r from-transparent via-black/12 to-transparent" />
@@ -32,7 +31,6 @@ export default function HomePage() {
       <StatsBarSection />
       <SocialProofSection />
       <FeaturesSection />
-      <FreeTransportSection />
       <ProcessSection />
       <TestimonialsSection />
       <FAQSection />

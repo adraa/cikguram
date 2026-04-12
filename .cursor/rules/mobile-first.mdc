@@ -3,7 +3,7 @@ description: Global rules for every file in this project
 alwaysApply: true
 ---
 
-# Project Rules — Apply to Every Task
+# Project rules for every task
 
 ## 1. Mobile-First is the #1 Priority
 - Design and build for mobile screens (320px–430px) FIRST
@@ -12,26 +12,26 @@ alwaysApply: true
 - Never write desktop styles first and try to shrink them down
 
 ## 2. Performance & Loading Speed
-- Always use Next.js `<Image />` component instead of plain `<img>` tags — it handles lazy loading and compression automatically
+- Always use Next.js `<Image />` component instead of plain `<img>` tags: it handles lazy loading and compression automatically
 - Never import large libraries if a small utility function can do the job
 - Avoid unnecessary animations or heavy effects on mobile
-- Keep font usage minimal — use only the fonts already in the project
+- Keep font usage minimal: use only the fonts already in the project
 
 ## 3. Follow the Existing Design System
-- Before adding any new color, spacing, font size, or component style — check what already exists in the codebase first
+- Before adding any new color, spacing, font size, or component style: check what already exists in the codebase first
 - Match the existing color palette, typography scale, and spacing values exactly
-- Use Tailwind utility classes only — no inline styles, no separate CSS files unless one already exists in the project
+- Use Tailwind utility classes only: no inline styles, no separate CSS files unless one already exists in the project
 - If a component already exists, reuse it. Don't create duplicates.
 
 ## 4. Touch-Friendly UI
 - All buttons and clickable elements must be at least 44px tall (use `min-h-[44px]`)
 - Add enough padding so elements are easy to tap with a thumb
-- Avoid hover-only interactions — mobile users cannot hover
+- Avoid hover-only interactions: mobile users cannot hover
 
 ## 5. Responsive Layout Rules
 - Use `flex` and `grid` layouts that stack vertically on mobile and go side-by-side on larger screens
-- Images must never overflow their container — always use `w-full` or constrain with a max-width
-- Text must be readable without zooming — minimum `text-base` (16px) for body text
+- Images must never overflow their container: always use `w-full` or constrain with a max-width
+- Text must be readable without zooming: minimum `text-base` (16px) for body text
 
 ## 6. General Code Quality
 - Write clean, readable code with clear component names

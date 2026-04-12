@@ -24,7 +24,7 @@ export default function WhatsAppCTA() {
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      {/* Tooltip — desktop only to avoid cluttering mobile */}
+      {/* Tooltip: desktop only to avoid cluttering mobile */}
       {showTooltip && (
         <div className="hidden sm:block bg-white border border-black/10 shadow-card-hover rounded-xl px-4 py-3 max-w-[200px] animate-[fadeSlideIn_0.4s_ease-out_forwards]">
           <p className="text-xs text-black/70 font-body leading-relaxed">

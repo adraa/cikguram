@@ -23,10 +23,10 @@ export default function Header() {
     >
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center">
-        {/* Logo — centered */}
+        {/* Logo: centered */}
         <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group">
           <AppLogo size={26} onClick={() => {}} />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-left">
             <span className="block font-space text-[13px] font-700 italic leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
               CIKGU RAM 🇲🇾
             </span>

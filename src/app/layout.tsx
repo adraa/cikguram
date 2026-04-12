@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import { DM_Sans, Manrope, Barlow_Condensed, Space_Grotesk } from 'next/font/google';
+import AnalyticsScripts from '@/components/AnalyticsScripts';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -46,7 +46,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'CikguRam — Get Your Driving License Fast in Malaysia',
+  title: 'CikguRam | Get Your Driving License Fast in Malaysia',
   description: 'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed. Save RM299 today.',
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
@@ -62,8 +62,7 @@ export default function RootLayout({
         className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable}`}>
       <body>
         {children}
-        <Script src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcikguram3493back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18" strategy="lazyOnload" />
-        <Script src="https://static.rocket.new/rocket-shot.js?v=0.0.2" strategy="lazyOnload" />
+        <AnalyticsScripts />
       </body>
     </html>
   );
