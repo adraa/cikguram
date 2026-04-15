@@ -6,7 +6,7 @@ import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
@@ -14,7 +14,7 @@ const dmSans = DM_Sans({
 
 const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal'],
   variable: '--font-body',
   display: 'swap',

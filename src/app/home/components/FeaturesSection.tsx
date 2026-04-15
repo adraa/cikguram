@@ -99,7 +99,7 @@ export default function FeaturesSection() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={i < 2}
+                  quality={80}
                 />
               </div>
 

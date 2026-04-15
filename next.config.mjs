@@ -17,7 +17,8 @@ const nextConfig = {
   },
   images: {
     remotePatterns: imageHosts,
-    minimumCacheTTL: 60,
+    // Stable URLs (e.g. rocket.new paths): cache optimized variants aggressively at the edge.
+    minimumCacheTTL: 31536000,
   },
   async redirects() {
     return [
@@ -29,12 +30,7 @@ const nextConfig = {
     ];
   },
 
-  webpack(
-    config,
-    {
-      dev: dev
-    }
-  ) {
+  webpack(config, { dev }) {
     config.module.rules.push({
       test: /\.(jsx|tsx)$/,
       exclude: [/node_modules/],

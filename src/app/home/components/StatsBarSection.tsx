@@ -28,8 +28,7 @@ export default function StatsBarSection() {
               src="/stats-bg-1.jpg"
               alt=""
               fill
-              priority
-              quality={88}
+              quality={75}
               sizes="100vw"
               className="object-cover"
               draggable={false}
@@ -40,7 +39,7 @@ export default function StatsBarSection() {
               src="/stats-bg-2.jpg"
               alt=""
               fill
-              quality={88}
+              quality={75}
               sizes="100vw"
               className="object-cover"
               draggable={false}
@@ -65,7 +64,15 @@ export default function StatsBarSection() {
                       className="h-7 w-7 shrink-0 overflow-hidden rounded-full border-2 border-white"
                       style={{ marginLeft: i > 0 ? '-5px' : 0, zIndex: 3 - i }}
                     >
-                      <Image src={av.src} alt={av.alt} width={28} height={28} className="h-full w-full object-cover" />
+                      <Image
+                        src={av.src}
+                        alt={av.alt}
+                        width={28}
+                        height={28}
+                        sizes="28px"
+                        quality={70}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
                   ))}
                 </div>

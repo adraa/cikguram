@@ -90,7 +90,7 @@ export default function PricingCard() {
               fill
               className="object-cover object-top"
               sizes="(max-width: 768px) 100vw, 672px"
-              quality={88}
+              quality={80}
             />
             {/* Bottom-only gradient anchors the price pill: top is clear so faces show */}
             <div
@@ -140,7 +140,15 @@ export default function PricingCard() {
                         key={av.alt}
                         className="w-7 h-7 rounded-full border-2 border-white overflow-hidden shrink-0"
                         style={{ marginLeft: i > 0 ? '-5px' : 0, zIndex: 3 - i }}>
-                        <Image src={av.src} alt={av.alt} width={28} height={28} className="object-cover w-full h-full" />
+                        <Image
+                          src={av.src}
+                          alt={av.alt}
+                          width={28}
+                          height={28}
+                          sizes="28px"
+                          quality={70}
+                          className="object-cover w-full h-full"
+                        />
                       </div>
                     ))}
                   </div>

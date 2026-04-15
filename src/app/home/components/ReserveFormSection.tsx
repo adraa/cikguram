@@ -23,19 +23,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
-import AppImage from '@/components/ui/AppImage';
-
 // Google Forms field IDs: replace with your actual entry IDs after following setup above
 const ENTRY_NAME    = process.env.NEXT_PUBLIC_GF_ENTRY_NAME    ?? 'entry.000000001';
 const ENTRY_PHONE   = process.env.NEXT_PUBLIC_GF_ENTRY_PHONE   ?? 'entry.000000002';
 const ENTRY_LICENSE = process.env.NEXT_PUBLIC_GF_ENTRY_LICENSE ?? 'entry.000000003';
-
-// Testimonial avatars reused as social proof avatars in the form header
-const PROOF_AVATARS = [
-  'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
-  'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
-  'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
-];
 
 interface FormData {
   name: string;

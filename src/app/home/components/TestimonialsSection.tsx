@@ -149,6 +149,8 @@ function ReviewCard({ t, ariaHidden }: { t: StudentReview; ariaHidden?: boolean 
             alt={ariaHidden ? '' : t.avatarAlt}
             width={40}
             height={40}
+            sizes="40px"
+            quality={72}
             className="h-full w-full object-cover"
             loading="lazy"
           />

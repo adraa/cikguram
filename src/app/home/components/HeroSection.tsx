@@ -16,7 +16,7 @@ export default function HeroSection() {
         className="object-cover object-[center_35%] md:hidden"
         priority
         sizes="100vw"
-        quality={92}
+        quality={78}
       />
       {/* Desktop hero (landscape): visible at md and above */}
       <Image
@@ -26,7 +26,7 @@ export default function HeroSection() {
         className="object-cover object-center hidden md:block"
         priority
         sizes="100vw"
-        quality={92}
+        quality={85}
       />
 
       {/* Scrim: light touch at top, darkens only from mid-point down for CTAs */}

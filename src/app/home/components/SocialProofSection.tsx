@@ -18,8 +18,9 @@ export default function SocialProofSection() {
                 alt="Professional male driving instructor in dark polo shirt, confident smile, neutral studio background with soft lighting"
                 fill
                 className="object-cover img-zoom"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
-                priority />
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={78}
+              />
               {/* Gradient overlay: keeps credential card readable on photo */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
               {/* Trust module: compact chip, intrinsic width, centred (not full-bleed) */}
