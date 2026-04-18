@@ -1,166 +1,125 @@
 'use client';
 
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
+import { GOOGLE_REVIEWS_STATIC } from '@/data/google-reviews-static';
 import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
 import type { DisplayReview } from '@/types/display-review';
 
-const FALLBACK_TESTIMONIALS: DisplayReview[] = [
-  {
-    id: 'story-nurul',
-    name: 'Nurul Ain Binti Razak',
-    location: 'Klang, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
-    avatarAlt: 'Young Malaysian woman with hijab, friendly smile, bright background',
-    rating: 5,
-    text: "I was so nervous about driving but Cikgu Ram made everything so easy to understand. Passed my JPJ test on the first try! The free transport was a lifesaver since I don't have a car yet.",
-    license: 'D License (Manual)',
-    duration: 'Completed in 6 weeks',
-    accentColor: 'border-t-[#CC0000]',
-  },
-  {
-    id: 'story-vikram',
-    name: 'Vikram Subramaniam',
-    location: 'Shah Alam, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
-    avatarAlt: 'Young Malaysian Indian man, casual shirt, neutral background, confident expression',
-    rating: 5,
-    text: 'Best decision I made was registering online and saving RM299. The whole process was smooth from start to finish. Cikgu Ram is very patient and explains everything clearly. Highly recommend!',
-    license: 'DA License (Auto)',
-    duration: 'Completed in 5 weeks',
-    accentColor: 'border-t-[#1A7A3C]',
-  },
-  {
-    id: 'story-weixian',
-    name: 'Lim Wei Xian',
-    location: 'Petaling Jaya, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
-    avatarAlt: 'Young Malaysian Chinese man, light shirt, outdoor setting, natural smile',
-    rating: 5,
-    text: 'As a working adult with a busy schedule, I appreciated the flexible timing. Cikgu Ram worked around my work hours. Got my license in under 2 months. The RM2,349 package covers absolutely everything.',
-    license: 'D License (Manual)',
-    duration: 'Completed in 7 weeks',
-    accentColor: 'border-t-[#C9A020]',
-  },
-  {
-    id: 'story-siti',
-    name: 'Siti Aminah Binti Hassan',
-    location: 'Bangi, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
-    avatarAlt: 'Smiling Malaysian woman in casual attire, outdoor portrait',
-    rating: 5,
-    text: 'Clear instructions every lesson and zero hidden fees. I felt ready before every JPJ attempt and passed without the stress I expected.',
-    license: 'D License (Manual)',
-    duration: 'Completed in 5 weeks',
-    accentColor: 'border-t-[#1A7A3C]',
-  },
-  {
-    id: 'story-arjun',
-    name: 'Arjun Kumar',
-    location: 'Kajang, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
-    avatarAlt: 'Young man in polo shirt, confident relaxed pose',
-    rating: 5,
-    text: 'Theory and practical both well organised. Pick-up on time every session. Worth every ringgit compared to friends who bounced between instructors.',
-    license: 'DA License (Auto)',
-    duration: 'Completed in 6 weeks',
-    accentColor: 'border-t-[#C9A020]',
-  },
-  {
-    id: 'story-chen',
-    name: 'Chen Jia Hui',
-    location: 'Subang Jaya, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
-    avatarAlt: 'Young professional smiling at camera',
-    rating: 5,
-    text: 'Circuit parking used to terrify me; we drilled it until it felt automatic. On test day I was calm and passed first time.',
-    license: 'D License (Manual)',
-    duration: 'Completed in 8 weeks',
-    accentColor: 'border-t-[#CC0000]',
-  },
-  {
-    id: 'story-farhana',
-    name: 'Farhana Rashid',
-    location: 'Seri Kembangan, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
-    avatarAlt: 'Woman with friendly expression, neutral studio background',
-    rating: 5,
-    text: 'Patient teaching style and honest feedback after each lesson. I knew exactly what to improve before the next session.',
-    license: 'DA License (Auto)',
-    duration: 'Completed in 4 weeks',
-    accentColor: 'border-t-[#CC0000]',
-  },
-  {
-    id: 'story-david',
-    name: 'David Ong',
-    location: 'Cheras, Kuala Lumpur',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
-    avatarAlt: 'Man in light shirt, natural smile',
-    rating: 5,
-    text: 'Night classes after work were a game changer. Communication on WhatsApp was fast whenever I had questions about JPJ paperwork.',
-    license: 'D License (Manual)',
-    duration: 'Completed in 9 weeks',
-    accentColor: 'border-t-[#1A7A3C]',
-  },
-  {
-    id: 'story-aisyah',
-    name: 'Aisyah Rahman',
-    location: 'Cyberjaya, Selangor',
-    avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
-    avatarAlt: 'Young woman smiling, bright indoor setting',
-    rating: 5,
-    text: 'From registration to holding my P license, one trusted team. My parents appreciated the professionalism and safety focus on the road sessions.',
-    license: 'D License (Manual)',
-    duration: 'Completed in 6 weeks',
-    accentColor: 'border-t-[#C9A020]',
-  },
-];
+/** iOS-style neutral avatar (accentColor ignored — visual consistency). */
+const AVATAR_NEUTRAL =
+  'bg-gradient-to-b from-[#E5E5EA] to-[#D1D1D6] text-[#3A3A3C] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]';
 
-function ReviewCard({ t, ariaHidden }: { t: DisplayReview; ariaHidden?: boolean }) {
+function initialsFromName(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return '?';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+function ReviewerAvatar({ t, ariaHidden }: { t: DisplayReview; ariaHidden?: boolean }) {
+  if (t.avatar?.trim()) {
+    return (
+      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full ring-1 ring-black/[0.06]">
+        <AppImage
+          src={t.avatar}
+          alt={ariaHidden ? '' : t.avatarAlt}
+          width={48}
+          height={48}
+          sizes="48px"
+          quality={72}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
+  return (
+    <div
+      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-[13px] font-semibold tracking-[-0.03em] ${AVATAR_NEUTRAL}`}
+      aria-hidden={ariaHidden || undefined}>
+      {initialsFromName(t.name)}
+    </div>
+  );
+}
+
+function reviewNeedsToggle(text: string) {
+  return text.length > 160 || text.includes('\n');
+}
+
+function ReviewCard({
+  t,
+  ariaHidden,
+  expanded: expandedProp,
+  onExpandedChange,
+}: {
+  t: DisplayReview;
+  ariaHidden?: boolean;
+  /** When `onExpandedChange` is set, expanded is controlled (shared across marquee duplicates). */
+  expanded?: boolean;
+  onExpandedChange?: (expanded: boolean) => void;
+}) {
+  const [expandedLocal, setExpandedLocal] = useState(false);
+  const controlled = onExpandedChange !== undefined;
+  const expanded = controlled ? !!expandedProp : expandedLocal;
+  const setExpanded = (next: boolean) => {
+    if (controlled) onExpandedChange(next);
+    else setExpandedLocal(next);
+  };
+  const showToggle = reviewNeedsToggle(t.text);
+
   return (
     <article
-      aria-hidden={ariaHidden}
-      className={`flex shrink-0 flex-col rounded-3xl border border-black/[0.06] border-t-4 bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.03] sm:p-7 ${t.accentColor} w-[min(82vw,300px)] sm:w-[280px] lg:w-[300px] min-h-[min(72vw,320px)] sm:min-h-[300px]`}>
-      <div className="mb-4 flex items-center gap-1 sm:mb-5">
+      aria-hidden={ariaHidden || undefined}
+      className={`flex h-full min-h-[292px] w-[min(82vw,300px)] shrink-0 flex-col rounded-[1.25rem] bg-white px-5 pb-5 pt-5 shadow-[0_2px_8px_rgba(0,0,0,0.04),0_12px_40px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.04] sm:min-h-[304px] sm:w-[280px] sm:px-6 sm:pb-6 sm:pt-6 lg:w-[300px]`}>
+      <div className="flex gap-3">
+        <ReviewerAvatar t={t} ariaHidden={ariaHidden} />
+        <div className="min-w-0 flex-1 pt-0.5">
+          <p className="font-display text-[15px] font-semibold leading-[1.25] tracking-[-0.02em] text-[#1d1d1f]">{t.name}</p>
+          <p className="mt-1 font-body text-[13px] leading-snug tracking-[-0.01em] text-[#86868b]">
+            {t.duration}
+            <span className="text-[#C7C7CC]"> · </span>
+            {t.location}
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-3 flex items-center gap-0.5">
         {Array.from({ length: t.rating }).map((_, si) => (
-          <Icon key={si} name="StarIcon" size={14} variant="solid" className="text-[#C9A020]" />
+          <Icon key={si} name="StarIcon" size={12} variant="solid" className="text-[#FF9500]" />
         ))}
       </div>
 
-      <blockquote className="mb-5 flex-1 font-body text-base leading-[1.65] text-black/55 sm:mb-6">
-        &ldquo;{t.text}&rdquo;
-      </blockquote>
+      <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" aria-hidden />
 
-      <div className="mb-5 flex flex-wrap gap-2 sm:mb-6">
-        <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-display text-xs font-600 text-primary">
-          {t.license}
-        </span>
-        <span className="rounded-full border border-black/[0.08] bg-black/[0.03] px-3 py-1 font-body text-xs text-black/50">
-          {t.duration}
-        </span>
-      </div>
+      <div className="flex min-h-0 flex-1 flex-col">
+        <blockquote
+          className={`font-body text-[15px] font-normal leading-[1.5] tracking-[-0.015em] text-[#1d1d1f] antialiased [font-feature-settings:'kern'_1] whitespace-pre-line sm:text-[16px] sm:leading-[1.5] ${
+            showToggle && !expanded
+              ? 'line-clamp-4 max-h-[7.25rem] overflow-hidden sm:line-clamp-5 sm:max-h-[9rem]'
+              : ''
+          }`}>
+          {t.text}
+        </blockquote>
 
-      <div className="flex min-h-[44px] items-center gap-3 border-t border-black/[0.06] pt-5">
-        <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-black/[0.06]">
-          <AppImage
-            src={t.avatar}
-            alt={ariaHidden ? '' : t.avatarAlt}
-            width={40}
-            height={40}
-            sizes="40px"
-            quality={72}
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="font-display text-sm font-700 tracking-tight text-[#111111]">{t.name}</div>
-          <div className="mt-0.5 font-body text-xs tracking-wide text-black/45">{t.location}</div>
-        </div>
-        <div className="shrink-0">
-          <Icon name="CheckBadgeIcon" size={16} variant="solid" className="text-[#1A7A3C]" />
-        </div>
+        {showToggle && (
+          <button
+            type="button"
+            tabIndex={ariaHidden ? -1 : undefined}
+            aria-expanded={expanded}
+            aria-label={expanded ? 'Show less of this review' : 'Read full review'}
+            onClick={() => setExpanded(!expanded)}
+            className="group mt-4 flex min-h-[44px] w-fit items-center gap-1 self-start font-display text-[15px] font-semibold tracking-[-0.01em] text-[#007AFF] transition-opacity hover:opacity-80 active:opacity-60">
+            <span>{expanded ? 'Show less' : 'Read more'}</span>
+            <Icon
+              name="ChevronDownIcon"
+              size={16}
+              variant="solid"
+              className={`text-[#007AFF] transition-transform duration-200 ${expanded ? '-rotate-180' : ''}`}
+            />
+          </button>
+        )}
       </div>
     </article>
   );
@@ -170,6 +129,7 @@ function ReviewCard({ t, ariaHidden }: { t: DisplayReview; ariaHidden?: boolean 
 function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const seg1Ref = useRef<HTMLDivElement>(null);
+  const [expandedById, setExpandedById] = useState<Record<string, boolean>>({});
 
   useLayoutEffect(() => {
     const track = trackRef.current;
@@ -191,62 +151,39 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
   }, [items]);
 
   return (
-    <div ref={trackRef} className="testimonials-marquee-track flex flex-nowrap gap-5">
-      <div ref={seg1Ref} className="flex shrink-0 gap-5">
+    <div ref={trackRef} className="testimonials-marquee-track flex flex-nowrap gap-6">
+      <div ref={seg1Ref} className="flex shrink-0 gap-6">
         {items.map((t) => (
-          <ReviewCard key={`m-a-${t.id}`} t={t} />
+          <ReviewCard
+            key={`m-a-${t.id}`}
+            t={t}
+            expanded={!!expandedById[t.id]}
+            onExpandedChange={(next) => setExpandedById((p) => ({ ...p, [t.id]: next }))}
+          />
         ))}
       </div>
-      <div className="flex shrink-0 gap-5" aria-hidden="true">
+      <div className="flex shrink-0 gap-6" aria-hidden="true">
         {items.map((t) => (
-          <ReviewCard key={`m-b-${t.id}`} t={t} ariaHidden />
+          <ReviewCard
+            key={`m-b-${t.id}`}
+            t={t}
+            ariaHidden
+            expanded={!!expandedById[t.id]}
+            onExpandedChange={(next) => setExpandedById((p) => ({ ...p, [t.id]: next }))}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-type ReviewSource = 'pending' | 'places_api' | 'manual_json' | 'none';
-
 export default function TestimonialsSection() {
-  const [items, setItems] = useState<DisplayReview[]>(FALLBACK_TESTIMONIALS);
-  const [source, setSource] = useState<ReviewSource>('pending');
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch('/api/google-reviews');
-        const data = (await res.json()) as {
-          source?: ReviewSource;
-          reviews?: DisplayReview[];
-        };
-        if (cancelled) return;
-        if (data.reviews && data.reviews.length > 0) {
-          setItems(data.reviews);
-          setSource(data.source === 'manual_json' ? 'manual_json' : 'places_api');
-        } else {
-          setSource('none');
-        }
-      } catch {
-        if (!cancelled) setSource('none');
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const subline =
-    source === 'places_api' || source === 'manual_json'
-      ? 'Recent reviews from Google Maps (up to five may show per Google). See all on Google.'
-      : "Here's what our champions had to say.";
+  const items = GOOGLE_REVIEWS_STATIC;
 
   return (
     <section
       id="testimonials"
       className="relative overflow-hidden border-y border-black/[0.06] bg-[#F5F5F7] py-24 sm:py-32">
-      {/* Light “studio” field: soft bloom, whisper of brand colour, micro-grid */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F5F5F7] to-[#EBEBED]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_60%_at_50%_-15%,rgba(255,255,255,0.95)_0%,transparent_55%)]" />
@@ -265,7 +202,7 @@ export default function TestimonialsSection() {
             <span className="block text-black/85 sm:inline">CIKGU RAM 🇲🇾</span>
           </h2>
           <p className="mx-auto max-w-md font-body text-base leading-relaxed text-black/45 sm:text-lg">
-            {subline}
+            Here&apos;s what our champions had to say.
           </p>
           <a
             href={GOOGLE_BUSINESS_MAPS_URL}
@@ -278,9 +215,8 @@ export default function TestimonialsSection() {
         </div>
       </div>
 
-      {/* Reduced motion: single row, horizontal scroll, no duplicate content */}
       <div className="relative z-10 mx-auto hidden max-w-7xl motion-reduce:block">
-        <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 sm:px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-2 sm:px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {items.map((t) => (
             <div key={t.id} className="snap-center snap-always">
               <ReviewCard t={t} />
@@ -289,7 +225,6 @@ export default function TestimonialsSection() {
         </div>
       </div>
 
-      {/* Marquee: full-bleed row, linear infinite, no hover pause */}
       <div className="relative z-10 block motion-reduce:hidden">
         <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden">
           <div
