@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
 
 export default function StatsBarSection() {
   return (
@@ -52,7 +53,12 @@ export default function StatsBarSection() {
         <div className="relative z-10 flex min-h-[240px] w-full items-center justify-center px-4 py-10 sm:min-h-[260px] sm:px-6 sm:py-12 md:absolute md:inset-0 md:min-h-0 md:py-0">
           <div className="w-full max-w-xs reveal rounded-xl border border-black/8 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.10)] sm:max-w-sm overflow-hidden">
             <div className="grid grid-cols-3 divide-x divide-black/8">
-              <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
+              <a
+                href={GOOGLE_BUSINESS_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center gap-0.5 py-3 px-2 transition-colors hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#CC0000]/35"
+                aria-label="View Google reviews — 4.9 rating on Google Maps">
                 <div className="flex items-center">
                   {[
                     { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png', alt: 'Nurul Ain' },
@@ -83,7 +89,7 @@ export default function StatsBarSection() {
                 <span className="font-display text-[9px] font-semibold uppercase leading-tight tracking-wide text-black/45">
                   Google Rating
                 </span>
-              </div>
+              </a>
               <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
                 <span className="text-[14px] leading-none">💪</span>
                 <span className="font-display text-[16px] font-black leading-none tracking-tight text-[#111111]">10+</span>

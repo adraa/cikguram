@@ -3,6 +3,7 @@
 import React from 'react';
 import AppLogo from '@/components/ui/AppLogo';
 import Link from 'next/link';
+import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
 
 export default function Footer() {
   return (
@@ -29,6 +30,13 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-black/6 text-center">
+          <a
+            href={GOOGLE_BUSINESS_MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-4 inline-flex min-h-[44px] items-center justify-center text-sm font-body text-black/45 underline decoration-black/20 underline-offset-4 transition-colors hover:text-black/70">
+            Reviews on Google Maps
+          </a>
           <p className="text-black/25 text-xs font-body">
             © 2026 CikguRam · Westport Driving Academy · Reg. No. staracad.888 · All rights reserved.
           </p>

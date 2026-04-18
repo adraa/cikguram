@@ -1,23 +1,14 @@
 'use client';
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
+import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
+import type { DisplayReview } from '@/types/display-review';
 
-type StudentReview = {
-  name: string;
-  location: string;
-  avatar: string;
-  avatarAlt: string;
-  rating: number;
-  text: string;
-  license: string;
-  duration: string;
-  accentColor: string;
-};
-
-const testimonials: StudentReview[] = [
+const FALLBACK_TESTIMONIALS: DisplayReview[] = [
   {
+    id: 'story-nurul',
     name: 'Nurul Ain Binti Razak',
     location: 'Klang, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
@@ -29,6 +20,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#CC0000]',
   },
   {
+    id: 'story-vikram',
     name: 'Vikram Subramaniam',
     location: 'Shah Alam, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
@@ -40,6 +32,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#1A7A3C]',
   },
   {
+    id: 'story-weixian',
     name: 'Lim Wei Xian',
     location: 'Petaling Jaya, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
@@ -51,6 +44,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#C9A020]',
   },
   {
+    id: 'story-siti',
     name: 'Siti Aminah Binti Hassan',
     location: 'Bangi, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
@@ -62,6 +56,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#1A7A3C]',
   },
   {
+    id: 'story-arjun',
     name: 'Arjun Kumar',
     location: 'Kajang, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
@@ -73,6 +68,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#C9A020]',
   },
   {
+    id: 'story-chen',
     name: 'Chen Jia Hui',
     location: 'Subang Jaya, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
@@ -84,6 +80,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#CC0000]',
   },
   {
+    id: 'story-farhana',
     name: 'Farhana Rashid',
     location: 'Seri Kembangan, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png',
@@ -95,6 +92,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#CC0000]',
   },
   {
+    id: 'story-david',
     name: 'David Ong',
     location: 'Cheras, Kuala Lumpur',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png',
@@ -106,6 +104,7 @@ const testimonials: StudentReview[] = [
     accentColor: 'border-t-[#1A7A3C]',
   },
   {
+    id: 'story-aisyah',
     name: 'Aisyah Rahman',
     location: 'Cyberjaya, Selangor',
     avatar: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png',
@@ -118,7 +117,7 @@ const testimonials: StudentReview[] = [
   },
 ];
 
-function ReviewCard({ t, ariaHidden }: { t: StudentReview; ariaHidden?: boolean }) {
+function ReviewCard({ t, ariaHidden }: { t: DisplayReview; ariaHidden?: boolean }) {
   return (
     <article
       aria-hidden={ariaHidden}
@@ -168,7 +167,7 @@ function ReviewCard({ t, ariaHidden }: { t: StudentReview; ariaHidden?: boolean 
 }
 
 /** Sets --marquee-w = first segment width + flex gap so the CSS loop stays pixel-seamless. */
-function TestimonialsMarqueeTrack({ items }: { items: StudentReview[] }) {
+function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const seg1Ref = useRef<HTMLDivElement>(null);
 
@@ -189,25 +188,60 @@ function TestimonialsMarqueeTrack({ items }: { items: StudentReview[] }) {
       ro?.disconnect();
       window.removeEventListener('resize', sync);
     };
-  }, []);
+  }, [items]);
 
   return (
     <div ref={trackRef} className="testimonials-marquee-track flex flex-nowrap gap-5">
       <div ref={seg1Ref} className="flex shrink-0 gap-5">
-        {items.map((t, i) => (
-          <ReviewCard key={`m-a-${i}`} t={t} />
+        {items.map((t) => (
+          <ReviewCard key={`m-a-${t.id}`} t={t} />
         ))}
       </div>
       <div className="flex shrink-0 gap-5" aria-hidden="true">
-        {items.map((t, i) => (
-          <ReviewCard key={`m-b-${i}`} t={t} ariaHidden />
+        {items.map((t) => (
+          <ReviewCard key={`m-b-${t.id}`} t={t} ariaHidden />
         ))}
       </div>
     </div>
   );
 }
 
+type ReviewSource = 'pending' | 'places_api' | 'manual_json' | 'none';
+
 export default function TestimonialsSection() {
+  const [items, setItems] = useState<DisplayReview[]>(FALLBACK_TESTIMONIALS);
+  const [source, setSource] = useState<ReviewSource>('pending');
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/google-reviews');
+        const data = (await res.json()) as {
+          source?: ReviewSource;
+          reviews?: DisplayReview[];
+        };
+        if (cancelled) return;
+        if (data.reviews && data.reviews.length > 0) {
+          setItems(data.reviews);
+          setSource(data.source === 'manual_json' ? 'manual_json' : 'places_api');
+        } else {
+          setSource('none');
+        }
+      } catch {
+        if (!cancelled) setSource('none');
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const subline =
+    source === 'places_api' || source === 'manual_json'
+      ? 'Recent reviews from Google Maps (up to five may show per Google). See all on Google.'
+      : "Here's what our champions had to say.";
+
   return (
     <section
       id="testimonials"
@@ -231,16 +265,24 @@ export default function TestimonialsSection() {
             <span className="block text-black/85 sm:inline">CIKGU RAM 🇲🇾</span>
           </h2>
           <p className="mx-auto max-w-md font-body text-base leading-relaxed text-black/45 sm:text-lg">
-            Here&apos;s what our champions had to say.
+            {subline}
           </p>
+          <a
+            href={GOOGLE_BUSINESS_MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mx-auto mt-6 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-black/10 bg-white px-5 font-display text-sm font-700 text-[#111111] shadow-sm transition-colors hover:border-black/15 hover:bg-black/[0.02]">
+            <span>See reviews on Google</span>
+            <Icon name="ArrowTopRightOnSquareIcon" size={16} variant="outline" className="text-black/50" aria-hidden />
+          </a>
         </div>
       </div>
 
       {/* Reduced motion: single row, horizontal scroll, no duplicate content */}
       <div className="relative z-10 mx-auto hidden max-w-7xl motion-reduce:block">
         <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 sm:px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {testimonials.map((t, i) => (
-            <div key={t.name} className="snap-center snap-always">
+          {items.map((t) => (
+            <div key={t.id} className="snap-center snap-always">
               <ReviewCard t={t} />
             </div>
           ))}
@@ -258,7 +300,7 @@ export default function TestimonialsSection() {
             className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-12 bg-gradient-to-l from-[#F5F5F7] via-[#F5F5F7]/95 to-transparent sm:w-20"
             aria-hidden="true"
           />
-          <TestimonialsMarqueeTrack items={testimonials} />
+          <TestimonialsMarqueeTrack items={items} />
         </div>
       </div>
     </section>

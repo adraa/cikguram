@@ -485,16 +485,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
 }
 
-/* FAQ Accordion */
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
-}
-.faq-answer.open {
-  max-height: 300px;
-}
-
 /* Image hover zoom: disable on mobile for performance */
 .img-zoom {
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);

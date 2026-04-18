@@ -4,10 +4,9 @@ import Footer from '@/components/Footer';
 import HeroSection from './components/HeroSection';
 import PricingCard from './components/PricingCard';
 import SocialProofSection from './components/SocialProofSection';
-import FeaturesSection from './components/FeaturesSection';
 import ProcessSection from './components/ProcessSection';
 import TestimonialsSection from './components/TestimonialsSection';
-import FAQSection from './components/FAQSection';
+import StillHaveQuestionsSection from './components/StillHaveQuestionsSection';
 import ReserveFormSection from './components/ReserveFormSection';
 import StatsBarSection from './components/StatsBarSection';
 import StickyMobileCTA from './components/StickyMobileCTA';
@@ -30,11 +29,10 @@ export default function HomePage() {
       <ReserveFormSection />
       <StatsBarSection />
       <SocialProofSection />
-      <FeaturesSection />
       <ProcessSection />
       <TestimonialsSection />
-      <FAQSection />
-<Footer />
+      <StillHaveQuestionsSection />
+      <Footer />
       <ScrollRevealInit />
     </main>
   );

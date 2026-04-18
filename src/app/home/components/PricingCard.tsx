@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
 import bonusFlash from '@/assets/bonus-flash.webp';
+import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
 
 interface TimeLeft {
   hours: number;
@@ -129,7 +130,12 @@ export default function PricingCard() {
             {/* Social proof stats: same card as SocialProofSection trust bar */}
             <div className="bg-white rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.10)] border border-black/8 overflow-hidden mt-3">
               <div className="grid grid-cols-3 divide-x divide-black/8">
-                <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
+                <a
+                  href={GOOGLE_BUSINESS_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center justify-center gap-0.5 py-3 px-2 transition-colors hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#CC0000]/35"
+                  aria-label="View Google reviews — 4.9 rating on Google Maps">
                   <div className="flex items-center">
                     {[
                       { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png', alt: 'Nurul Ain' },
@@ -157,7 +163,7 @@ export default function PricingCard() {
                     <span className="text-[#C9A020] text-[12px] leading-none ml-0.5">★</span>
                   </div>
                   <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight">Google Rating</span>
-                </div>
+                </a>
                 <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
                   <span className="text-[14px] leading-none">💪</span>
                   <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">10+</span>
