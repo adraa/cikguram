@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans, Manrope, Barlow_Condensed, Space_Grotesk, Roboto } from 'next/font/google';
-import AnalyticsScripts from '@/components/AnalyticsScripts';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -71,7 +70,6 @@ export default function RootLayout({
         className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${roboto.variable}`}>
       <body>
         {children}
-        <AnalyticsScripts />
       </body>
     </html>
   );
