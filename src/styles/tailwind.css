@@ -7,6 +7,47 @@
   .font-700 { font-weight: 700; }
   .font-800 { font-weight: 800; }
   .font-900 { font-weight: 900; }
+
+  /**
+   * Testimonial body: Roboto for Latin; emoji codepoints resolve to Apple Color Emoji
+   * on iOS/macOS (system). Other platforms use their native color emoji — Apple’s font
+   * is not redistributable for web embedding.
+   */
+  .testimonial-emoji-copy {
+    font-family:
+      var(--font-google),
+      Roboto,
+      ui-sans-serif,
+      system-ui,
+      'Helvetica Neue',
+      Helvetica,
+      Arial,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      'Noto Color Emoji',
+      emoji;
+    font-variant-emoji: emoji;
+  }
+}
+
+/** Magic UI shine-border: https://magicui.design/docs/components/shine-border */
+@keyframes shine-border {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@layer utilities {
+  .shine-border-animate {
+    animation: shine-border var(--duration, 14s) linear infinite;
+  }
 }
 
 @keyframes arrow-bounce {
@@ -146,6 +187,22 @@ h1, h2, h3, h4, h5, h6 {
   width: max-content;
   will-change: transform;
   animation: testimonials-marquee 72s linear infinite;
+}
+
+/**
+ * Pause marquee while a card is being read, pressed, or hovered (real hover only).
+ * Wrap track in `.testimonials-marquee-wrap`; cards use `.testimonial-card-pause-target`.
+ */
+.testimonials-marquee-wrap:has(.testimonial-card-pause-target[data-review-expanded='true'])
+  .testimonials-marquee-track,
+.testimonials-marquee-wrap:has(.testimonial-card-pause-target:active) .testimonials-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .testimonials-marquee-wrap:has(.testimonial-card-pause-target:hover) .testimonials-marquee-track {
+    animation-play-state: paused;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

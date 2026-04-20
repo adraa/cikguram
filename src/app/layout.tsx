@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, Manrope, Barlow_Condensed, Space_Grotesk } from 'next/font/google';
+import { DM_Sans, Manrope, Barlow_Condensed, Space_Grotesk, Roboto } from 'next/font/google';
 import AnalyticsScripts from '@/components/AnalyticsScripts';
 import '../styles/tailwind.css';
 
@@ -36,6 +36,15 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+/** Testimonials: Google-style typography without affecting the rest of the site. */
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  style: ['normal'],
+  variable: '--font-google',
+  display: 'swap',
+});
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -59,7 +68,7 @@ export default function RootLayout({
   return (
       <html
         lang="en"
-        className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable}`}>
+        className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${roboto.variable}`}>
       <body>
         {children}
         <AnalyticsScripts />
