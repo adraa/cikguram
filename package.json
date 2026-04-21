@@ -2,6 +2,9 @@
   "name": "cikguram",
   "version": "0.1.0",
   "private": true,
+  "pnpm": {
+    "onlyBuiltDependencies": ["sharp", "unrs-resolver"]
+  },
   "rocketCritical": {
     "dependencies": [
       "next",
