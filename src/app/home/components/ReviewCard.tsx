@@ -121,7 +121,7 @@ export function ReviewCard({
   expanded: expandedProp,
   onExpandedChange,
   layout = 'vertical',
-  /** FAQ / conversion blocks: no blue chrome (neutral G mark, link uses ink + brand focus ring). */
+  /** FAQ / conversion blocks: link uses ink + brand focus ring (G mark matches testimonials). */
   neutralChrome = false,
 }: {
   t: DisplayReview;
@@ -230,7 +230,7 @@ export function ReviewCard({
       <div
         className="flex min-w-0 flex-nowrap items-center gap-1.5"
         aria-label={`Google review, ${t.rating} out of 5 stars`}>
-        <GoogleGMark monochrome={neutralChrome} className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
+        <GoogleGMark className="h-4 w-4 shrink-0" aria-hidden />
         <span className="min-w-0 truncate font-google text-[11px] font-medium leading-none tracking-tight text-[#6e6e73] sm:text-[12px]">
           Google
         </span>

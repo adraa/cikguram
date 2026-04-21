@@ -96,13 +96,22 @@ function DecorativeCountdown() {
 
 export default function StillHaveQuestionsSection() {
   return (
-    <section id="faq" className="relative overflow-hidden bg-white py-16 sm:py-24">
+    <section
+      id="faq"
+      className="relative overflow-hidden bg-gradient-to-b from-[#FFF7ED] via-[#FFFCF8] to-white py-16 sm:py-24">
+      {/* Ambient wash — distinct “chapter” without competing with the card */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_95%_58%_at_50%_-8%,rgba(255,214,160,0.16),transparent_55%)]"
+        aria-hidden
+      />
       <div className="absolute inset-0 grid-bg" />
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6">
-        <div className="relative mt-10 overflow-visible rounded-3xl border border-black/[0.08] bg-white text-center shadow-[0_12px_48px_rgba(0,0,0,0.08)] reveal delay-200 sm:mt-14">
-          {/* Very subtle warm/neutral corner wash — clipped to rounded rect */}
+        <div
+          className="relative mt-10 overflow-visible rounded-3xl border border-amber-200/35 bg-gradient-to-br from-amber-50/95 via-[#FFFBF3] to-amber-100/45 text-center shadow-[0_24px_64px_-18px_rgba(0,0,0,0.11),0_12px_40px_-14px_rgba(176,120,40,0.1)] ring-1 ring-amber-100/50 reveal delay-200 sm:mt-14">
+          {/* Specular highlights — warm paper / studio-light (clipped to rounded rect) */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl" aria-hidden>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_96%_0%,rgba(232,224,214,0.28)_0%,rgba(248,246,242,0.1)_42%,transparent_65%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_88%_62%_at_96%_0%,rgba(255,220,160,0.28)_0%,rgba(255,248,235,0.12)_42%,transparent_68%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_72%_52%_at_4%_100%,rgba(255,210,140,0.12)_0%,transparent_58%)]" />
           </div>
 
           <div className="relative z-[1] px-5 pb-8 pt-8 sm:px-10 sm:pb-10 sm:pt-10">
