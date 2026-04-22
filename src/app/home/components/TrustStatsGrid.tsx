@@ -1,0 +1,73 @@
+import React from 'react';
+import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
+
+/** Outer chrome: same lift as pricing price pill (`shadow-[0_10px_36px_…]`) so the strip reads floating. */
+const TRUST_STATS_SHELL =
+  'overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[0_10px_36px_rgba(0,0,0,0.1)]';
+
+/** Trust strip: generous vertical rhythm + min height so each column feels tappable on phones. */
+const TRUST_CELL_CLASS =
+  'flex min-h-[5rem] flex-1 flex-col items-center justify-center gap-0.5 px-1.5 py-2.5 sm:min-h-0 sm:gap-0.5 sm:px-2 sm:py-2.5';
+
+const TRUST_GLYPH_ROW =
+  'flex h-5 w-full shrink-0 items-center justify-center text-[13px] leading-none sm:h-[1.375rem] sm:text-[14px]';
+
+const TRUST_VALUE_ROW =
+  'flex h-5 w-full shrink-0 items-center justify-center font-display text-[15px] font-black tabular-nums leading-none tracking-[-0.02em] text-[#111111] sm:h-[1.375rem] sm:text-[16px]';
+
+const TRUST_CAPTION_CLASS =
+  'flex min-h-[1.875rem] w-full max-w-[6.25rem] flex-col items-center justify-center text-pretty text-center font-display text-[10px] font-semibold uppercase leading-[1.18] tracking-[0.06em] text-black/45 sm:min-h-[2rem] sm:max-w-[6rem] sm:text-[9px] sm:leading-[1.15] sm:tracking-[0.08em]';
+
+const TRUST_LINK_CELL_CLASS = `${TRUST_CELL_CLASS} transition-colors hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#CC0000]/35 [-webkit-tap-highlight-color:transparent] touch-manipulation motion-reduce:transition-none`;
+
+/**
+ * Three-column trust bar (Google / years / students): shared by FAQ, pricing, and track-record.
+ */
+export default function TrustStatsGrid() {
+  return (
+    <div className={TRUST_STATS_SHELL}>
+      <div
+        className="grid min-h-0 grid-cols-3 divide-x divide-black/8 items-stretch [contain:paint]"
+        aria-label="Trust signals">
+        <a
+          href={GOOGLE_BUSINESS_MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={TRUST_LINK_CELL_CLASS}
+          aria-label="View Google reviews — 4.9 rating on Google Maps">
+          <span className={TRUST_GLYPH_ROW} aria-hidden>
+            🌟
+          </span>
+          <span className={TRUST_VALUE_ROW}>4.9</span>
+          <span className={TRUST_CAPTION_CLASS}>
+            Google
+            <br />
+            Rating
+          </span>
+        </a>
+        <div className={TRUST_CELL_CLASS}>
+          <span className={TRUST_GLYPH_ROW} aria-hidden>
+            💪
+          </span>
+          <span className={TRUST_VALUE_ROW}>10+</span>
+          <span className={TRUST_CAPTION_CLASS}>
+            Years
+            <br />
+            Experience
+          </span>
+        </div>
+        <div className={TRUST_CELL_CLASS}>
+          <span className={TRUST_GLYPH_ROW} aria-hidden>
+            ❤️
+          </span>
+          <span className={TRUST_VALUE_ROW}>600+</span>
+          <span className={TRUST_CAPTION_CLASS}>
+            Students
+            <br />
+            Passed
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}

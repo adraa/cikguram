@@ -34,8 +34,8 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
 
   return (
     <div className="testimonials-marquee-wrap">
-      <div ref={trackRef} className="testimonials-marquee-track flex flex-nowrap gap-6">
-        <div ref={seg1Ref} className="flex shrink-0 items-start gap-6">
+      <div ref={trackRef} className="testimonials-marquee-track flex flex-nowrap gap-5 sm:gap-6 md:gap-7">
+        <div ref={seg1Ref} className="flex shrink-0 items-start gap-5 sm:gap-6 md:gap-7">
           {items.map((t) => (
             <ReviewCard
               key={`m-a-${t.id}`}
@@ -45,7 +45,7 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
             />
           ))}
         </div>
-        <div className="flex shrink-0 items-start gap-6" aria-hidden="true">
+        <div className="flex shrink-0 items-start gap-5 sm:gap-6 md:gap-7" aria-hidden="true">
           {items.map((t) => (
             <ReviewCard
               key={`m-b-${t.id}`}
@@ -67,35 +67,36 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="font-google relative overflow-hidden border-y border-black/[0.06] bg-white py-20 sm:py-28">
+      className="font-google relative overflow-hidden border-y border-black/[0.06] bg-white py-16 sm:py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_42%,#ffffff_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_50%_-8%,rgba(255,255,255,0.9)_0%,transparent_52%)]" />
         <div className="absolute inset-x-0 top-0 h-px bg-black/[0.06]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="reveal mb-12 text-center sm:mb-16">
-          <h2 className="mb-3 font-google text-[1.65rem] font-black leading-[1.08] tracking-[-0.03em] text-[#202124] sm:text-4xl md:text-[2.5rem]">
-            <span className="block sm:inline">Why Do We Prefer</span>{' '}
-            <span className="block text-[#202124]/90 sm:inline">CIKGU RAM 🇲🇾</span>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="reveal mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-16">
+          <h2 className="mx-auto mb-0 flex max-w-[min(100%,20rem)] flex-col items-center gap-1.5 text-pretty text-center sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-2.5 sm:gap-y-0">
+            <span className="text-pretty font-display font-700 text-3xl text-[#111111] tracking-tight leading-[1.15] sm:text-4xl md:text-5xl">
+              Success Stories Of
+            </span>
+            <span className="text-pretty font-space font-700 italic text-3xl leading-[1.15] tracking-[-0.02em] text-[#CC0000] sm:text-4xl md:text-5xl">
+              CIKGU RAM 🇲🇾
+            </span>
           </h2>
-          <p className="mx-auto max-w-md font-google text-base font-normal leading-relaxed text-[#5F6368] sm:text-lg">
-            Here&apos;s what our champions had to say.
-          </p>
           <a
             href={GOOGLE_BUSINESS_MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-auto mt-6 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[12px] border border-black/[0.1] bg-white px-5 font-google text-sm font-bold tracking-tight text-[#202124] active:bg-black/[0.03]">
+            className="mx-auto mt-5 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-black/[0.1] bg-white px-5 py-2.5 font-google text-[15px] font-semibold leading-snug tracking-tight text-[#202124] shadow-sm transition-colors hover:bg-black/[0.03] active:bg-black/[0.05] sm:mt-6 sm:px-6 sm:py-3 sm:text-sm sm:font-bold md:mt-7">
             <span>See reviews on Google</span>
-            <Icon name="ArrowTopRightOnSquareIcon" size={16} variant="outline" className="text-[#5F6368]" aria-hidden />
+            <Icon name="ArrowTopRightOnSquareIcon" size={16} variant="outline" className="shrink-0 text-[#5F6368]" aria-hidden />
           </a>
         </div>
       </div>
 
       <div className="relative z-10 mx-auto hidden max-w-7xl motion-reduce:block">
-        <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-2 sm:px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 pt-1 sm:gap-6 sm:px-6 sm:pb-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {items.map((t) => (
             <div key={t.id} className="snap-center snap-always">
               <ReviewCard t={t} />
@@ -107,11 +108,11 @@ export default function TestimonialsSection() {
       <div className="relative z-10 block motion-reduce:hidden">
         <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-12 bg-gradient-to-r from-white via-white/95 to-transparent sm:w-16"
+            className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-10 bg-gradient-to-r from-white via-white/95 to-transparent sm:w-14 md:w-16"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-12 bg-gradient-to-l from-white via-white/95 to-transparent sm:w-16"
+            className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-10 bg-gradient-to-l from-white via-white/95 to-transparent sm:w-14 md:w-16"
             aria-hidden="true"
           />
           <TestimonialsMarqueeTrack items={items} />

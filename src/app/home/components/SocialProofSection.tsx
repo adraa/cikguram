@@ -4,28 +4,29 @@ import Icon from '@/components/ui/AppIcon';
 
 export default function SocialProofSection() {
   return (
-    <section id="instructor" className="py-16 sm:py-24 bg-white relative overflow-hidden">
+    <section id="instructor" className="py-16 sm:py-24 bg-white relative overflow-x-hidden">
       <div className="absolute inset-0 grid-bg" />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
         {/* Instructor profile */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-10 items-center">
           {/* Image side */}
-          <div className="reveal-left relative">
-            <div className="relative rounded-2xl overflow-hidden img-zoom-wrap border border-black/8 aspect-[4/3] shadow-card">
-              <AppImage
-                src="https://img.rocket.new/generatedImages/rocket_gen_img_1e87b8662-1772196926946.png"
-                alt="Professional male driving instructor in dark polo shirt, confident smile, neutral studio background with soft lighting"
-                fill
-                className="object-cover img-zoom"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={78}
-              />
-              {/* Gradient overlay: keeps credential card readable on photo */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-              {/* Trust module: compact chip, intrinsic width, centred (not full-bleed) */}
-              <div className="pointer-events-none absolute bottom-4 left-0 right-0 z-10 flex justify-center px-4 sm:bottom-5 sm:px-5">
-                <div className="pointer-events-auto inline-flex max-w-[min(100%,21rem)] items-center gap-3 rounded-2xl border border-black/[0.08] bg-[#F8F7F5]/95 px-3.5 py-2.5 shadow-[0_6px_24px_rgba(0,0,0,0.07)] backdrop-blur-sm sm:gap-3 sm:px-4 sm:py-2.5">
+          <div className="reveal-left relative pt-14 lg:pt-11">
+            {/* Wrapper: chip is NOT inside overflow-hidden photo — half sits above card top */}
+            <div className="relative isolate">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[0_10px_36px_rgba(0,0,0,0.1)] img-zoom-wrap">
+                <AppImage
+                  src="/instructor-cikgu-ram.webp"
+                  alt="Cikgu Ram in Westport Driving Academy polo, arms crossed, smiling in front of red learner car RAM 308 outdoors"
+                  fill
+                  className="object-cover img-zoom"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={90}
+                />
+                <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+              </div>
+              <div className="pointer-events-none absolute inset-x-4 top-0 z-30 flex justify-center max-lg:-translate-y-[72%] sm:inset-x-5 lg:-translate-y-1/2">
+                <div className="pointer-events-auto inline-flex max-w-[min(100%,21rem)] items-center gap-3 rounded-2xl border border-black/[0.08] bg-[#F8F7F5]/95 px-3.5 py-2.5 shadow-[0_10px_36px_rgba(0,0,0,0.12)] backdrop-blur-sm sm:gap-3 sm:px-4 sm:py-2.5">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CC0000]">
                     <Icon name="UserIcon" size={17} variant="solid" className="text-white" />
                   </div>
@@ -58,7 +59,7 @@ export default function SocialProofSection() {
               Most people delay because they're scared of failing the JPJ test. Cikgu Ram's students don't have that problem.
             </p>
             <p className="text-[13px] sm:text-[13px] text-[#444444] font-body leading-[1.6] mb-8">
-              With over a decade of experience at <strong className="text-[#111111] font-semibold">Westport Driving Academy</strong>, Cikgu Ram has mastered a teaching system that helps students pass their JPJ tests faster and with less stress. Based in Bukit Rotan, his patient and structured approach has successfully guided over 600+ students to their P-License.
+              With over a decade of experience at <strong className="text-[#111111] font-semibold">Westport Driving Academy, Bukit Rotan</strong>, Cikgu Ram has mastered a teaching system that helps students pass their JPJ tests faster and with less stress. Based in Bukit Rotan, his patient and structured approach has successfully guided over 600+ students to their P-License.
             </p>
 
             {/* Benefits: scannable list */}

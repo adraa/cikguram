@@ -1,51 +1,11 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
 import bonusFlash from '@/assets/bonus-flash.webp';
-import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
-
-interface TimeLeft {
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-function useCountdown(targetHours: number): TimeLeft {
-  const endTimeRef = useRef<number>(0);
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ hours: targetHours, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    endTimeRef.current = Date.now() + targetHours * 60 * 60 * 1000;
-    const tick = () => {
-      const diff = Math.max(0, endTimeRef.current - Date.now());
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      setTimeLeft({ hours: h, minutes: m, seconds: s });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [targetHours]);
-
-  return timeLeft;
-}
-
-function InlineCountdown({ timeLeft }: { timeLeft: TimeLeft }) {
-  const fmt = (n: number) => String(n).padStart(2, '0');
-  return (
-    <span className="inline-flex items-center gap-0.5 text-[13px] font-display font-700 text-[#CC0000] tabular-nums">
-      <span className="mr-0.5 text-[13px] leading-none">⏰</span>
-      {fmt(timeLeft.hours)}
-      <span className="opacity-60 mx-0.5">:</span>
-      {fmt(timeLeft.minutes)}
-      <span className="opacity-60 mx-0.5">:</span>
-      {fmt(timeLeft.seconds)}
-    </span>
-  );
-}
+import { PricingInlineCountdown, usePricingCountdown } from '@/app/home/components/PricingInlineCountdown';
+import TrustStatsGrid from '@/app/home/components/TrustStatsGrid';
 
 const coreItems = [
   'KPP Theory Classes (KPP01)',
@@ -65,7 +25,7 @@ const bonusItems = [
 ];
 
 export default function PricingCard() {
-  const timeLeft = useCountdown(23);
+  const timeLeft = usePricingCountdown(23);
 
   return (
     <section id="pricing" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
@@ -120,61 +80,16 @@ export default function PricingCard() {
                   SAVE RM299
                 </span>
                 <span className="hidden h-3 w-px shrink-0 bg-black/[0.08] sm:block" aria-hidden />
-                <InlineCountdown timeLeft={timeLeft} />
+                <PricingInlineCountdown timeLeft={timeLeft} />
               </div>
               <p className="mt-2 max-w-sm text-center text-base leading-snug text-black/50 font-body sm:mt-2.5">
                 Complete package · Zero hidden fees
               </p>
             </div>
 
-            {/* Social proof stats: same card as SocialProofSection trust bar */}
-            <div className="bg-white rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.10)] border border-black/8 overflow-hidden mt-3">
-              <div className="grid grid-cols-3 divide-x divide-black/8">
-                <a
-                  href={GOOGLE_BUSINESS_MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center gap-0.5 py-3 px-2 transition-colors hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#CC0000]/35"
-                  aria-label="View Google reviews — 4.9 rating on Google Maps">
-                  <div className="flex items-center">
-                    {[
-                      { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1f2d969d9-1772546065138.png', alt: 'Nurul Ain' },
-                      { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1b5ea51b0-1763293852695.png', alt: 'Vikram' },
-                      { src: 'https://img.rocket.new/generatedImages/rocket_gen_img_1318f9f53-1772631229001.png', alt: 'Wei Xian' },
-                    ].map((av, i) => (
-                      <div
-                        key={av.alt}
-                        className="w-7 h-7 rounded-full border-2 border-white overflow-hidden shrink-0"
-                        style={{ marginLeft: i > 0 ? '-5px' : 0, zIndex: 3 - i }}>
-                        <Image
-                          src={av.src}
-                          alt={av.alt}
-                          width={28}
-                          height={28}
-                          sizes="28px"
-                          quality={70}
-                          className="object-cover w-full h-full"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">4.9</span>
-                    <span className="text-[#C9A020] text-[12px] leading-none ml-0.5">★</span>
-                  </div>
-                  <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight">Google Rating</span>
-                </a>
-                <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
-                  <span className="text-[14px] leading-none">💪</span>
-                  <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">10+</span>
-                  <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight text-center">Years<br />Experience</span>
-                </div>
-                <div className="flex flex-col items-center justify-center gap-0.5 py-3 px-2">
-                  <span className="text-[14px] leading-none">❤️</span>
-                  <span className="font-display font-black text-[16px] text-[#111111] tracking-tight leading-none">600+</span>
-                  <span className="text-[9px] text-black/45 font-display font-semibold tracking-wide uppercase leading-tight text-center">Students<br />Passed</span>
-                </div>
-              </div>
+            {/* Social proof stats: same strip as FAQ (`TrustStatsGrid`) */}
+            <div className="mt-3">
+              <TrustStatsGrid />
             </div>
           </div>
 

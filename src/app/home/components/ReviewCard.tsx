@@ -2,13 +2,9 @@
 
 import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
-import AppImage from '@/components/ui/AppImage';
+import { FAQ_WARM_OUTLINE } from '@/lib/faq-warm-outline';
 import { ShineBorder } from '@/components/ui/ShineBorder';
 import type { DisplayReview } from '@/types/display-review';
-
-/** iOS-style neutral avatar (kept for photo-less reviewers). */
-const AVATAR_NEUTRAL =
-  'bg-gradient-to-b from-[#E8EAED] to-[#DADCE0] text-[#3C4043] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]';
 
 function GoogleGMark({ className, monochrome }: { className?: string; monochrome?: boolean }) {
   if (monochrome) {
@@ -55,54 +51,6 @@ function GoogleGMark({ className, monochrome }: { className?: string; monochrome
   );
 }
 
-function initialsFromName(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return '?';
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-}
-
-function ReviewerAvatar({
-  t,
-  ariaHidden,
-  prominent,
-}: {
-  t: DisplayReview;
-  ariaHidden?: boolean;
-  /** Larger treatment for featured / horizontal cards (48px mobile → 56px sm+). */
-  prominent?: boolean;
-}) {
-  const dim = prominent ? 56 : 44;
-  const box = prominent ? 'h-12 w-12 sm:h-14 sm:w-14' : 'h-11 w-11';
-  const initialsClass = prominent ? 'text-[12px] sm:text-[13px]' : 'text-[12px]';
-  const imgSizes = prominent ? '(min-width: 640px) 56px, 48px' : `${dim}px`;
-
-  if (t.avatar?.trim()) {
-    return (
-      <div
-        className={`${box} shrink-0 overflow-hidden rounded-full border border-black/[0.08] shadow-[0_1px_2px_rgba(0,0,0,0.04)]`}>
-        <AppImage
-          src={t.avatar}
-          alt={ariaHidden ? '' : t.avatarAlt}
-          width={dim}
-          height={dim}
-          sizes={imgSizes}
-          quality={72}
-          className="h-full w-full object-cover"
-          loading="lazy"
-        />
-      </div>
-    );
-  }
-  return (
-    <div
-      className={`flex ${box} shrink-0 items-center justify-center rounded-full font-google ${initialsClass} font-semibold tracking-tight text-[#3C4043] shadow-[0_1px_3px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] ${AVATAR_NEUTRAL}`}
-      aria-hidden={ariaHidden || undefined}>
-      {initialsFromName(t.name)}
-    </div>
-  );
-}
-
 function reviewNeedsToggle(text: string) {
   return text.length > 160 || text.includes('\n');
 }
@@ -111,9 +59,9 @@ function reviewNeedsToggle(text: string) {
 const CARD_VERTICAL =
   'testimonial-card-pause-target relative flex w-[272px] shrink-0 flex-col overflow-hidden rounded-[12px] bg-white pl-3.5 pr-4 pb-3 pt-4 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)] [contain:layout] sm:w-[272px]';
 
-/** Featured wide card (FAQ): calm elevation, no marquee shine — product-page restraint. */
-const CARD_HORIZONTAL =
-  'relative flex w-full max-w-xl shrink-0 flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-white px-4 pb-5 pt-5 text-left shadow-[0_1px_16px_rgba(0,0,0,0.04),0_8px_32px_rgba(0,0,0,0.04)] sm:px-7 sm:pb-7 sm:pt-7 sm:shadow-[0_2px_24px_rgba(0,0,0,0.04),0_12px_48px_rgba(0,0,0,0.04)]';
+/** Featured wide card (FAQ): warm gold ring + lift — padding overridden when `horizontalDensity="compact"`. */
+const CARD_HORIZONTAL_PAD_COMFORTABLE = `px-4 pb-5 pt-5 sm:px-7 sm:pb-7 sm:pt-7`;
+const CARD_HORIZONTAL_PAD_COMPACT = `px-3 pb-4 pt-4 sm:px-7 sm:pb-7 sm:pt-7`;
 
 export function ReviewCard({
   t,
@@ -123,6 +71,8 @@ export function ReviewCard({
   layout = 'vertical',
   /** FAQ / conversion blocks: link uses ink + brand focus ring (G mark matches testimonials). */
   neutralChrome = false,
+  /** Tighter mobile rhythm for embedded FAQ / narrow columns; desktop matches comfortable. */
+  horizontalDensity = 'comfortable',
 }: {
   t: DisplayReview;
   ariaHidden?: boolean;
@@ -132,6 +82,7 @@ export function ReviewCard({
   /** `horizontal` = full-width row layout for embedded sections; default matches testimonials marquee. */
   layout?: 'vertical' | 'horizontal';
   neutralChrome?: boolean;
+  horizontalDensity?: 'comfortable' | 'compact';
 }) {
   const [expandedLocal, setExpandedLocal] = useState(false);
   const controlled = onExpandedChange !== undefined;
@@ -226,18 +177,22 @@ export function ReviewCard({
   );
 
   if (layout === 'horizontal') {
+    const compact = horizontalDensity === 'compact';
+    const articlePad =
+      compact ? CARD_HORIZONTAL_PAD_COMPACT : CARD_HORIZONTAL_PAD_COMFORTABLE;
+
     const googleRowHorizontal = (
       <div
-        className="flex min-w-0 flex-nowrap items-center gap-1.5"
+        className={`flex min-w-0 flex-wrap items-center gap-x-1.5 ${compact ? 'gap-y-0.5' : 'gap-y-1'}`}
         aria-label={`Google review, ${t.rating} out of 5 stars`}>
         <GoogleGMark className="h-4 w-4 shrink-0" aria-hidden />
-        <span className="min-w-0 truncate font-google text-[11px] font-medium leading-none tracking-tight text-[#6e6e73] sm:text-[12px]">
+        <span className="min-w-0 max-w-full break-words font-google text-[11px] font-medium leading-snug tracking-tight text-[#6e6e73] sm:text-[12px]">
           Google
         </span>
         <span className="shrink-0 text-[#d2d2d7]" aria-hidden>
           ·
         </span>
-        <div className="flex shrink-0 items-center gap-0.5" aria-hidden>
+        <div className="flex shrink-0 flex-wrap items-center gap-0.5" aria-hidden>
           {Array.from({ length: t.rating }).map((_, si) => (
             <Icon
               key={si}
@@ -251,68 +206,78 @@ export function ReviewCard({
       </div>
     );
 
+    const metaInner = (
+      <>
+        {googleRowHorizontal}
+
+        <p
+          className={`min-w-0 max-w-full break-words text-pretty font-google font-semibold tracking-[-0.022em] text-[#1d1d1f] sm:mt-3 sm:text-lg ${
+            compact
+              ? 'mt-2 text-[15px] leading-[1.22] sm:leading-[1.2]'
+              : 'mt-2.5 text-[16px] leading-[1.2]'
+          }`}>
+          {t.name}
+        </p>
+        <p
+          className={`min-w-0 break-words text-pretty text-[12px] leading-snug text-[#86868b] sm:text-[14px] ${
+            compact ? 'mt-0.5' : 'mt-1'
+          }`}>
+          {t.duration}
+          {showLocationLine ? (
+            <>
+              <span className="text-black/25"> · </span>
+              {locationTrimmed}
+            </>
+          ) : null}
+        </p>
+      </>
+    );
+
+    const readMoreTop = compact ? 'mt-2.5 sm:mt-4' : 'mt-3 sm:mt-4';
+    const horizontalReadMore =
+      showToggle ? (
+        <button
+          type="button"
+          tabIndex={ariaHidden ? -1 : undefined}
+          aria-expanded={expanded}
+          aria-label={expanded ? 'Show less of this review' : 'Read full review'}
+          onClick={() => setExpanded(!expanded)}
+          className={
+            neutralChrome
+              ? `group flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#1d1d1f] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CC0000]/25 focus-visible:ring-offset-2 ${readMoreTop} sm:w-auto sm:rounded-md sm:active:bg-transparent`
+              : `group flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#007AFF] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF]/30 focus-visible:ring-offset-2 ${readMoreTop} sm:w-auto sm:rounded-md sm:active:bg-transparent`
+          }>
+          <span>{expanded ? 'Show less' : 'Read more'}</span>
+          <Icon
+            name="ChevronDownIcon"
+            size={16}
+            variant="solid"
+            className={`transition-transform duration-200 ${neutralChrome ? 'text-[#1d1d1f]' : 'text-[#007AFF]'} ${expanded ? '-rotate-180' : ''}`}
+          />
+        </button>
+      ) : null;
+
+    const quoteLead = compact ? 'leading-[1.5]' : 'leading-[1.55]';
+    const quoteInner = (
+      <>
+        <blockquote
+          className={`testimonial-emoji-copy border-none pl-0 text-left text-[15px] font-normal tracking-[-0.015em] text-[#1d1d1f] antialiased [font-feature-settings:'kern'_1] whitespace-pre-line text-pretty sm:text-[16px] sm:leading-[1.47] ${quoteLead} ${
+            showToggle && !expanded ? 'line-clamp-4' : ''
+          }`}>
+          {t.text}
+        </blockquote>
+        {horizontalReadMore}
+      </>
+    );
+
     return (
       <article
         aria-hidden={ariaHidden || undefined}
         data-review-expanded={showToggle && expanded ? 'true' : undefined}
-        className={CARD_HORIZONTAL}>
-        {/*
-          Mobile: identity row, then quote at full card width (readable measure).
-          sm+: classic two-column spec — avatar spans rows, meta + quote in the second column.
-        */}
-        <div className="flex w-full min-w-0 flex-col gap-4 sm:grid sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-5">
-          <div className="flex min-w-0 flex-row items-start gap-3 sm:contents">
-            <div className="shrink-0 sm:row-span-2 sm:self-start">
-              <ReviewerAvatar t={t} ariaHidden={ariaHidden} prominent />
-            </div>
-            <div className="min-w-0 flex-1 text-left sm:col-start-2 sm:row-start-1 sm:min-w-0">
-              {googleRowHorizontal}
-
-              <p className="mt-2.5 break-words font-google text-[16px] font-semibold leading-[1.2] tracking-[-0.022em] text-[#1d1d1f] sm:mt-3 sm:text-lg">
-                {t.name}
-              </p>
-              <p className="mt-1 text-[12px] leading-snug text-[#86868b] sm:text-[14px]">
-                {t.duration}
-                {showLocationLine ? (
-                  <>
-                    <span className="text-black/25"> · </span>
-                    {locationTrimmed}
-                  </>
-                ) : null}
-              </p>
-            </div>
-          </div>
-
-          <div className="min-w-0 text-left sm:col-start-2 sm:row-start-2">
-            <blockquote
-              className={`testimonial-emoji-copy border-none pl-0 text-left text-[15px] font-normal leading-[1.55] tracking-[-0.015em] text-[#1d1d1f] antialiased [font-feature-settings:'kern'_1] whitespace-pre-line text-pretty sm:text-[16px] sm:leading-[1.47] ${
-                showToggle && !expanded ? 'line-clamp-4' : ''
-              }`}>
-              {t.text}
-            </blockquote>
-
-            {showToggle ? (
-              <button
-                type="button"
-                tabIndex={ariaHidden ? -1 : undefined}
-                aria-expanded={expanded}
-                aria-label={expanded ? 'Show less of this review' : 'Read full review'}
-                onClick={() => setExpanded(!expanded)}
-                className={
-                  neutralChrome
-                    ? 'group mt-3 flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#1d1d1f] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CC0000]/25 focus-visible:ring-offset-2 sm:mt-4 sm:w-auto sm:rounded-md sm:active:bg-transparent'
-                    : 'group mt-3 flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#007AFF] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF]/30 focus-visible:ring-offset-2 sm:mt-4 sm:w-auto sm:rounded-md sm:active:bg-transparent'
-                }>
-                <span>{expanded ? 'Show less' : 'Read more'}</span>
-                <Icon
-                  name="ChevronDownIcon"
-                  size={16}
-                  variant="solid"
-                  className={`transition-transform duration-200 ${neutralChrome ? 'text-[#1d1d1f]' : 'text-[#007AFF]'} ${expanded ? '-rotate-180' : ''}`}
-                />
-              </button>
-            ) : null}
-          </div>
+        className={`relative flex w-full max-w-xl shrink-0 flex-col ${FAQ_WARM_OUTLINE} bg-white ${articlePad} text-left`}>
+        <div className={`flex w-full min-w-0 flex-col ${compact ? 'gap-3 sm:gap-4' : 'gap-4'}`}>
+          <div className="min-w-0 text-left">{metaInner}</div>
+          <div className="min-w-0 text-left">{quoteInner}</div>
         </div>
       </article>
     );
@@ -327,10 +292,7 @@ export function ReviewCard({
       <div className={`relative z-[1] flex w-full flex-1 flex-col ${expanded ? '' : 'min-h-0'}`}>
         {googleStarsRow}
 
-        <div className="flex gap-3">
-          <ReviewerAvatar t={t} ariaHidden={ariaHidden} />
-          <div className="min-w-0 flex-1 pt-0.5">{nameMetaBlock}</div>
-        </div>
+        <div className="min-w-0">{nameMetaBlock}</div>
 
         <div className="my-3 h-px w-full bg-black/[0.06]" aria-hidden />
 

@@ -147,11 +147,12 @@ h1, h2, h3, h4, h5, h6 {
   to   { transform: translateX(100%);  }
 }
 
+/* Cream on all breakpoints — matches StatsBarSection; do not use dark (#1a1a1a) mobile fallback. */
 .stats-orb {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #F8F8F6;
+  background: #f8f8f6;
   pointer-events: none;
   user-select: none;
   will-change: transform;
@@ -622,6 +623,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 .form-input::placeholder {
   color: #767676;
+}
+
+/* Register (#register): same yellow as FAQ card — scoped so other forms keep accent gold */
+.register-form-faq-yellow .form-input {
+  border-color: #ffd100;
+}
+.register-form-faq-yellow .form-input:focus {
+  border-color: #ffd100;
+  box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.22);
 }
 
 /* Section label */

@@ -132,7 +132,7 @@ export default function ReserveFormSection() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="light-card rounded-2xl overflow-hidden border-t-4 border-t-[#C9A020]"
+              className="register-form-faq-yellow light-card rounded-2xl overflow-hidden border-t-4 border-t-[#FFD100]"
             >
               {/* Form fields */}
               {/* 32px padding signals considered design, not a template */}
@@ -231,11 +231,11 @@ export default function ReserveFormSection() {
                     Citizenship<span className="text-[#EF4444]"> *</span>
                   </label>
                   {/* p-1.5 = 6px padding; gap-1.5 = 6px → pill width = calc(50% - 9px) */}
-                  <div className="relative flex bg-[#EDE8D0] rounded-2xl p-1.5 gap-1.5">
-                    {/* Sliding gold pill: GPU-composited via transform only */}
+                  <div className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5">
+                    {/* Sliding pill — FAQ yellow */}
                     <div
                       aria-hidden
-                      className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#C9A020] shadow-[0_3px_12px_rgba(201,160,32,0.45)]"
+                      className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#FFD100] shadow-[0_3px_14px_rgba(255,209,0,0.55)]"
                       style={{
                         width: 'calc(50% - 9px)',
                         left: 6,
@@ -267,7 +267,7 @@ export default function ReserveFormSection() {
                             <span
                               className="font-display font-700 text-[13.5px] leading-none tracking-[-0.01em]"
                               style={{
-                                color: isSelected ? '#ffffff' : '#6B6355',
+                                color: isSelected ? '#111111' : '#5c5633',
                                 transition: 'color 200ms ease',
                               }}
                             >
@@ -285,11 +285,11 @@ export default function ReserveFormSection() {
                   <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
                     License Type<span className="text-[#EF4444]"> *</span>
                   </label>
-                  <div className="relative flex bg-[#EDE8D0] rounded-2xl p-1.5 gap-1.5">
-                    {/* Sliding gold pill */}
+                  <div className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5">
+                    {/* Sliding pill — FAQ yellow */}
                     <div
                       aria-hidden
-                      className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#C9A020] shadow-[0_3px_12px_rgba(201,160,32,0.45)]"
+                      className="absolute top-1.5 bottom-1.5 rounded-[14px] bg-[#FFD100] shadow-[0_3px_14px_rgba(255,209,0,0.55)]"
                       style={{
                         width: 'calc(50% - 9px)',
                         left: 6,
@@ -321,14 +321,14 @@ export default function ReserveFormSection() {
                             <div
                               className="w-7 h-7 rounded-[8px] flex items-center justify-center shrink-0"
                               style={{
-                                background: isSelected ? 'rgba(255,255,255,0.22)' : '#1A1A1A',
+                                background: isSelected ? '#111111' : '#1A1A1A',
                                 transition: 'background 250ms ease',
                               }}
                             >
                               <span
                                 className={`font-display font-black leading-none tracking-tight ${opt.letter === 'DA' ? 'text-[10px]' : 'text-[13px]'}`}
                                 style={{
-                                  color: isSelected ? '#ffffff' : '#C9A020',
+                                  color: '#FFD100',
                                   transition: 'color 200ms ease',
                                 }}
                               >
@@ -338,7 +338,7 @@ export default function ReserveFormSection() {
                             <span
                               className="font-display font-700 text-[13.5px] leading-none tracking-[-0.01em]"
                               style={{
-                                color: isSelected ? '#ffffff' : '#6B6355',
+                                color: isSelected ? '#111111' : '#5c5633',
                                 transition: 'color 200ms ease',
                               }}
                             >
@@ -373,6 +373,10 @@ export default function ReserveFormSection() {
           )}
         </div>
 
+        {/* Next-section bridge: same type scale as “Begin Your Driving Journey”, spaced from the card above */}
+        <p className="text-center font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] tracking-tight leading-[1.15] mt-24 sm:mt-32 md:mt-40">
+          The Proof Is Public
+        </p>
       </div>
     </section>
   );
