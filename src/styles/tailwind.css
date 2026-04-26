@@ -66,6 +66,12 @@
   animation-delay: 2s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .cta-arrow {
+    animation: none;
+  }
+}
+
 /* Fonts loaded via next/font/google in layout.tsx: no @import needed */
 
 :root {
@@ -371,6 +377,51 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Hero poster headline: orange → red (no stroke; cleaner than legacy skew). */
+.text-gradient-hero-orange {
+  background: linear-gradient(to right, #ffb347 0%, #ff7a00 35%, #ff2200 72%, #cc0000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Poster "DRIVE?" — vertical orange → deep red (desktop / large word). */
+.text-gradient-hero-drive-vertical {
+  background: linear-gradient(to bottom, #ff9a26 0%, #ff5a1a 38%, #e1251b 72%, #9a0f12 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Portrait poster: DRIVE? reads hot red at bottom → orange at top. */
+.text-gradient-drive-poster {
+  background: linear-gradient(to top, #d40000 0%, #ff2a00 38%, #ff7a18 70%, #ffb020 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* RM299 / discount emphasis — horizontal warm gradient. */
+.text-gradient-hero-rm299 {
+  background: linear-gradient(to right, #ffb84d 0%, #ff7a2e 40%, #e1251b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/**
+ * Gritty poster white type (no image asset): stacked shadows read "weathered" at poster sizes.
+ */
+.text-poster-ready {
+  color: #ffffff;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.55),
+    0 -1px 0 rgba(255, 255, 255, 0.06),
+    1px 1px 0 rgba(0, 0, 0, 0.35),
+    -1px -1px 0 rgba(0, 0, 0, 0.2),
+    0 0 24px rgba(0, 0, 0, 0.45);
 }
 
 /* Shimmer text effect: disable on mobile for perf */

@@ -15,8 +15,8 @@ import ScrollRevealInit from './components/ScrollRevealInit';
 export default function HomePage() {
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
-      <Header />
       <HeroSection />
+      <Header />
       <PricingCard />
 
       {/* Visual break between pricing and register */}

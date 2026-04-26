@@ -1,36 +1,22 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AppLogo from '@/components/ui/AppLogo';
 import Link from 'next/link';
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-xl border-b border-black/8 py-1.5 sm:py-2 shadow-sm'
-          : 'bg-white/90 backdrop-blur-sm border-b border-black/5 py-2 sm:py-2.5'
-      }`}
-    >
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center">
-        {/* Logo: centered */}
-        <Link href="/home" className="flex items-center gap-2 sm:gap-2.5 group">
-          <AppLogo size={26} onClick={() => {}} />
-          <div className="flex flex-col text-left">
-            <span className="block font-space text-[13px] font-700 italic leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full overflow-hidden bg-[#F8F8F6] md:relative md:top-auto md:z-20 md:border-b md:border-black/[0.06]">
+      <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden />
+      <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 md:py-5 lg:py-6">
+        <Link
+          href="/home"
+          className="group flex min-h-[44px] items-center gap-2.5 sm:gap-3 md:min-h-0 md:gap-3.5"
+        >
+          <AppLogo size={32} className="shrink-0" />
+          <div className="flex min-w-0 flex-col text-left">
+            <span className="block font-space text-[15px] font-700 italic leading-tight tracking-[-0.02em] text-[#CC0000] sm:text-base md:text-lg">
               CIKGU RAM 🇲🇾
             </span>
-            <span className="text-[8px] sm:text-[9px] text-black/40 font-body tracking-widest uppercase leading-none mt-0.5">
+            <span className="mt-0.5 font-body text-xs font-medium uppercase leading-snug tracking-wide text-black/45 md:text-sm">
               Westport Driving Academy
             </span>
           </div>

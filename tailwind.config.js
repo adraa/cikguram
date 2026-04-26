@@ -52,6 +52,17 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-red': 'linear-gradient(135deg, #FF4444 0%, #CC0000 50%, #990000 100%)',
         'gradient-light': 'linear-gradient(180deg, #FFFFFF 0%, #F8F8F6 100%)',
+        /** Hero: readability over photography (tokens align with prior inline scrim). */
+        'hero-scrim':
+          'linear-gradient(to bottom, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0.38) 52%, rgba(0,0,0,0.9) 100%)',
+        /** Desktop: legibility for left-stacked poster copy (image 2). */
+        'hero-scrim-desktop':
+          'linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 42%, rgba(0,0,0,0.2) 62%, transparent 78%)',
+        /** Desktop timeline pill: dark red → black + glow via ring (image 2). */
+        'hero-timeline-pill':
+          'linear-gradient(135deg, #5c0a0a 0%, #2a0505 45%, #0a0a0a 100%)',
+        'hero-cta':
+          'linear-gradient(to right, #FF8533 0%, #FF4020 42%, #CC0000 100%)',
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',

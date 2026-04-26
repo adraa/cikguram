@@ -153,7 +153,7 @@ export default function ReserveFormSection() {
                       onChange={handleChange}
                       required
                       placeholder="e.g. Ahmad bin Abdullah"
-                      className={`form-input w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all ${
+                      className={`form-input scroll-mt-24 w-full px-4 py-3 rounded-xl text-sm min-h-[48px] transition-all md:scroll-mt-8 ${
                         formData.name ? '!border-[#1A7A3C] bg-[#1A7A3C]/[0.02]' : ''
                       }`}
                       suppressHydrationWarning

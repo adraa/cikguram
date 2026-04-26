@@ -28,7 +28,9 @@ export default function PricingCard() {
   const timeLeft = usePricingCountdown(23);
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 bg-[#F8F8F6] relative overflow-hidden">
+    <section
+      id="pricing"
+      className="relative overflow-hidden bg-[#F8F8F6] pt-16 pb-16 sm:pt-24 sm:pb-24 md:pt-32 md:pb-24 lg:pt-40 lg:pb-28">
       <div className="absolute inset-0 grid-bg" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
