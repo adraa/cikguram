@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, Manrope, Barlow_Condensed, Space_Grotesk, Roboto } from 'next/font/google';
+import { DM_Sans, Manrope, Space_Grotesk, Roboto } from 'next/font/google';
 import '../styles/tailwind.css';
 
 const dmSans = DM_Sans({
@@ -16,14 +16,6 @@ const manrope = Manrope({
   weight: ['400', '500', '600', '700'],
   style: ['normal'],
   variable: '--font-body',
-  display: 'swap',
-});
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['700', '800', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-headline',
   display: 'swap',
 });
 
@@ -68,7 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${roboto.variable}`}
+      className={`${dmSans.variable} ${manrope.variable} ${spaceGrotesk.variable} ${roboto.variable}`}
     >
       <body>{children}</body>
     </html>

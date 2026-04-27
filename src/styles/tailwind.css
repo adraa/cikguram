@@ -3,10 +3,18 @@
 @tailwind utilities;
 
 @layer utilities {
-  .font-500 { font-weight: 500; }
-  .font-700 { font-weight: 700; }
-  .font-800 { font-weight: 800; }
-  .font-900 { font-weight: 900; }
+  .font-500 {
+    font-weight: 500;
+  }
+  .font-700 {
+    font-weight: 700;
+  }
+  .font-800 {
+    font-weight: 800;
+  }
+  .font-900 {
+    font-weight: 900;
+  }
 
   /**
    * Testimonial body: Roboto for Latin; emoji codepoints resolve to Apple Color Emoji
@@ -15,18 +23,8 @@
    */
   .testimonial-emoji-copy {
     font-family:
-      var(--font-google),
-      Roboto,
-      ui-sans-serif,
-      system-ui,
-      'Helvetica Neue',
-      Helvetica,
-      Arial,
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol',
-      'Noto Color Emoji',
-      emoji;
+      var(--font-google), Roboto, ui-sans-serif, system-ui, 'Helvetica Neue', Helvetica, Arial,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji;
     font-variant-emoji: emoji;
   }
 }
@@ -51,13 +49,28 @@
 }
 
 @keyframes arrow-bounce {
-  0%, 100%  { transform: translateY(0); }
-  20%       { transform: translateY(4px); }
-  35%       { transform: translateY(0); }
-  50%       { transform: translateY(4px); }
-  65%       { transform: translateY(0); }
-  80%       { transform: translateY(4px); }
-  90%       { transform: translateY(0); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(4px);
+  }
+  35% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  65% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(4px);
+  }
+  90% {
+    transform: translateY(0);
+  }
 }
 
 .cta-arrow {
@@ -75,14 +88,14 @@
 /* Fonts loaded via next/font/google in layout.tsx: no @import needed */
 
 :root {
-  --color-primary: #CC0000;
+  --color-primary: #cc0000;
   --color-primary-dark: #990000;
-  --color-primary-light: #FF2222;
-  --color-accent: #C9A020;
-  --color-road-green: #1A7A3C;
-  --color-bg: #FFFFFF;
-  --color-surface: #F8F8F6;
-  --color-surface-2: #F0EFEB;
+  --color-primary-light: #ff2222;
+  --color-accent: #c9a020;
+  --color-road-green: #1a7a3c;
+  --color-bg: #ffffff;
+  --color-surface: #f8f8f6;
+  --color-surface-2: #f0efeb;
   --color-border: rgba(0, 0, 0, 0.08);
   --color-border-strong: rgba(0, 0, 0, 0.15);
   --color-text: #111111;
@@ -102,7 +115,9 @@ html {
   html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -124,20 +139,32 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display), 'DM Sans', sans-serif;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #F8F8F6; }
-::-webkit-scrollbar-thumb { background: #CC0000; border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f8f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #cc0000;
+  border-radius: 2px;
+}
 
 /* Road sign grid pattern: very subtle, will-change for GPU compositing */
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -149,8 +176,12 @@ h1, h2, h3, h4, h5, h6 {
   photo 1 exits right, creating a seamless two-frame loop.
 */
 @keyframes stats-slideshow {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(100%);  }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 /* Cream on all breakpoints — matches StatsBarSection; do not use dark (#1a1a1a) mobile fallback. */
@@ -180,14 +211,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Freeze when user prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .stats-orb-1 { animation: none !important; transform: translateX(0);     }
-  .stats-orb-2 { animation: none !important; transform: translateX(-100%); }
+  .stats-orb-1 {
+    animation: none !important;
+    transform: translateX(0);
+  }
+  .stats-orb-2 {
+    animation: none !important;
+    transform: translateX(-100%);
+  }
 }
 
 /* ===== Testimonials: seamless row, LTR drift; --marquee-w set in JS (incl. flex gap) ===== */
 @keyframes testimonials-marquee {
-  from { transform: translateX(calc(-1 * var(--marquee-w, 0px))); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(calc(-1 * var(--marquee-w, 0px)));
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .testimonials-marquee-track {
@@ -223,17 +264,22 @@ h1, h2, h3, h4, h5, h6 {
 /* Beam Border Vertical */
 .beam-border-v {
   position: absolute;
-  top: 0; bottom: 0; left: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
   width: 1px;
-  background: rgba(0,0,0,0.06);
+  background: rgba(0, 0, 0, 0.06);
   overflow: hidden;
   z-index: 10;
 }
 .beam-border-v::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(to bottom, transparent, #CC0000, transparent);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to bottom, transparent, #cc0000, transparent);
   transform: translateY(-100%);
   animation: beam-drop 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   opacity: 0.6;
@@ -243,17 +289,22 @@ h1, h2, h3, h4, h5, h6 {
 /* Beam Border Horizontal */
 .beam-border-h {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 1px;
-  background: rgba(0,0,0,0.06);
+  background: rgba(0, 0, 0, 0.06);
   overflow: hidden;
   z-index: 10;
 }
 .beam-border-h::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(to right, transparent, #CC0000, transparent);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to right, transparent, #cc0000, transparent);
   transform: translateX(-100%);
   animation: beam-slide 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   animation-delay: 2s;
@@ -270,63 +321,133 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes beam-drop {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(100%); opacity: 0; }
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }
 
 @keyframes beam-slide {
-  0% { transform: translateX(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 /* Scroll Reveal Animations */
 @keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(28px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeSlideIn {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scaleIn {
-  0% { opacity: 0; transform: scale(0.94); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes slideInLeft {
-  0% { opacity: 0; transform: translateX(-28px); }
-  100% { opacity: 1; transform: translateX(0); }
+  0% {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideInRight {
-  0% { opacity: 0; transform: translateX(28px); }
-  100% { opacity: 1; transform: translateX(0); }
+  0% {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes pulse-red {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.3); }
-  50% { box-shadow: 0 0 0 12px rgba(204, 0, 0, 0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(204, 0, 0, 0);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes countdown-tick {
-  0% { transform: scale(1.15); color: #CC0000; }
-  100% { transform: scale(1); color: #111111; }
+  0% {
+    transform: scale(1.15);
+    color: #cc0000;
+  }
+  100% {
+    transform: scale(1);
+    color: #111111;
+  }
 }
 
 /* Scroll-triggered animation classes */
@@ -364,16 +485,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Stagger delays */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
 
 /* Gradient text: red */
 .text-gradient-red {
-  background: linear-gradient(135deg, #FF2222 0%, #CC0000 50%, #990000 100%);
+  background: linear-gradient(135deg, #ff2222 0%, #cc0000 50%, #990000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -426,7 +559,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Shimmer text effect: disable on mobile for perf */
 .text-shimmer {
-  background: linear-gradient(90deg, #111111 0%, #CC0000 30%, #111111 60%, #CC0000 90%, #111111 100%);
+  background: linear-gradient(
+    90deg,
+    #111111 0%,
+    #cc0000 30%,
+    #111111 60%,
+    #cc0000 90%,
+    #111111 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -437,7 +577,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 640px) {
   .text-shimmer {
     animation: none;
-    background: #CC0000;
+    background: #cc0000;
     -webkit-background-clip: text;
     background-clip: text;
   }
@@ -446,8 +586,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Primary button: red, bold */
 .btn-primary {
   position: relative;
-  background: #CC0000;
-  color: #FFFFFF;
+  background: #cc0000;
+  color: #ffffff;
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -463,17 +603,21 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 .btn-primary:hover {
-  background: #E60000;
+  background: #e60000;
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(204, 0, 0, 0.4);
 }
-.btn-primary:hover::before { opacity: 1; }
-.btn-primary:active { transform: translateY(0); }
+.btn-primary:hover::before {
+  opacity: 1;
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
 
 /* Secondary button: outlined */
 .btn-secondary {
@@ -481,7 +625,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #111111;
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
-  border: 1.5px solid rgba(0,0,0,0.15);
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   /* Ensure minimum touch target */
@@ -489,16 +633,16 @@ h1, h2, h3, h4, h5, h6 {
   touch-action: manipulation;
 }
 .btn-secondary:hover {
-  border-color: #CC0000;
-  color: #CC0000;
-  background: rgba(204,0,0,0.04);
+  border-color: #cc0000;
+  color: #cc0000;
+  background: rgba(204, 0, 0, 0.04);
 }
 
 /* Light card */
 .light-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(0,0,0,0.07);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* Glass card: light version */
@@ -507,7 +651,7 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* Road sign badge: black with white text */
@@ -515,7 +659,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #C9A020;
+  background: #c9a020;
   color: #111111;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
@@ -529,10 +673,25 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Traffic light single dot: cycles red → yellow → green */
 @keyframes trafficLight {
-  0%, 30%   { background-color: #FF3B30; box-shadow: 0 0 5px #FF3B30; }
-  33%, 63%  { background-color: #FFCC00; box-shadow: 0 0 5px #FFCC00; }
-  66%, 96%  { background-color: #34C759; box-shadow: 0 0 5px #34C759; }
-  100%      { background-color: #FF3B30; box-shadow: 0 0 5px #FF3B30; }
+  0%,
+  30% {
+    background-color: #ff3b30;
+    box-shadow: 0 0 5px #ff3b30;
+  }
+  33%,
+  63% {
+    background-color: #ffcc00;
+    box-shadow: 0 0 5px #ffcc00;
+  }
+  66%,
+  96% {
+    background-color: #34c759;
+    box-shadow: 0 0 5px #34c759;
+  }
+  100% {
+    background-color: #ff3b30;
+    box-shadow: 0 0 5px #ff3b30;
+  }
 }
 
 .traffic-dot {
@@ -540,7 +699,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #FF3B30;
+  background-color: #ff3b30;
   animation: trafficLight 3s infinite;
 }
 
@@ -549,8 +708,8 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #CC0000;
-  color: #FFFFFF;
+  background: #cc0000;
+  color: #ffffff;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -558,7 +717,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   padding: 5px 12px;
   border-radius: 4px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
 }
 
 /* Road sign badge: green */
@@ -566,8 +725,8 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #1A7A3C;
-  color: #FFFFFF;
+  background: #1a7a3c;
+  color: #ffffff;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -575,14 +734,14 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   padding: 5px 12px;
   border-radius: 4px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
 }
 
 /* Red accent line */
 .red-line {
   width: 48px;
   height: 3px;
-  background: linear-gradient(90deg, #CC0000, #FF4444);
+  background: linear-gradient(90deg, #cc0000, #ff4444);
   border-radius: 2px;
 }
 
@@ -590,7 +749,7 @@ h1, h2, h3, h4, h5, h6 {
 .yellow-line {
   width: 48px;
   height: 3px;
-  background: #C9A020;
+  background: #c9a020;
   border-radius: 2px;
 }
 
@@ -611,7 +770,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 40px;
   bottom: -24px;
   width: 2px;
-  background: linear-gradient(to bottom, #CC0000, rgba(204,0,0,0.1));
+  background: linear-gradient(to bottom, #cc0000, rgba(204, 0, 0, 0.1));
 }
 
 /* Countdown digit */
@@ -627,7 +786,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Testimonial card hover: only on devices with hover */
 .testimonial-card {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 @media (hover: hover) {
   .testimonial-card:hover {
@@ -639,13 +801,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* WhatsApp floating button */
 .whatsapp-btn {
-  animation: float 3s ease-in-out infinite, pulse-green 2s ease-in-out infinite;
+  animation:
+    float 3s ease-in-out infinite,
+    pulse-green 2s ease-in-out infinite;
   will-change: transform;
 }
 
 @keyframes pulse-green {
-  0%, 100% { box-shadow: 0 4px 24px rgba(34,197,94,0.4); }
-  50% { box-shadow: 0 4px 32px rgba(34,197,94,0.6); }
+  0%,
+  100% {
+    box-shadow: 0 4px 24px rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 32px rgba(34, 197, 94, 0.6);
+  }
 }
 
 /* Mobile menu overlay */
@@ -659,17 +828,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Form input: light */
 .form-input {
-  background: #FAFAFA;
-  border: 2px solid #C9A020;
+  background: #fafafa;
+  border: 2px solid #c9a020;
   color: #111111;
   font-family: 'Manrope', sans-serif;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   /* Prevent iOS zoom on focus */
   font-size: 16px;
 }
 .form-input:focus {
   outline: none;
-  border-color: #C9A020;
+  border-color: #c9a020;
   box-shadow: 0 0 0 3px rgba(201, 160, 32, 0.12);
 }
 .form-input::placeholder {
@@ -692,7 +863,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #6B6B6B;
+  color: #6b6b6b;
 }
 
 /* Section heading: explicit line-height for large display sizes */
@@ -726,8 +897,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 4px;
   background: repeating-linear-gradient(
     90deg,
-    #C9A020 0px,
-    #C9A020 32px,
+    #c9a020 0px,
+    #c9a020 32px,
     transparent 32px,
     transparent 52px
   );
@@ -736,15 +907,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero placeholder visual */
 .hero-placeholder {
-  background: linear-gradient(135deg, #F0EFEB 0%, #E8E7E2 100%);
-  border: 2px dashed rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, #f0efeb 0%, #e8e7e2 100%);
+  border: 2px dashed rgba(0, 0, 0, 0.12);
   border-radius: 16px;
 }
 
 /* Dark section (for contrast sections) */
 .section-dark {
   background: #111111;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* Noise overlay for dark sections */
@@ -759,14 +930,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Progress bar animation */
 @keyframes progress-fill {
-  from { width: 0%; }
-  to { width: var(--target-width); }
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--target-width);
+  }
 }
 
 /* Mobile-specific touch improvements */
 @media (max-width: 768px) {
   /* Ensure all interactive elements have adequate touch targets */
-  a, button, [role="button"] {
+  a,
+  button,
+  [role='button'] {
     min-height: 44px;
     display: inline-flex;
     align-items: center;

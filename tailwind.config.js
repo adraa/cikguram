@@ -39,7 +39,6 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-display)', 'DM Sans', 'sans-serif'],
         body: ['var(--font-body)', 'Manrope', 'sans-serif'],
-        headline: ['var(--font-headline)', 'Barlow Condensed', 'sans-serif'],
         space: ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
         google: ['var(--font-google)', 'Roboto', 'sans-serif'],
       },
