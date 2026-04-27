@@ -49,28 +49,25 @@ export default function PricingCard() {
 
         {/* Main pricing card: no overflow-hidden so price pill can bleed over image */}
         <div className="reveal delay-100 max-w-2xl mx-auto rounded-2xl border border-black/8 bg-white shadow-card relative">
-          {/* Hero image: square gives enough height to show faces, car, and road */}
-          <div className="relative aspect-[1/1] sm:aspect-[3/2] overflow-hidden rounded-t-2xl">
+          {/* Square promo art (1:1) on all breakpoints; WebP from scripts/encode-pricing-webp.cjs */}
+          <div className="relative aspect-square overflow-hidden rounded-t-2xl">
             <Image
-              src="/pricing-students.webp"
-              alt="Students holding P-plates in front of CikguRam's car RAM 308"
+              src="/cikgu-ram-westport-driving-academy-mobile-desktop-price-section.webp"
+              alt="Manual and automatic D and DA driving license — save RM299, free transport, WhatsApp support, register online"
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
               sizes="(max-width: 768px) 100vw, 672px"
-              quality={80}
+              quality={85}
             />
-            {/* Bottom-only gradient anchors the price pill: top is clear so faces show */}
+            {/* Bottom scrim only at the very edge — keeps corner polish without hiding the art CTA */}
             <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.75) 100%)',
-              }}
+              className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/25"
+              aria-hidden
             />
           </div>
 
-          {/* Price pill: negative margin pulls it halfway over the image bottom */}
-          <div className="relative -mt-14 mx-5 z-10">
+          {/* Price pill sits below the promo art so “REGISTER ONLINE NOW” stays visible */}
+          <div className="relative z-10 mx-5 mt-3 sm:mt-4">
             <div className="rounded-2xl border border-black/[0.08] bg-white px-4 py-3 text-center shadow-[0_10px_36px_rgba(0,0,0,0.1)] sm:flex sm:flex-col sm:items-center sm:px-5 sm:py-3.5">
               <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-black/40">
                 All-inclusive rate
@@ -163,7 +160,7 @@ export default function PricingCard() {
           </div>
 
           {/* CTA */}
-          <div className="px-6 pt-5 pb-5">
+          <div className="flex justify-center px-6 pt-5 pb-5">
             <a
               href="#register"
               onClick={(e) => {
@@ -174,9 +171,9 @@ export default function PricingCard() {
                   setTimeout(() => el.focus(), 650);
                 }
               }}
-              className="btn-primary flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-display font-700"
+              className="btn-primary inline-flex min-h-[44px] w-auto max-w-full items-center justify-center whitespace-nowrap rounded-xl px-7 py-3 text-sm font-display font-700 uppercase tracking-wide sm:px-9 sm:text-[15px]"
             >
-              👇 Secure My Spot Now
+              RESERVE MY SEAT NOW
             </a>
           </div>
 
