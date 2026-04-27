@@ -1,20 +1,62 @@
 'use client';
 
 import React from 'react';
-import * as HeroIcons from '@heroicons/react/24/outline';
-import * as HeroIconsSolid from '@heroicons/react/24/solid';
-import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import {
+  ArrowLeftIcon,
+  ArrowTopRightOnSquareIcon,
+  ChevronDownIcon as ChevronDownOutlineIcon,
+  HomeIcon,
+  QuestionMarkCircleIcon,
+  SparklesIcon,
+} from '@heroicons/react/24/outline';
+import {
+  BoltIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  CheckIcon,
+  ChevronDownIcon as ChevronDownSolidIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  LockClosedIcon,
+  StarIcon,
+  UserIcon,
+} from '@heroicons/react/24/solid';
+
+/** Tree-shaken icon map — do not use `import *` from @heroicons (pulls entire library). */
+const outlineIcons = {
+  ArrowLeftIcon,
+  HomeIcon,
+  ChevronDownIcon: ChevronDownOutlineIcon,
+  ArrowTopRightOnSquareIcon,
+  QuestionMarkCircleIcon,
+  SparklesIcon,
+} as const;
+
+const solidIcons = {
+  BoltIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  CheckIcon,
+  ChevronDownIcon: ChevronDownSolidIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  LockClosedIcon,
+  StarIcon,
+  UserIcon,
+} as const;
+
+type OutlineIconName = keyof typeof outlineIcons;
+type SolidIconName = keyof typeof solidIcons;
 
 type IconVariant = 'outline' | 'solid';
 
 interface IconProps {
-  name: string; // Changed to string to accept dynamic values
+  name: OutlineIconName | SolidIconName | (string & {});
   variant?: IconVariant;
   size?: number;
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
-  [key: string]: any;
 }
 
 function Icon({
@@ -26,8 +68,10 @@ function Icon({
   disabled = false,
   ...props
 }: IconProps) {
-  const iconSet = variant === 'solid' ? HeroIconsSolid : HeroIcons;
-  const IconComponent = iconSet[name as keyof typeof iconSet] as React.ComponentType<any>;
+  const set = variant === 'solid' ? solidIcons : outlineIcons;
+  const IconComponent = set[name as keyof typeof set] as
+    | React.ComponentType<React.SVGProps<SVGSVGElement>>
+    | undefined;
 
   if (!IconComponent) {
     return (

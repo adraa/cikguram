@@ -88,7 +88,7 @@ export default function HeroSection() {
         weeks.
       </h1>
 
-      {/* Mobile: full-bleed width, natural 1536×2752 aspect (no object-cover crop). */}
+      {/* Mobile: full-bleed; width/height set aspect. Optimized srcset — source WebP is ~4MB, do not use unoptimized. */}
       <div className="relative w-full bg-[#121212] md:hidden">
         <Image
           src="/cikgu-ram-westport-driving-academy-mobile-hero-section.webp"
@@ -98,7 +98,7 @@ export default function HeroSection() {
           className="block h-auto w-full max-w-none"
           priority
           sizes="100vw"
-          unoptimized
+          quality={85}
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-16">
           <HeroOverlayCTAs />
@@ -114,7 +114,7 @@ export default function HeroSection() {
           className="object-cover"
           priority
           sizes="100vw"
-          quality={100}
+          quality={85}
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-4 pt-12 sm:pb-5 sm:pt-16 md:pb-6 md:pt-20">
           <HeroOverlayCTAs />
