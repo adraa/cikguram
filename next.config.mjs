@@ -21,10 +21,14 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   async headers() {
+    // Next.js dev mode uses eval() for HMR / React Fast Refresh — allow it locally only
+    const isDev = process.env.NODE_ENV === 'development';
+
     const csp = [
       "default-src 'self'",
-      // Next.js requires unsafe-inline for hydration scripts; GA tag manager also inlines
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+      // unsafe-eval: dev only (webpack HMR + React Fast Refresh require it); stripped in production
+      // unsafe-inline: required for Next.js hydration scripts and GA tag manager
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com`,
       // Tailwind + inline styles used throughout
       "style-src 'self' 'unsafe-inline'",
       // next/font self-hosts Google Fonts at build time — no external font CDN needed

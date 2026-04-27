@@ -206,7 +206,7 @@ export default function ReserveFormSection() {
                 <div className="flex flex-col gap-4 mb-7">
                   {/* Name */}
                   <div>
-                    <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
+                    <label htmlFor="full-name-input" className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
                       Full Name<span className="text-[#EF4444]"> *</span>
                     </label>
                     <input
@@ -238,10 +238,11 @@ export default function ReserveFormSection() {
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
+                    <label htmlFor="phone-input" className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
                       Phone Number<span className="text-[#EF4444]"> *</span>
                     </label>
                     <input
+                      id="phone-input"
                       type="tel"
                       name="phone"
                       value={formData.phone}
@@ -270,11 +271,12 @@ export default function ReserveFormSection() {
 
                   {/* Category */}
                   <div>
-                    <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
+                    <label htmlFor="category-input" className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-2.5">
                       I am a<span className="text-[#EF4444]"> *</span>
                     </label>
                     <div className="relative">
                       <select
+                        id="category-input"
                         name="category"
                         value={formData.category}
                         onChange={handleChange}
@@ -305,11 +307,11 @@ export default function ReserveFormSection() {
 
                 {/* Citizenship selector (sliding pill) */}
                 <div className="mb-7">
-                  <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
+                  <p id="citizenship-label" className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
                     Citizenship<span className="text-[#EF4444]"> *</span>
-                  </label>
+                  </p>
                   {/* p-1.5 = 6px padding; gap-1.5 = 6px → pill width = calc(50% - 9px) */}
-                  <div className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5">
+                  <div role="group" aria-labelledby="citizenship-label" className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5">
                     {/* Sliding pill — FAQ yellow */}
                     <div
                       aria-hidden
@@ -364,10 +366,10 @@ export default function ReserveFormSection() {
 
                 {/* License type selector (sliding pill) */}
                 <div className="mb-8">
-                  <label className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
+                  <p id="license-type-label" className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3">
                     License Type<span className="text-[#EF4444]"> *</span>
-                  </label>
-                  <div className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5">
+                  </p>
+                  <div role="group" aria-labelledby="license-type-label" className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5">
                     {/* Sliding pill — FAQ yellow */}
                     <div
                       aria-hidden
