@@ -57,7 +57,10 @@ function HeroOverlayCTAs() {
   return (
     <div className="pointer-events-auto grid w-full max-w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-1 px-0.5 sm:gap-x-2 sm:px-2 md:gap-x-4 md:px-4">
       <div className="flex min-w-0 justify-end">
-        <HeroSecondaryOverlayLink href="#instructor" aria-label="Meet Cikgu Ram — jump to instructor section">
+        <HeroSecondaryOverlayLink
+          href="#instructor"
+          aria-label="Meet Cikgu Ram — jump to instructor section"
+        >
           Meet Cikgu Ram
         </HeroSecondaryOverlayLink>
       </div>
@@ -65,7 +68,10 @@ function HeroOverlayCTAs() {
         <HeroRegisterOverlayLink />
       </div>
       <div className="flex min-w-0 justify-start">
-        <HeroSecondaryOverlayLink href="#pricing" aria-label="View package — jump to pricing section">
+        <HeroSecondaryOverlayLink
+          href="#pricing"
+          aria-label="View package — jump to pricing section"
+        >
           View Package
         </HeroSecondaryOverlayLink>
       </div>

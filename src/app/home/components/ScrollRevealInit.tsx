@@ -42,17 +42,14 @@ export default function ScrollRevealInit() {
       }
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      OBSERVER_OPTIONS
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, OBSERVER_OPTIONS);
 
     for (const el of list) {
       if (!alreadyVisible.has(el)) {
