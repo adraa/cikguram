@@ -1,3 +1,10 @@
+# Environment variables — never commit real secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Node modules
 node_modules/
 package-lock.json
@@ -34,7 +41,7 @@ jest-test-results.json
 .idea/
 
 # Local Cursor/Claude IDE settings (personal overrides, not for shared VCS)
-.claude/settings.local.json
+.claude/
 
 # Optional: if using TurboRepo or monorepo
 turbo/

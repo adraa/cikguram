@@ -11,22 +11,22 @@
  * 4. From the pre-filled URL extract:
  *    • The form action URL  (everything before the query string, replace /viewform with /formResponse)
  *    • The three  entry.XXXXXXXXXX  field IDs from the query params
- * 5. Create / update  .env.local  with:
+ * 5. Create / update  .env.local  with (server-side only — NOT prefixed with NEXT_PUBLIC_):
  *
- *      NEXT_PUBLIC_GOOGLE_FORM_ACTION_URL=https://docs.google.com/forms/d/e/<YOUR_ID>/formResponse
- *      NEXT_PUBLIC_GF_ENTRY_NAME=entry.XXXXXXXXXX
- *      NEXT_PUBLIC_GF_ENTRY_PHONE=entry.XXXXXXXXXX
- *      NEXT_PUBLIC_GF_ENTRY_LICENSE=entry.XXXXXXXXXX
+ *      GF_FORM_ACTION_URL=https://docs.google.com/forms/d/e/<YOUR_ID>/formResponse
+ *      GF_ENTRY_NAME=entry.XXXXXXXXXX
+ *      GF_ENTRY_PHONE=entry.XXXXXXXXXX
+ *      GF_ENTRY_LICENSE=entry.XXXXXXXXXX
+ *      GF_ENTRY_CATEGORY=entry.XXXXXXXXXX
+ *      GF_ENTRY_CITIZENSHIP=entry.XXXXXXXXXX
  *
  * 6. In Google Forms → Responses tab → click the Sheets icon to link to Google Sheets
  */
 
 import React, { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
-// Google Forms field IDs: replace with your actual entry IDs after following setup above
-const ENTRY_NAME    = process.env.NEXT_PUBLIC_GF_ENTRY_NAME    ?? 'entry.000000001';
-const ENTRY_PHONE   = process.env.NEXT_PUBLIC_GF_ENTRY_PHONE   ?? 'entry.000000002';
-const ENTRY_LICENSE = process.env.NEXT_PUBLIC_GF_ENTRY_LICENSE ?? 'entry.000000003';
+// Form submissions go through /api/lead — Google Form credentials stay server-side only.
+const WA_LINK = process.env.NEXT_PUBLIC_WHATSAPP_LINK ?? 'https://wa.me/60111234567';
 
 interface FormData {
   name: string;
@@ -36,6 +36,23 @@ interface FormData {
   licenseType: string;
 }
 
+// Validation helpers
+const MY_PHONE_RE = /^(\+?60|0)[1-9]\d{7,9}$/;   // Malaysian mobile: 01X-XXXXXXXX
+const normalisePhone = (v: string) => v.replace(/[\s\-().]/g, '');
+
+function validateForm(data: FormData): string | null {
+  if (data.name.trim().length < 2)            return 'Please enter your full name.';
+  if (data.name.trim().length > 100)          return 'Name is too long.';
+  if (!MY_PHONE_RE.test(normalisePhone(data.phone)))
+                                              return 'Enter a valid Malaysian phone number (e.g. 012-345 6789).';
+  if (!data.category)                         return 'Please select a category.';
+  return null;
+}
+
+// In-memory rate limit: one submission per 30 s per session
+let lastSubmitTime = 0;
+const RATE_LIMIT_MS = 30_000;
+
 export default function ReserveFormSection() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -44,24 +61,60 @@ export default function ReserveFormSection() {
     citizenship: 'Malaysian',
     licenseType: 'D',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted]   = useState(false);
+  const [error, setError]           = useState<string | null>(null);
+  const [honeypot, setHoneypot]     = useState(''); // filled by bots, not real users
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const action = process.env.NEXT_PUBLIC_GOOGLE_FORM_ACTION_URL;
-    if (action) {
-      const body = new URLSearchParams({
-        [ENTRY_NAME]: formData.name,
-        [ENTRY_PHONE]: formData.phone,
-        [ENTRY_LICENSE]: formData.licenseType,
-      });
-      // no-cors: browser won't read the response, but data lands in Google Sheet
-      fetch(action, { method: 'POST', mode: 'no-cors', body }).catch(() => {});
+
+    // Honeypot check — bots fill hidden fields, humans don't
+    if (honeypot) return;
+
+    // Rate limiting
+    const now = Date.now();
+    if (now - lastSubmitTime < RATE_LIMIT_MS) {
+      setError('Please wait a moment before submitting again.');
+      return;
     }
+
+    // Validation
+    const validationError = validateForm(formData);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    lastSubmitTime = now;
+
+    try {
+      const res = await fetch('/api/lead', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          name:        formData.name.trim(),
+          phone:       normalisePhone(formData.phone),
+          category:    formData.category,
+          citizenship: formData.citizenship,
+          licenseType: formData.licenseType,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError((data as { error?: string }).error ?? 'Something went wrong. Please try again.');
+        return;
+      }
+    } catch {
+      setError('Network error. Please check your connection and try again.');
+      return;
+    }
+
     setSubmitted(true);
   };
 
@@ -120,7 +173,7 @@ export default function ReserveFormSection() {
                 to confirm your registration and schedule your first session.
               </p>
               <a
-                href="https://wa.me/601096388803?text=Hi%20Cikgu%20Ram%2C%20I%20just%20submitted%20my%20registration%20form."
+                href={`${WA_LINK}?text=Hi%20Cikgu%20Ram%2C%20I%20just%20submitted%20my%20registration%20form.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#1A7A3C] hover:bg-[#22A050] transition-colors text-white font-display font-700 text-sm shadow-sm w-full sm:w-auto"
@@ -134,6 +187,18 @@ export default function ReserveFormSection() {
               onSubmit={handleSubmit}
               className="register-form-faq-yellow light-card rounded-2xl overflow-hidden border-t-4 border-t-[#FFD100]"
             >
+              {/* Honeypot — hidden from real users, bots fill it automatically */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                aria-hidden="true"
+                style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0 }}
+                autoComplete="off"
+              />
+
               {/* Form fields */}
               {/* 32px padding signals considered design, not a template */}
               <div className="p-8">
@@ -350,6 +415,13 @@ export default function ReserveFormSection() {
                     })}
                   </div>
                 </div>
+
+                {error && (
+                  <div className="mb-4 flex items-start gap-2 rounded-xl bg-[#EF4444]/8 border border-[#EF4444]/20 px-4 py-3">
+                    <Icon name="ExclamationCircleIcon" size={16} variant="solid" className="text-[#EF4444] shrink-0 mt-0.5" />
+                    <p className="text-[13px] text-[#EF4444] font-body leading-relaxed">{error}</p>
+                  </div>
+                )}
 
                 <div className="flex justify-center">
                   <button

@@ -7,19 +7,55 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingRoot: __dirname,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   distDir: process.env.DIST_DIR || '.next',
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   images: {
     remotePatterns: imageHosts,
     // Stable URLs (e.g. rocket.new paths): cache optimized variants aggressively at the edge.
     minimumCacheTTL: 31536000,
   },
+  async headers() {
+    const csp = [
+      "default-src 'self'",
+      // Next.js requires unsafe-inline for hydration scripts; GA tag manager also inlines
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+      // Tailwind + inline styles used throughout
+      "style-src 'self' 'unsafe-inline'",
+      // next/font self-hosts Google Fonts at build time — no external font CDN needed
+      "font-src 'self'",
+      // Images: self + Next.js image proxy + allowed remote hosts
+      "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://images.pixabay.com",
+      // Fetch targets: Google Forms (lead capture) + Google Analytics
+      "connect-src 'self' https://docs.google.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com",
+      // Form POST target
+      "form-action 'self' https://docs.google.com",
+      // Disallow embedding in iframes (anti-clickjacking)
+      "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "object-src 'none'",
+    ].join('; ');
+
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Content-Security-Policy',       value: csp },
+          { key: 'X-Frame-Options',               value: 'DENY' },
+          { key: 'X-Content-Type-Options',        value: 'nosniff' },
+          { key: 'Referrer-Policy',               value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy',            value: 'camera=(), microphone=(), geolocation=(), payment=()' },
+          { key: 'Strict-Transport-Security',     value: 'max-age=63072000; includeSubDomains; preload' },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       {
