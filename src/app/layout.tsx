@@ -55,7 +55,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'CikguRam | Get Your Driving License Fast in Malaysia',
-  description: 'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed. Save RM299 today.',
+  description:
+    'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed. Save RM299 today.',
   icons: {
     icon: [{ url: '/assets/images/app_logo.png', type: 'image/png' }],
     shortcut: '/assets/images/app_logo.png',
@@ -63,16 +64,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-      <html
-        lang="en"
-        className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${roboto.variable}`}>
-      <body>
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${dmSans.variable} ${manrope.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${roboto.variable}`}
+    >
+      <body>{children}</body>
     </html>
   );
 }

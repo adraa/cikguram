@@ -11,5 +11,9 @@ export function getNextIntakeDisplayLabel(): string | null {
   if (!raw || !/^\d{4}-\d{2}-\d{2}$/.test(raw)) return null;
   const d = new Date(`${raw}T12:00:00`);
   if (Number.isNaN(d.getTime())) return null;
-  return new Intl.DateTimeFormat('en-MY', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+  return new Intl.DateTimeFormat('en-MY', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(d);
 }

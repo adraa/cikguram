@@ -56,10 +56,17 @@ export default function SocialProofSection() {
               </span>
             </h2>
             <p className="text-[15px] text-[#444444] font-body leading-[1.6] mb-5">
-              Most people delay because they're scared of failing the JPJ test. Cikgu Ram's students don't have that problem.
+              Most people delay because they&apos;re scared of failing the JPJ test. Cikgu
+              Ram&apos;s students don&apos;t have that problem.
             </p>
             <p className="text-[13px] sm:text-[13px] text-[#444444] font-body leading-[1.6] mb-8">
-              With over a decade of experience at <strong className="text-[#111111] font-semibold">Westport Driving Academy, Bukit Rotan</strong>, Cikgu Ram has mastered a teaching system that helps students pass their JPJ tests faster and with less stress. Based in Bukit Rotan, his patient and structured approach has successfully guided over 600+ students to their P-License.
+              With over a decade of experience at{' '}
+              <strong className="text-[#111111] font-semibold">
+                Westport Driving Academy, Bukit Rotan
+              </strong>
+              , Cikgu Ram has mastered a teaching system that helps students pass their JPJ tests
+              faster and with less stress. Based in Bukit Rotan, his patient and structured approach
+              has successfully guided over 600+ students to their P-License.
             </p>
 
             {/* Benefits: scannable list */}
@@ -78,7 +85,9 @@ export default function SocialProofSection() {
                     className="text-[#1A7A3C] shrink-0 mt-0.5"
                     aria-hidden
                   />
-                  <span className="text-[15px] font-medium text-[#444444] font-body leading-relaxed">{cred}</span>
+                  <span className="text-[15px] font-medium text-[#444444] font-body leading-relaxed">
+                    {cred}
+                  </span>
                 </div>
               ))}
             </div>
@@ -87,7 +96,8 @@ export default function SocialProofSection() {
             <div className="flex justify-center lg:justify-start">
               <a
                 href="#register"
-                className="btn-primary inline-flex items-center justify-center min-w-[220px] px-10 py-4 rounded-2xl text-base font-display font-700 tracking-[0.5px]">
+                className="btn-primary inline-flex items-center justify-center min-w-[220px] px-10 py-4 rounded-2xl text-base font-display font-700 tracking-[0.5px]"
+              >
                 Register Now
               </a>
             </div>

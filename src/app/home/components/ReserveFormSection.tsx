@@ -37,15 +37,15 @@ interface FormData {
 }
 
 // Validation helpers
-const MY_PHONE_RE = /^(\+?60|0)[1-9]\d{7,9}$/;   // Malaysian mobile: 01X-XXXXXXXX
+const MY_PHONE_RE = /^(\+?60|0)[1-9]\d{7,9}$/; // Malaysian mobile: 01X-XXXXXXXX
 const normalisePhone = (v: string) => v.replace(/[\s\-().]/g, '');
 
 function validateForm(data: FormData): string | null {
-  if (data.name.trim().length < 2)            return 'Please enter your full name.';
-  if (data.name.trim().length > 100)          return 'Name is too long.';
+  if (data.name.trim().length < 2) return 'Please enter your full name.';
+  if (data.name.trim().length > 100) return 'Name is too long.';
   if (!MY_PHONE_RE.test(normalisePhone(data.phone)))
-                                              return 'Enter a valid Malaysian phone number (e.g. 012-345 6789).';
-  if (!data.category)                         return 'Please select a category.';
+    return 'Enter a valid Malaysian phone number (e.g. 012-345 6789).';
+  if (!data.category) return 'Please select a category.';
   return null;
 }
 
@@ -61,12 +61,12 @@ export default function ReserveFormSection() {
     citizenship: 'Malaysian',
     licenseType: 'D',
   });
-  const [submitted, setSubmitted]   = useState(false);
-  const [error, setError]           = useState<string | null>(null);
-  const [honeypot, setHoneypot]     = useState(''); // filled by bots, not real users
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState(''); // filled by bots, not real users
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setError(null);
   };
 
@@ -94,12 +94,12 @@ export default function ReserveFormSection() {
 
     try {
       const res = await fetch('/api/lead', {
-        method:  'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({
-          name:        formData.name.trim(),
-          phone:       normalisePhone(formData.phone),
-          category:    formData.category,
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          phone: normalisePhone(formData.phone),
+          category: formData.category,
           citizenship: formData.citizenship,
           licenseType: formData.licenseType,
         }),
@@ -127,7 +127,7 @@ export default function ReserveFormSection() {
       if (window.location.hash !== '#full-name-input') return;
       const input = document.getElementById('full-name-input') as HTMLInputElement | null;
       if (!input) return;
-      timeoutId = window.setTimeout(() => {
+      timeoutId = setTimeout(() => {
         input.focus({ preventScroll: true });
         timeoutId = undefined;
       }, 520);
@@ -147,7 +147,6 @@ export default function ReserveFormSection() {
       <div className="glow-blob w-[400px] h-[400px] bg-red-100 top-1/2 right-0 -translate-y-1/2 opacity-50 hidden sm:block" />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
-
         {/* Section header */}
         <div className="text-center mb-8 sm:mb-10 reveal">
           <h2 className="font-display font-700 text-3xl sm:text-4xl md:text-5xl text-[#111111] tracking-tight leading-[1.15] mb-4">
@@ -169,8 +168,8 @@ export default function ReserveFormSection() {
                 Spot Reserved!
               </h3>
               <p className="text-black/55 font-body text-sm sm:text-base leading-[1.7] mb-6">
-                Thank you! Cikgu Ram will contact you at the number provided within 24 hours
-                to confirm your registration and schedule your first session.
+                Thank you! Cikgu Ram will contact you at the number provided within 24 hours to
+                confirm your registration and schedule your first session.
               </p>
               <a
                 href={`${WA_LINK}?text=Hi%20Cikgu%20Ram%2C%20I%20just%20submitted%20my%20registration%20form.`}
@@ -192,7 +191,7 @@ export default function ReserveFormSection() {
                 type="text"
                 name="website"
                 value={honeypot}
-                onChange={e => setHoneypot(e.target.value)}
+                onChange={(e) => setHoneypot(e.target.value)}
                 tabIndex={-1}
                 aria-hidden="true"
                 style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0 }}
@@ -226,7 +225,12 @@ export default function ReserveFormSection() {
                     />
                     {formData.name && (
                       <div className="flex items-center gap-1.5 mt-1.5">
-                        <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
+                        <Icon
+                          name="CheckCircleIcon"
+                          size={14}
+                          variant="solid"
+                          className="text-[#1A7A3C]"
+                        />
                         <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
                       </div>
                     )}
@@ -253,7 +257,12 @@ export default function ReserveFormSection() {
                     />
                     {formData.phone && (
                       <div className="flex items-center gap-1.5 mt-1.5">
-                        <Icon name="CheckCircleIcon" size={14} variant="solid" className="text-[#1A7A3C]" />
+                        <Icon
+                          name="CheckCircleIcon"
+                          size={14}
+                          variant="solid"
+                          className="text-[#1A7A3C]"
+                        />
                         <span className="text-xs text-[#1A7A3C] font-body">Looks good!</span>
                       </div>
                     )}
@@ -275,9 +284,13 @@ export default function ReserveFormSection() {
                         }`}
                         suppressHydrationWarning
                       >
-                        <option value="" disabled>Select your category...</option>
+                        <option value="" disabled>
+                          Select your category...
+                        </option>
                         <option value="University Student">University Student</option>
-                        <option value="Parent registering for a teen">Parent registering for a teen</option>
+                        <option value="Parent registering for a teen">
+                          Parent registering for a teen
+                        </option>
                         <option value="Working Professional">Working Professional</option>
                       </select>
                       <Icon
@@ -304,20 +317,24 @@ export default function ReserveFormSection() {
                       style={{
                         width: 'calc(50% - 9px)',
                         left: 6,
-                        transform: formData.citizenship === 'Malaysian'
-                          ? 'translateX(0px)'
-                          : 'translateX(calc(100% + 6px))',
+                        transform:
+                          formData.citizenship === 'Malaysian'
+                            ? 'translateX(0px)'
+                            : 'translateX(calc(100% + 6px))',
                         transition: 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
                         willChange: 'transform',
                       }}
                     />
                     {[
-                      { value: 'Malaysian',    label: 'Malaysian',     flag: '🇲🇾' },
+                      { value: 'Malaysian', label: 'Malaysian', flag: '🇲🇾' },
                       { value: 'Non-Malaysian', label: 'Non-Malaysian', flag: '🌍' },
                     ].map((opt) => {
                       const isSelected = formData.citizenship === opt.value;
                       return (
-                        <label key={opt.value} className="relative z-10 flex-1 cursor-pointer select-none">
+                        <label
+                          key={opt.value}
+                          className="relative z-10 flex-1 cursor-pointer select-none"
+                        >
                           <input
                             type="radio"
                             name="citizenship"
@@ -358,20 +375,24 @@ export default function ReserveFormSection() {
                       style={{
                         width: 'calc(50% - 9px)',
                         left: 6,
-                        transform: formData.licenseType === 'D'
-                          ? 'translateX(0px)'
-                          : 'translateX(calc(100% + 6px))',
+                        transform:
+                          formData.licenseType === 'D'
+                            ? 'translateX(0px)'
+                            : 'translateX(calc(100% + 6px))',
                         transition: 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
                         willChange: 'transform',
                       }}
                     />
                     {[
-                      { value: 'D',  label: 'Manual',    letter: 'D'  },
+                      { value: 'D', label: 'Manual', letter: 'D' },
                       { value: 'DA', label: 'Automatic', letter: 'DA' },
                     ].map((opt) => {
                       const isSelected = formData.licenseType === opt.value;
                       return (
-                        <label key={opt.value} className="relative z-10 flex-1 cursor-pointer select-none">
+                        <label
+                          key={opt.value}
+                          className="relative z-10 flex-1 cursor-pointer select-none"
+                        >
                           <input
                             type="radio"
                             name="licenseType"
@@ -418,7 +439,12 @@ export default function ReserveFormSection() {
 
                 {error && (
                   <div className="mb-4 flex items-start gap-2 rounded-xl bg-[#EF4444]/8 border border-[#EF4444]/20 px-4 py-3">
-                    <Icon name="ExclamationCircleIcon" size={16} variant="solid" className="text-[#EF4444] shrink-0 mt-0.5" />
+                    <Icon
+                      name="ExclamationCircleIcon"
+                      size={16}
+                      variant="solid"
+                      className="text-[#EF4444] shrink-0 mt-0.5"
+                    />
                     <p className="text-[13px] text-[#EF4444] font-body leading-relaxed">{error}</p>
                   </div>
                 )}
@@ -434,7 +460,12 @@ export default function ReserveFormSection() {
                 </div>
 
                 <div className="mt-4 flex justify-center items-start gap-1.5 px-2">
-                  <Icon name="LockClosedIcon" size={13} variant="solid" className="text-black/25 shrink-0 mt-0.5" />
+                  <Icon
+                    name="LockClosedIcon"
+                    size={13}
+                    variant="solid"
+                    className="text-black/25 shrink-0 mt-0.5"
+                  />
                   {/* #767676 meets WCAG AA minimum contrast on white */}
                   <p className="text-[12px] text-[#767676] font-body leading-relaxed">
                     Your information is secure. No payment required now.

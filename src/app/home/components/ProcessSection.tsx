@@ -28,7 +28,12 @@ const steps: ProcessStep[] = [
     description:
       'Sign up online or via WhatsApp. Submit your IC copy and passport photo. We handle JPJ registration on your behalf.',
     duration: '1 Day',
-    details: ['IC copy required', 'Passport photo (2 copies)', 'Online registration saves RM299', 'Immediate confirmation'],
+    details: [
+      'IC copy required',
+      'Passport photo (2 copies)',
+      'Online registration saves RM299',
+      'Immediate confirmation',
+    ],
     milestone: null,
   },
   {
@@ -39,7 +44,12 @@ const steps: ProcessStep[] = [
     description:
       'Attend the mandatory 6-hour road safety and traffic law course. Available on weekdays and weekends.',
     duration: '1 Day',
-    details: ['6-hour classroom session', 'Road signs & traffic laws', 'Safety regulations', 'Certificate issued upon completion'],
+    details: [
+      '6-hour classroom session',
+      'Road signs & traffic laws',
+      'Safety regulations',
+      'Certificate issued upon completion',
+    ],
     milestone: null,
   },
   {
@@ -50,7 +60,12 @@ const steps: ProcessStep[] = [
     description:
       'Sit the JPJ computerised theory test. Cikgu Ram provides practice materials to ensure you pass on the first attempt.',
     duration: '1–3 Days',
-    details: ['50 multiple-choice questions', 'Pass mark: 42/50', 'Practice tests provided', 'LDL issued upon passing'],
+    details: [
+      '50 multiple-choice questions',
+      'Pass mark: 42/50',
+      'Practice tests provided',
+      'LDL issued upon passing',
+    ],
     milestone: 'L-LICENSE',
   },
   {
@@ -61,7 +76,12 @@ const steps: ProcessStep[] = [
     description:
       'Learn controlled driving skills on the JPJ circuit: hill start, 3-point turn, parking, and S/Z course navigation.',
     duration: '3–5 Sessions',
-    details: ['Hill start mastery', '3-point turn', 'Side & parallel parking', 'S-course & Z-course'],
+    details: [
+      'Hill start mastery',
+      '3-point turn',
+      'Side & parallel parking',
+      'S-course & Z-course',
+    ],
     milestone: null,
   },
   {
@@ -72,7 +92,12 @@ const steps: ProcessStep[] = [
     description:
       'Real-road driving sessions with Cikgu Ram. Navigate Malaysian traffic, junctions, roundabouts, and expressways.',
     duration: '6–8 Sessions',
-    details: ['Real traffic conditions', 'Junctions & roundabouts', 'Highway driving', 'Night driving (if required)'],
+    details: [
+      'Real traffic conditions',
+      'Junctions & roundabouts',
+      'Highway driving',
+      'Night driving (if required)',
+    ],
     milestone: null,
   },
   {
@@ -83,7 +108,12 @@ const steps: ProcessStep[] = [
     description:
       'Full mock JPJ test conducted by Cikgu Ram. Identifies weak areas and ensures you are 100% ready before the real test.',
     duration: '1 Session',
-    details: ['Full mock circuit test', 'Mock road test', 'Detailed feedback', 'Only proceed when ready'],
+    details: [
+      'Full mock circuit test',
+      'Mock road test',
+      'Detailed feedback',
+      'Only proceed when ready',
+    ],
     milestone: null,
   },
   {
@@ -94,7 +124,12 @@ const steps: ProcessStep[] = [
     description:
       "The official JPJ driving test. With Cikgu Ram's preparation, our students achieve a 98% pass rate.",
     duration: '1 Day',
-    details: ['Circuit test first', 'Road test (if circuit passed)', 'Results same day', '98% pass rate'],
+    details: [
+      'Circuit test first',
+      'Road test (if circuit passed)',
+      'Results same day',
+      '98% pass rate',
+    ],
     milestone: null,
   },
   {
@@ -105,7 +140,12 @@ const steps: ProcessStep[] = [
     description:
       'Congratulations! Collect your P-License and hit the road. 2-year probationary period before upgrading to full license.',
     duration: '1–2 Weeks',
-    details: ['P-License issued by JPJ', '2-year probationary period', 'Speed limit: 90 km/h', 'Upgrade to full license after 2 years'],
+    details: [
+      'P-License issued by JPJ',
+      '2-year probationary period',
+      'Speed limit: 90 km/h',
+      'Upgrade to full license after 2 years',
+    ],
     milestone: 'P-LICENSE',
   },
 ];
@@ -205,12 +245,16 @@ export default function ProcessSection() {
                           {step.title}
                         </h3>
                         {!isExpanded && (
-                          <p className="mt-2.5 text-base leading-relaxed text-white/55 font-body sm:mt-3">{step.summary}</p>
+                          <p className="mt-2.5 text-base leading-relaxed text-white/55 font-body sm:mt-3">
+                            {step.summary}
+                          </p>
                         )}
                       </div>
 
                       <div className="flex shrink-0 items-center gap-2.5 pt-1 sm:gap-3 sm:pt-1.5 md:gap-4">
-                        <span className="hidden text-base text-white/40 font-body sm:inline">{step.duration}</span>
+                        <span className="hidden text-base text-white/40 font-body sm:inline">
+                          {step.duration}
+                        </span>
                         <div
                           className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-all duration-300 ${
                             isExpanded ? 'rotate-180 bg-[#CC0000]/25' : 'bg-white/10'
@@ -228,20 +272,29 @@ export default function ProcessSection() {
 
                     {isExpanded && (
                       <div className="mt-5 sm:mt-7">
-                        <p className="mb-4 font-body text-base leading-relaxed text-white/65 sm:mb-5">{step.description}</p>
+                        <p className="mb-4 font-body text-base leading-relaxed text-white/65 sm:mb-5">
+                          {step.description}
+                        </p>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3">
                           {step.details.map((detail, di) => (
                             <div key={di} className="flex items-start gap-3">
                               <div className="mt-2 h-1 w-4 shrink-0 rounded-none bg-[#CC0000]" />
-                              <span className="text-base leading-snug text-white/70 font-body">{detail}</span>
+                              <span className="text-base leading-snug text-white/70 font-body">
+                                {detail}
+                              </span>
                             </div>
                           ))}
                         </div>
                         <div className="mt-5 flex items-center gap-2 sm:mt-6">
-                          <span className="mr-0.5 inline-flex shrink-0 text-[13px] leading-none text-[#CC0000]" aria-hidden>
+                          <span
+                            className="mr-0.5 inline-flex shrink-0 text-[13px] leading-none text-[#CC0000]"
+                            aria-hidden
+                          >
                             ⏰
                           </span>
-                          <span className="text-base text-white/45 font-body">Estimated duration: {step.duration}</span>
+                          <span className="text-base text-white/45 font-body">
+                            Estimated duration: {step.duration}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -254,7 +307,9 @@ export default function ProcessSection() {
           <div className="px-5 py-10 text-center sm:px-8 sm:py-12">
             <div className="mx-auto flex max-w-lg flex-col items-center gap-6">
               <div className="flex flex-col items-center gap-3">
-                <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/45">Complete program</p>
+                <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/45">
+                  Complete program
+                </p>
                 <p className="font-display text-5xl font-800 leading-none tracking-tighter text-white sm:text-6xl">
                   RM2,050
                 </p>

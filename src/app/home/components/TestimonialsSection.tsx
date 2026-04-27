@@ -34,7 +34,10 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
 
   return (
     <div className="testimonials-marquee-wrap">
-      <div ref={trackRef} className="testimonials-marquee-track flex flex-nowrap gap-5 sm:gap-6 md:gap-7">
+      <div
+        ref={trackRef}
+        className="testimonials-marquee-track flex flex-nowrap gap-5 sm:gap-6 md:gap-7"
+      >
         <div ref={seg1Ref} className="flex shrink-0 items-start gap-5 sm:gap-6 md:gap-7">
           {items.map((t) => (
             <ReviewCard
@@ -67,7 +70,8 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="font-google relative overflow-hidden border-y border-black/[0.06] bg-white py-16 sm:py-24 lg:py-28">
+      className="font-google relative overflow-hidden border-y border-black/[0.06] bg-white py-16 sm:py-24 lg:py-28"
+    >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_42%,#ffffff_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_50%_-8%,rgba(255,255,255,0.9)_0%,transparent_52%)]" />
@@ -88,9 +92,16 @@ export default function TestimonialsSection() {
             href={GOOGLE_BUSINESS_MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-auto mt-5 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-black/[0.1] bg-white px-5 py-2.5 font-google text-[15px] font-semibold leading-snug tracking-tight text-[#202124] shadow-sm transition-colors hover:bg-black/[0.03] active:bg-black/[0.05] sm:mt-6 sm:px-6 sm:py-3 sm:text-sm sm:font-bold md:mt-7">
+            className="mx-auto mt-5 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-black/[0.1] bg-white px-5 py-2.5 font-google text-[15px] font-semibold leading-snug tracking-tight text-[#202124] shadow-sm transition-colors hover:bg-black/[0.03] active:bg-black/[0.05] sm:mt-6 sm:px-6 sm:py-3 sm:text-sm sm:font-bold md:mt-7"
+          >
             <span>See reviews on Google</span>
-            <Icon name="ArrowTopRightOnSquareIcon" size={16} variant="outline" className="shrink-0 text-[#5F6368]" aria-hidden />
+            <Icon
+              name="ArrowTopRightOnSquareIcon"
+              size={16}
+              variant="outline"
+              className="shrink-0 text-[#5F6368]"
+              aria-hidden
+            />
           </a>
         </div>
       </div>

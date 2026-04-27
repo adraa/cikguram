@@ -9,26 +9,21 @@ const heroRegisterOverlayLinkBase =
   'pointer-events-auto inline-flex shrink-0 flex-row items-center justify-center whitespace-nowrap rounded-xl border border-white/55 bg-[#E31E24] text-center font-display font-black uppercase tracking-wide text-white shadow-red-lg transition-transform hover:border-white/80 hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:brightness-100 motion-reduce:active:scale-100';
 
 /** CTA over hero art: mobile uses larger tap target and type; desktop matches wide hero layout. */
-function HeroRegisterOverlayLink({
-  variant,
-}: {
-  variant: 'mobile' | 'desktop';
-}) {
+function HeroRegisterOverlayLink({ variant }: { variant: 'mobile' | 'desktop' }) {
   const variantClasses =
     variant === 'mobile'
       ? 'min-h-[52px] gap-2.5 px-5 py-3 text-sm'
       : 'min-h-[48px] gap-2 px-4 py-2.5 text-xs sm:gap-2.5 sm:px-5 sm:text-sm';
 
   const iconClasses =
-    variant === 'mobile'
-      ? 'h-5 w-5 shrink-0'
-      : 'h-4 w-4 shrink-0 sm:h-[1.125rem] sm:w-[1.125rem]';
+    variant === 'mobile' ? 'h-5 w-5 shrink-0' : 'h-4 w-4 shrink-0 sm:h-[1.125rem] sm:w-[1.125rem]';
 
   return (
     <a
       href="#full-name-input"
       aria-label="Register now — go to registration form"
-      className={`${heroRegisterOverlayLinkBase} ${variantClasses}`}>
+      className={`${heroRegisterOverlayLinkBase} ${variantClasses}`}
+    >
       <span>Register Now</span>
       <span className="cta-arrow inline-flex" aria-hidden>
         <ArrowDownIcon className={iconClasses} />
@@ -39,10 +34,7 @@ function HeroRegisterOverlayLink({
 
 export default function HeroSection() {
   return (
-    <section
-      id="hero"
-      className="relative w-full overflow-hidden"
-      aria-label="Hero section">
+    <section id="hero" className="relative w-full overflow-hidden" aria-label="Hero section">
       <h1 className="sr-only">
         Ready to drive? Get your P-license with Cikgu Ram at Westport Authority Official Academy.
         Fast-track driving school, save RM299, free transport. Get your driving license in about six

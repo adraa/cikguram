@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 
 export default function ScrollRevealInit() {
   useEffect(() => {
-    const allElements = document.querySelectorAll(':is(.reveal, .reveal-left, .reveal-right, .reveal-scale)');
+    const allElements = document.querySelectorAll(
+      ':is(.reveal, .reveal-left, .reveal-right, .reveal-scale)'
+    );
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -18,7 +20,7 @@ export default function ScrollRevealInit() {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
 
-    allElements.forEach(el => observer.observe(el));
+    allElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);

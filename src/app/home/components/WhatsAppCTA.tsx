@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 
-
 export default function WhatsAppCTA() {
   const [visible, setVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);

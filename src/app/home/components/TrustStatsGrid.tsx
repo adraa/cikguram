@@ -28,13 +28,15 @@ export default function TrustStatsGrid() {
     <div className={TRUST_STATS_SHELL}>
       <div
         className="grid min-h-0 grid-cols-3 divide-x divide-black/8 items-stretch [contain:paint]"
-        aria-label="Trust signals">
+        aria-label="Trust signals"
+      >
         <a
           href={GOOGLE_BUSINESS_MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
           className={TRUST_LINK_CELL_CLASS}
-          aria-label="View Google reviews — 4.9 rating on Google Maps">
+          aria-label="View Google reviews — 4.9 rating on Google Maps"
+        >
           <span className={TRUST_GLYPH_ROW} aria-hidden>
             🌟
           </span>

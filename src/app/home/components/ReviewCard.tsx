@@ -9,7 +9,12 @@ import type { DisplayReview } from '@/types/display-review';
 function GoogleGMark({ className, monochrome }: { className?: string; monochrome?: boolean }) {
   if (monochrome) {
     return (
-      <svg className={`text-[#5F6368] ${className ?? ''}`} viewBox="0 0 24 24" aria-hidden xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className={`text-[#5F6368] ${className ?? ''}`}
+        viewBox="0 0 24 24"
+        aria-hidden
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fill="currentColor"
           d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -99,9 +104,13 @@ export function ReviewCard({
   const googleStarsRow = (
     <div
       className="mb-2.5 flex min-w-0 shrink-0 flex-nowrap items-center gap-1.5"
-      aria-label={`Google review, ${t.rating} out of 5 stars`}>
+      aria-label={`Google review, ${t.rating} out of 5 stars`}
+    >
       <GoogleGMark className="h-4 w-4 shrink-0" aria-hidden />
-      <span className="min-w-0 truncate font-google text-[11px] font-medium leading-none text-[#5F6368] sm:text-[12px]" aria-hidden>
+      <span
+        className="min-w-0 truncate font-google text-[11px] font-medium leading-none text-[#5F6368] sm:text-[12px]"
+        aria-hidden
+      >
         Google review
       </span>
       <span className="shrink-0 text-[#DADCE0]" aria-hidden>
@@ -123,7 +132,9 @@ export function ReviewCard({
 
   const nameMetaBlock = (
     <>
-      <p className="font-google text-[15px] font-bold leading-tight tracking-[-0.02em] text-[#202124]">{t.name}</p>
+      <p className="font-google text-[15px] font-bold leading-tight tracking-[-0.02em] text-[#202124]">
+        {t.name}
+      </p>
       <p className="mt-0.5 font-google text-[12px] font-normal leading-snug text-[#5F6368]">
         {t.duration}
         {showLocationLine ? (
@@ -144,15 +155,13 @@ export function ReviewCard({
           : expanded
             ? 'flex min-h-0 flex-col'
             : 'flex min-h-0 flex-1 flex-col'
-      }>
+      }
+    >
       <blockquote
         className={`testimonial-emoji-copy text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-[#202124] antialiased [font-feature-settings:'kern'_1] whitespace-pre-line sm:text-[15px] ${
-          layout === 'horizontal'
-            ? ''
-            : expanded
-              ? 'shrink-0'
-              : 'min-h-0 flex-1 overflow-hidden'
-        } ${layout === 'vertical' && showToggle && !expanded ? 'line-clamp-4' : ''}`}>
+          layout === 'horizontal' ? '' : expanded ? 'shrink-0' : 'min-h-0 flex-1 overflow-hidden'
+        } ${layout === 'vertical' && showToggle && !expanded ? 'line-clamp-4' : ''}`}
+      >
         {t.text}
       </blockquote>
 
@@ -163,7 +172,8 @@ export function ReviewCard({
           aria-expanded={expanded}
           aria-label={expanded ? 'Show less of this review' : 'Read full review'}
           onClick={() => setExpanded(!expanded)}
-          className="group mt-2 flex min-h-[44px] w-fit shrink-0 items-center gap-1 self-start font-google text-[14px] font-bold tracking-tight text-[#1A73E8] active:opacity-70">
+          className="group mt-2 flex min-h-[44px] w-fit shrink-0 items-center gap-1 self-start font-google text-[14px] font-bold tracking-tight text-[#1A73E8] active:opacity-70"
+        >
           <span>{expanded ? 'Show less' : 'Read more'}</span>
           <Icon
             name="ChevronDownIcon"
@@ -178,13 +188,13 @@ export function ReviewCard({
 
   if (layout === 'horizontal') {
     const compact = horizontalDensity === 'compact';
-    const articlePad =
-      compact ? CARD_HORIZONTAL_PAD_COMPACT : CARD_HORIZONTAL_PAD_COMFORTABLE;
+    const articlePad = compact ? CARD_HORIZONTAL_PAD_COMPACT : CARD_HORIZONTAL_PAD_COMFORTABLE;
 
     const googleRowHorizontal = (
       <div
         className={`flex min-w-0 flex-wrap items-center gap-x-1.5 ${compact ? 'gap-y-0.5' : 'gap-y-1'}`}
-        aria-label={`Google review, ${t.rating} out of 5 stars`}>
+        aria-label={`Google review, ${t.rating} out of 5 stars`}
+      >
         <GoogleGMark className="h-4 w-4 shrink-0" aria-hidden />
         <span className="min-w-0 max-w-full break-words font-google text-[11px] font-medium leading-snug tracking-tight text-[#6e6e73] sm:text-[12px]">
           Google
@@ -215,13 +225,15 @@ export function ReviewCard({
             compact
               ? 'mt-2 text-[15px] leading-[1.22] sm:leading-[1.2]'
               : 'mt-2.5 text-[16px] leading-[1.2]'
-          }`}>
+          }`}
+        >
           {t.name}
         </p>
         <p
           className={`min-w-0 break-words text-pretty text-[12px] leading-snug text-[#86868b] sm:text-[14px] ${
             compact ? 'mt-0.5' : 'mt-1'
-          }`}>
+          }`}
+        >
           {t.duration}
           {showLocationLine ? (
             <>
@@ -234,28 +246,28 @@ export function ReviewCard({
     );
 
     const readMoreTop = compact ? 'mt-2.5 sm:mt-4' : 'mt-3 sm:mt-4';
-    const horizontalReadMore =
-      showToggle ? (
-        <button
-          type="button"
-          tabIndex={ariaHidden ? -1 : undefined}
-          aria-expanded={expanded}
-          aria-label={expanded ? 'Show less of this review' : 'Read full review'}
-          onClick={() => setExpanded(!expanded)}
-          className={
-            neutralChrome
-              ? `group flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#1d1d1f] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CC0000]/25 focus-visible:ring-offset-2 ${readMoreTop} sm:w-auto sm:rounded-md sm:active:bg-transparent`
-              : `group flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#007AFF] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF]/30 focus-visible:ring-offset-2 ${readMoreTop} sm:w-auto sm:rounded-md sm:active:bg-transparent`
-          }>
-          <span>{expanded ? 'Show less' : 'Read more'}</span>
-          <Icon
-            name="ChevronDownIcon"
-            size={16}
-            variant="solid"
-            className={`transition-transform duration-200 ${neutralChrome ? 'text-[#1d1d1f]' : 'text-[#007AFF]'} ${expanded ? '-rotate-180' : ''}`}
-          />
-        </button>
-      ) : null;
+    const horizontalReadMore = showToggle ? (
+      <button
+        type="button"
+        tabIndex={ariaHidden ? -1 : undefined}
+        aria-expanded={expanded}
+        aria-label={expanded ? 'Show less of this review' : 'Read full review'}
+        onClick={() => setExpanded(!expanded)}
+        className={
+          neutralChrome
+            ? `group flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#1d1d1f] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CC0000]/25 focus-visible:ring-offset-2 ${readMoreTop} sm:w-auto sm:rounded-md sm:active:bg-transparent`
+            : `group flex min-h-[44px] w-full touch-manipulation items-center justify-start gap-1 rounded-xl font-google text-[14px] font-semibold tracking-tight text-[#007AFF] transition-colors active:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF]/30 focus-visible:ring-offset-2 ${readMoreTop} sm:w-auto sm:rounded-md sm:active:bg-transparent`
+        }
+      >
+        <span>{expanded ? 'Show less' : 'Read more'}</span>
+        <Icon
+          name="ChevronDownIcon"
+          size={16}
+          variant="solid"
+          className={`transition-transform duration-200 ${neutralChrome ? 'text-[#1d1d1f]' : 'text-[#007AFF]'} ${expanded ? '-rotate-180' : ''}`}
+        />
+      </button>
+    ) : null;
 
     const quoteLead = compact ? 'leading-[1.5]' : 'leading-[1.55]';
     const quoteInner = (
@@ -263,7 +275,8 @@ export function ReviewCard({
         <blockquote
           className={`testimonial-emoji-copy border-none pl-0 text-left text-[15px] font-normal tracking-[-0.015em] text-[#1d1d1f] antialiased [font-feature-settings:'kern'_1] whitespace-pre-line text-pretty sm:text-[16px] sm:leading-[1.47] ${quoteLead} ${
             showToggle && !expanded ? 'line-clamp-4' : ''
-          }`}>
+          }`}
+        >
           {t.text}
         </blockquote>
         {horizontalReadMore}
@@ -274,7 +287,8 @@ export function ReviewCard({
       <article
         aria-hidden={ariaHidden || undefined}
         data-review-expanded={showToggle && expanded ? 'true' : undefined}
-        className={`relative flex w-full max-w-xl shrink-0 flex-col ${FAQ_WARM_OUTLINE} bg-white ${articlePad} text-left`}>
+        className={`relative flex w-full max-w-xl shrink-0 flex-col ${FAQ_WARM_OUTLINE} bg-white ${articlePad} text-left`}
+      >
         <div className={`flex w-full min-w-0 flex-col ${compact ? 'gap-3 sm:gap-4' : 'gap-4'}`}>
           <div className="min-w-0 text-left">{metaInner}</div>
           <div className="min-w-0 text-left">{quoteInner}</div>
@@ -287,7 +301,8 @@ export function ReviewCard({
     <article
       aria-hidden={ariaHidden || undefined}
       data-review-expanded={expanded ? 'true' : undefined}
-      className={`${CARD_VERTICAL} ${expanded ? 'min-h-[308px] h-auto' : 'h-[308px] min-h-[308px]'}`}>
+      className={`${CARD_VERTICAL} ${expanded ? 'min-h-[308px] h-auto' : 'h-[308px] min-h-[308px]'}`}
+    >
       <ShineBorder borderWidth={1} duration={14} aria-hidden />
       <div className={`relative z-[1] flex w-full flex-1 flex-col ${expanded ? '' : 'min-h-0'}`}>
         {googleStarsRow}

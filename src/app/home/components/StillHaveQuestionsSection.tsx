@@ -2,7 +2,10 @@
 
 import Image from 'next/image';
 import React from 'react';
-import { PricingInlineCountdown, usePricingCountdown } from '@/app/home/components/PricingInlineCountdown';
+import {
+  PricingInlineCountdown,
+  usePricingCountdown,
+} from '@/app/home/components/PricingInlineCountdown';
 import { ReviewCard } from '@/app/home/components/ReviewCard';
 import { GOOGLE_REVIEWS_STATIC } from '@/data/google-reviews-static';
 import TrustStatsGrid from '@/app/home/components/TrustStatsGrid';
@@ -47,11 +50,7 @@ function WhatsAppMark({ className }: { className?: string }) {
  */
 function VerifiedSealBadge({ className }: { className?: string }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 100 100"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden>
+    <svg className={className} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden>
       <path
         fill="#1877F2"
         d="M50.00,4.00L59.84,13.29L73.00,10.16L76.87,23.13L89.84,27.00L86.71,40.16L96.00,50.00L86.71,59.84L89.84,73.00L76.87,76.87L73.00,89.84L59.84,86.71L50.00,96.00L40.16,86.71L27.00,89.84L23.13,76.87L10.16,73.00L13.29,59.84L4.00,50.00L13.29,40.16L10.16,27.00L23.13,23.13L27.00,10.16L40.16,13.29Z"
@@ -88,8 +87,7 @@ const FEATURE_CHIPS: readonly (
   { label: 'WhatsApp Support', avatar: { kind: 'whatsapp' } },
 ];
 
-const FAQ_CHIP_ICON_WRAP_CLASS =
-  'flex h-9 w-9 shrink-0 items-center justify-center text-[#3d3830]';
+const FAQ_CHIP_ICON_WRAP_CLASS = 'flex h-9 w-9 shrink-0 items-center justify-center text-[#3d3830]';
 
 /** FAQ feature chips: same icon scale as desktop so each tile keeps one silhouette on mobile. */
 const FAQ_CHIP_ICON_MEDIA_CLASS = 'h-6 w-6 shrink-0';
@@ -101,10 +99,12 @@ function FaqPricingPill() {
     <div
       className={`${FAQ_WARM_OUTLINE} bg-white px-4 py-3.5 text-center sm:flex sm:flex-col sm:items-center sm:px-5 sm:py-3.5`}
       role="group"
-      aria-labelledby="faq-pricing-label">
+      aria-labelledby="faq-pricing-label"
+    >
       <p
         id="faq-pricing-label"
-        className="text-xs font-medium uppercase leading-snug tracking-[0.12em] text-black/45 sm:text-[11px] sm:tracking-[0.14em]">
+        className="text-xs font-medium uppercase leading-snug tracking-[0.12em] text-black/45 sm:text-[11px] sm:tracking-[0.14em]"
+      >
         All-inclusive rate
       </p>
       <div className="mt-1 flex min-w-0 items-baseline justify-center gap-1.5 leading-none tabular-nums">
@@ -136,7 +136,8 @@ export default function StillHaveQuestionsSection() {
     <section
       id="faq"
       aria-labelledby="faq-still-deciding-heading"
-      className="relative overflow-hidden bg-white py-14 scroll-mt-24 sm:scroll-mt-28 sm:py-24">
+      className="relative overflow-hidden bg-white py-14 scroll-mt-24 sm:scroll-mt-28 sm:py-24"
+    >
       <div className="absolute inset-0 grid-bg" aria-hidden />
       <div className="relative z-10 mx-auto w-full min-w-0 max-w-3xl px-4 sm:px-6">
         <div className="relative isolate mt-8 w-full min-w-0 sm:mt-14">
@@ -149,14 +150,16 @@ export default function StillHaveQuestionsSection() {
                   </p>
                   <h2
                     id="faq-still-deciding-heading"
-                    className="mx-auto mt-2 max-w-[min(100%,20.5rem)] text-pretty font-display text-[clamp(1.5rem,5vw+0.75rem,2.25rem)] font-black leading-[1.1] tracking-[-0.035em] text-[#1a1814] sm:max-w-none sm:leading-[1.12] sm:text-[clamp(1.625rem,3.2vw+1rem,2.5rem)]">
+                    className="mx-auto mt-2 max-w-[min(100%,20.5rem)] text-pretty font-display text-[clamp(1.5rem,5vw+0.75rem,2.25rem)] font-black leading-[1.1] tracking-[-0.035em] text-[#1a1814] sm:max-w-none sm:leading-[1.12] sm:text-[clamp(1.625rem,3.2vw+1rem,2.5rem)]"
+                  >
                     Decide to pass.
                   </h2>
                 </header>
                 <div className={FAQ_CHIPS_TRAY_CLASS}>
                   <ul
                     className="m-0 grid list-none grid-cols-2 gap-2 gap-y-2 p-0"
-                    aria-label="What is included">
+                    aria-label="What is included"
+                  >
                     {FEATURE_CHIPS.map((item) => (
                       <li key={item.label} className={FAQ_CHIP_TILE_CLASS}>
                         <div className={FAQ_CHIP_ICON_WRAP_CLASS}>
@@ -174,11 +177,14 @@ export default function StillHaveQuestionsSection() {
                           ) : item.avatar.kind === 'emoji' ? (
                             <span
                               className={`${FAQ_CHIP_ICON_MEDIA_CLASS} flex items-center justify-center text-2xl leading-none tracking-tight text-[#3d3830]/90`}
-                              aria-hidden>
+                              aria-hidden
+                            >
                               {item.avatar.emoji}
                             </span>
                           ) : (
-                            <WhatsAppMark className={`${FAQ_CHIP_ICON_MEDIA_CLASS} text-[#25D366]`} />
+                            <WhatsAppMark
+                              className={`${FAQ_CHIP_ICON_MEDIA_CLASS} text-[#25D366]`}
+                            />
                           )}
                         </div>
                         <div className="min-w-0 w-full sm:w-auto sm:flex-1">
@@ -204,7 +210,8 @@ export default function StillHaveQuestionsSection() {
                                   <abbr
                                     title={item.hint}
                                     aria-describedby="faq-chip-hint-qti-jpj"
-                                    className="cursor-help no-underline decoration-transparent">
+                                    className="cursor-help no-underline decoration-transparent"
+                                  >
                                     {item.label}
                                   </abbr>
                                 </>
@@ -240,7 +247,8 @@ export default function StillHaveQuestionsSection() {
               <div className="mt-7 flex w-full min-w-0 justify-center px-0 pb-0.5 sm:mt-10">
                 <a
                   href="#register"
-                  className="btn-primary inline-flex w-full max-w-full min-h-[52px] min-w-0 items-center justify-center whitespace-normal break-words rounded-2xl px-5 py-4 text-center text-base font-display font-bold leading-snug tracking-[0.5px] text-pretty [-webkit-tap-highlight-color:transparent] touch-manipulation motion-safe:active:brightness-[0.96] motion-reduce:active:brightness-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1814]/65 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFD100] sm:min-h-[48px] sm:w-auto sm:min-w-[min(100%,280px)] sm:max-w-none sm:px-10">
+                  className="btn-primary inline-flex w-full max-w-full min-h-[52px] min-w-0 items-center justify-center whitespace-normal break-words rounded-2xl px-5 py-4 text-center text-base font-display font-bold leading-snug tracking-[0.5px] text-pretty [-webkit-tap-highlight-color:transparent] touch-manipulation motion-safe:active:brightness-[0.96] motion-reduce:active:brightness-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1814]/65 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFD100] sm:min-h-[48px] sm:w-auto sm:min-w-[min(100%,280px)] sm:max-w-none sm:px-10"
+                >
                   BOOK MY SEAT NOW
                 </a>
               </div>
