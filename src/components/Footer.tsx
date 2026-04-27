@@ -20,7 +20,7 @@ export default function Footer() {
           >
             <AppLogo size={26} onClick={() => {}} />
             <div className="flex flex-col text-left">
-              <span className="block font-space text-[13px] font-700 italic leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
+              <span className="block font-space text-[13px] font-700 leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
                 CIKGU RAM 🇲🇾
               </span>
               <span className="text-[8px] sm:text-[9px] text-black/40 font-body tracking-widest uppercase leading-none mt-0.5">

@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
             <span className="text-pretty font-display font-700 text-3xl text-[#111111] tracking-tight leading-[1.15] sm:text-4xl md:text-5xl">
               Success Stories Of
             </span>
-            <span className="text-pretty font-space font-700 italic text-3xl leading-[1.15] tracking-[-0.02em] text-[#CC0000] sm:text-4xl md:text-5xl">
+            <span className="text-pretty font-space font-700 text-3xl leading-[1.15] tracking-[-0.02em] text-[#CC0000] sm:text-4xl md:text-5xl">
               CIKGU RAM 🇲🇾
             </span>
           </h2>

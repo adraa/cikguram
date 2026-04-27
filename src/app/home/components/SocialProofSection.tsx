@@ -31,7 +31,7 @@ export default function SocialProofSection() {
                     <Icon name="UserIcon" size={17} variant="solid" className="text-white" />
                   </div>
                   <div className="min-w-0 text-left">
-                    <span className="block font-space text-[13px] font-700 italic leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
+                    <span className="block font-space text-[13px] font-700 leading-none tracking-[-0.02em] text-[#CC0000] sm:text-[14px]">
                       CIKGU RAM 🇲🇾
                     </span>
                     <p className="mt-1 text-balance text-[11px] font-body leading-[1.35] text-[#444444] sm:text-[11px]">

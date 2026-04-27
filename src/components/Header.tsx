@@ -13,7 +13,7 @@ export default function Header() {
         >
           <AppLogo size={32} className="shrink-0" />
           <div className="flex min-w-0 flex-col text-left">
-            <span className="block font-space text-[15px] font-700 italic leading-tight tracking-[-0.02em] text-[#CC0000] sm:text-base md:text-lg">
+            <span className="block font-space text-[15px] font-700 leading-tight tracking-[-0.02em] text-[#CC0000] sm:text-base md:text-lg">
               CIKGU RAM 🇲🇾
             </span>
             <span className="mt-0.5 font-body text-xs font-medium uppercase leading-snug tracking-wide text-black/45 md:text-sm">
