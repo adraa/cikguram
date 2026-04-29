@@ -1,26 +1,14 @@
 'use client';
 
 import React, { useState, useCallback, useMemo, memo } from 'react';
-import Image from 'next/image';
+import Image, { type ImageProps } from 'next/image';
 
-interface AppImageProps {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  className?: string;
-  priority?: boolean;
-  quality?: number;
-  placeholder?: 'blur' | 'empty';
-  blurDataURL?: string;
-  fill?: boolean;
-  sizes?: string;
-  onClick?: () => void;
+type AppImageProps = {
   fallbackSrc?: string;
-  loading?: 'lazy' | 'eager';
-  unoptimized?: boolean;
-  [key: string]: any;
-}
+} & Omit<ImageProps, 'src' | 'alt'> & {
+    src: string;
+    alt: string;
+  };
 
 const AppImage = memo(function AppImage({
   src,
@@ -67,10 +55,15 @@ const AppImage = memo(function AppImage({
     return classes.filter(Boolean).join(' ');
   }, [className, isLoading, onClick]);
 
-  const imageProps = useMemo(() => {
-    const baseProps: any = {
+  const imageProps = useMemo((): Omit<ImageProps, 'alt' | 'width' | 'height' | 'fill' | 'sizes'> & {
+    src: string;
+    className: string;
+  } => {
+    const baseProps: Omit<ImageProps, 'alt' | 'width' | 'height' | 'fill' | 'sizes'> & {
+      src: string;
+      className: string;
+    } = {
       src: imageSrc,
-      alt,
       className: imageClassName,
       quality,
       placeholder,
@@ -93,7 +86,6 @@ const AppImage = memo(function AppImage({
     return baseProps;
   }, [
     imageSrc,
-    alt,
     imageClassName,
     quality,
     placeholder,
@@ -110,6 +102,7 @@ const AppImage = memo(function AppImage({
     return (
       <div className="relative" style={{ width: '100%', height: '100%' }}>
         <Image
+          alt={alt}
           {...imageProps}
           fill
           sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
@@ -121,7 +114,14 @@ const AppImage = memo(function AppImage({
   }
 
   return (
-    <Image {...imageProps} width={width || 400} height={height || 300} sizes={sizes} {...props} />
+    <Image
+      alt={alt}
+      {...imageProps}
+      width={width || 400}
+      height={height || 300}
+      sizes={sizes}
+      {...props}
+    />
   );
 });
 

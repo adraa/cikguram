@@ -33,6 +33,7 @@ export default function HomePage() {
       <TestimonialsSection />
       <StillHaveQuestionsSection />
       <Footer />
+      <StickyMobileCTA />
       <ScrollRevealInit />
     </main>
   );

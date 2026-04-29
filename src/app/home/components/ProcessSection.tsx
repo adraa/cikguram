@@ -51,7 +51,9 @@ export default function ProcessSection() {
               All-inclusive rate
             </p>
             <div className="mt-1 flex items-baseline justify-center gap-1.5 leading-none tabular-nums">
-              <span className="shrink-0 font-display text-[0.9375rem] font-medium text-black/45">RM</span>
+              <span className="shrink-0 font-display text-[0.9375rem] font-medium text-black/45">
+                RM
+              </span>
               <span className="font-display text-[2.625rem] font-semibold tracking-tight text-[#111111] sm:text-[3rem]">
                 2,050
               </span>
