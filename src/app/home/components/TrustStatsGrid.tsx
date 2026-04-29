@@ -1,5 +1,4 @@
 import React from 'react';
-import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
 
 /** Outer chrome: same lift as pricing price pill (`shadow-[0_10px_36px_…]`) so the strip reads floating. */
 const TRUST_STATS_SHELL =
@@ -18,8 +17,6 @@ const TRUST_VALUE_ROW =
 const TRUST_CAPTION_CLASS =
   'flex min-h-[1.875rem] w-full max-w-[6.25rem] flex-col items-center justify-center text-pretty text-center font-display text-[10px] font-semibold uppercase leading-[1.18] tracking-[0.06em] text-black/45 sm:min-h-[2rem] sm:max-w-[6rem] sm:text-[9px] sm:leading-[1.15] sm:tracking-[0.08em]';
 
-const TRUST_LINK_CELL_CLASS = `${TRUST_CELL_CLASS} transition-colors hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#CC0000]/35 [-webkit-tap-highlight-color:transparent] touch-manipulation motion-reduce:transition-none`;
-
 /**
  * Three-column trust bar (Google / years / students): shared by FAQ, pricing, and track-record.
  */
@@ -30,13 +27,7 @@ export default function TrustStatsGrid() {
         className="grid min-h-0 grid-cols-3 divide-x divide-black/8 items-stretch [contain:paint]"
         aria-label="Trust signals"
       >
-        <a
-          href={GOOGLE_BUSINESS_MAPS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={TRUST_LINK_CELL_CLASS}
-          aria-label="View Google reviews — 4.9 rating on Google Maps"
-        >
+        <div className={TRUST_CELL_CLASS}>
           <span className={TRUST_GLYPH_ROW} aria-hidden>
             🌟
           </span>
@@ -46,7 +37,7 @@ export default function TrustStatsGrid() {
             <br />
             Rating
           </span>
-        </a>
+        </div>
         <div className={TRUST_CELL_CLASS}>
           <span className={TRUST_GLYPH_ROW} aria-hidden>
             💪

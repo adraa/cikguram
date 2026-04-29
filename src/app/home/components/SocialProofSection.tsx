@@ -16,8 +16,8 @@ export default function SocialProofSection() {
             <div className="relative isolate">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[0_10px_36px_rgba(0,0,0,0.1)] img-zoom-wrap">
                 <AppImage
-                  src="/instructor-cikgu-ram.webp"
-                  alt="Cikgu Ram in Westport Driving Academy polo, arms crossed, smiling in front of red learner car RAM 308 outdoors"
+                  src="/cikgu-ram-westport-driving-academy-introduction.webp"
+                  alt="Cikgu Ram and Westport Driving Academy team in uniform with red learner car RAM 308 on the outdoor training circuit"
                   fill
                   className="object-cover img-zoom"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -98,7 +98,7 @@ export default function SocialProofSection() {
                 href="#register"
                 className="btn-primary inline-flex items-center justify-center min-w-[220px] px-10 py-4 rounded-2xl text-base font-display font-700 tracking-[0.5px]"
               >
-                Register Now
+                REGISTER NOW
               </a>
             </div>
           </div>

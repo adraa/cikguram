@@ -249,7 +249,7 @@ export default function StillHaveQuestionsSection() {
                   href="#register"
                   className="btn-primary inline-flex w-full max-w-full min-h-[52px] min-w-0 items-center justify-center whitespace-normal break-words rounded-2xl px-5 py-4 text-center text-base font-display font-bold leading-snug tracking-[0.5px] text-pretty [-webkit-tap-highlight-color:transparent] touch-manipulation motion-safe:active:brightness-[0.96] motion-reduce:active:brightness-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1814]/65 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFD100] sm:min-h-[48px] sm:w-auto sm:min-w-[min(100%,280px)] sm:max-w-none sm:px-10"
                 >
-                  BOOK MY SEAT NOW
+                  BOOK MY SEAT
                 </a>
               </div>
             </div>

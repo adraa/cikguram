@@ -47,8 +47,8 @@ export default function PricingCard() {
           </h2>
         </div>
 
-        {/* Main pricing card: no overflow-hidden so price pill can bleed over image */}
-        <div className="reveal delay-100 max-w-2xl mx-auto rounded-2xl border border-black/8 bg-white shadow-card relative">
+        {/* Main pricing card: top + sides only; bottom attaches to scarcity strip (sibling under section) */}
+        <div className="reveal delay-100 max-w-2xl mx-auto rounded-t-2xl border border-black/8 border-b-0 bg-white shadow-card relative">
           {/* Square promo art (1:1) on all breakpoints; WebP from scripts/encode-pricing-webp.cjs */}
           <div className="relative aspect-square overflow-hidden rounded-t-2xl">
             <Image
@@ -95,13 +95,31 @@ export default function PricingCard() {
             </div>
 
             {/* Social proof stats: same strip as FAQ (`TrustStatsGrid`) */}
-            <div className="mt-3">
+            <div className="mt-3 mb-6 sm:mb-7">
               <TrustStatsGrid />
             </div>
           </div>
 
+          {/* Core section header: pill + rules (matches bonus row) */}
+          <div className="flex items-center gap-3 mx-6 mb-2">
+            <div className="h-px flex-1 bg-black/[0.08]" />
+            <div className="flex items-center gap-1.5 px-3 py-[6px] rounded-full border border-black/[0.1]">
+              <span
+                className="shrink-0 text-[12px] leading-none select-none"
+                role="img"
+                aria-label="Included"
+              >
+                ✅
+              </span>
+              <span className="text-[10px] font-display font-700 text-[#111111] uppercase tracking-[0.12em] whitespace-nowrap">
+                What&apos;s Included?
+              </span>
+            </div>
+            <div className="h-px flex-1 bg-black/[0.08]" />
+          </div>
+
           {/* Core items */}
-          <div className="pt-4 pb-3">
+          <div className="pt-1 pb-3">
             {coreItems.map((item, i) => (
               <div
                 key={item}
@@ -129,7 +147,7 @@ export default function PricingCard() {
                 🎁
               </span>
               <span className="text-[10px] font-display font-700 text-[#8A6A00] uppercase tracking-[0.12em] whitespace-nowrap">
-                Bonus (Included Free)
+                BONUS (FREE)
               </span>
             </div>
             <div className="h-px flex-1 bg-[#C9A020]/35" />
@@ -176,21 +194,21 @@ export default function PricingCard() {
               RESERVE MY SEAT NOW
             </a>
           </div>
+        </div>
+      </div>
 
-          {/* Scarcity bar: dark/serious, left red border, rounded-b-2xl */}
-          <div className="flex items-start gap-3.5 px-5 py-4 bg-[#111111] rounded-b-2xl overflow-hidden">
-            <Icon
-              name="ExclamationTriangleIcon"
-              size={15}
-              variant="solid"
-              className="text-[#CC0000] mt-0.5 shrink-0"
-            />
-            <p className="text-xs text-white/80 font-body leading-relaxed">
-              <span className="font-display font-700 text-white">15 students max per month.</span>{' '}
-              Cikgu Ram limits intake to guarantee personal attention. Spots for this month are
-              filling up now.
-            </p>
-          </div>
+      {/* Scarcity strip: direct child of section#pricing; visually completes the card above */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="reveal delay-100 max-w-2xl mx-auto -mt-px rounded-b-2xl border border-black/8 border-t-0 bg-[#111111] px-5 py-4 overflow-hidden">
+          <p className="text-center font-display font-700 text-sm text-white leading-tight sm:text-[15px] md:whitespace-nowrap">
+            ⚠️ ONLY 15 STUDENTS PER MONTH ⚠️
+          </p>
+          <p className="mt-3 text-center text-sm text-white/85 font-body leading-relaxed">
+            Cikgu Ram limits intake to guarantee personal attention.
+          </p>
+          <p className="mt-1 text-center text-sm text-white/85 font-body leading-relaxed">
+            Spots for this month are filling up now.
+          </p>
         </div>
       </div>
     </section>
