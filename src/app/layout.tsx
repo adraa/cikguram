@@ -58,12 +58,12 @@ export const metadata: Metadata = {
     apple: '/cikgu-ram-westport-driving-academy-favicon.png',
   },
   alternates: {
-    canonical: '/home',
+    canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_MY',
-    url: '/home',
+    url: '/',
     siteName: 'CikguRam',
     title: 'CikguRam | Get Your Driving License Fast in Malaysia',
     description:

@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="flex w-full justify-center">
           <Link
-            href="/home"
+            href="/"
             className="flex items-center gap-2 sm:gap-2.5 group min-h-[44px]"
             aria-label="Cikgu Ram, Westport Driving Academy, home"
           >

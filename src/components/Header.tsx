@@ -8,7 +8,7 @@ export default function Header() {
       <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden />
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 md:py-5 lg:py-6">
         <Link
-          href="/home"
+          href="/"
           className="group flex min-h-[44px] items-center gap-2.5 sm:gap-3 md:min-h-0 md:gap-3.5"
         >
           <AppLogo size={32} className="shrink-0" />
