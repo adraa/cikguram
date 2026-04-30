@@ -1,5 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
 import { imageHosts } from './image-hosts.config.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,8 +18,9 @@ const nextConfig = {
   },
   images: {
     remotePatterns: imageHosts,
-    // Stable URLs (e.g. rocket.new paths): cache optimized variants aggressively at the edge.
-    minimumCacheTTL: 31536000,
+    // OpenNext on Workers: no `IMAGES` binding in wrangler by default (avoids requiring Cloudflare Images).
+    // See CLOUDFLARE.md to enable optimization + `images.binding` in wrangler.jsonc.
+    unoptimized: true,
   },
   async headers() {
     // Next.js dev mode uses eval() for HMR / React Fast Refresh — allow it locally only
@@ -85,4 +87,7 @@ const nextConfig = {
     return config;
   },
 };
+
 export default nextConfig;
+
+initOpenNextCloudflareForDev();

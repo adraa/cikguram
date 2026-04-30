@@ -5,12 +5,16 @@
 .env.test.local
 .env.production.local
 
+# Cloudflare Worker local secrets (wrangler dev / OpenNext)
+.dev.vars
+
 # Node modules
 node_modules/
 package-lock.json
 
 # Next.js build output
 .next/
+.open-next/
 out/
 
 # Production build
@@ -26,7 +30,7 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Vercel deployment
+# Local deploy CLI link metadata (ignore if present)
 .vercel/
 
 # Optional: if using TypeScript
@@ -45,3 +49,10 @@ jest-test-results.json
 
 # Optional: if using TurboRepo or monorepo
 turbo/
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example

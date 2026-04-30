@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Store in .env.local (server-side only — no NEXT_PUBLIC_ prefix)
+// Store only in Cloudflare dashboard secrets or .env.local — never NEXT_PUBLIC_* or git.
 // MAKE_WEBHOOK_URL=https://hook.eu2.make.com/<your-webhook-id>
-// ⚠️  Regenerate your webhook URL in Make.com before going live —
-//     the old URL was shared in a chat session and should be considered public.
 const MAKE_WEBHOOK_URL = process.env.MAKE_WEBHOOK_URL ?? '';
 
 const MY_PHONE_RE = /^(\+?60|0)[1-9]\d{7,9}$/;
@@ -25,6 +23,14 @@ export async function POST(req: NextRequest) {
 
   if (isRateLimited(ip)) {
     return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
+  }
+
+  const webhookConfigured = MAKE_WEBHOOK_URL.trim().length > 0;
+  if (process.env.NODE_ENV === 'production' && !webhookConfigured) {
+    return NextResponse.json(
+      { error: 'Registration is temporarily unavailable. Please try again later.' },
+      { status: 503 }
+    );
   }
 
   let body: Record<string, string>;

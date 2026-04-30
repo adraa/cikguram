@@ -1,0 +1,30 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Worker script produced by `pnpm run build:cf`
+	"main": ".open-next/worker.js",
+	// Dashboard / routes name — change for staging (e.g. cikguram-preview) and update `services[].service` below to match.
+	"name": "cikguram",
+	"compatibility_date": "2026-04-30",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			// Self-reference for incremental cache / internal fetch — must equal `"name"` above.
+			// https://opennext.js.org/cloudflare/caching
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "cikguram"
+		}
+	]
+	// Optional: Cloudflare Images (paid / zone feature). Uncomment after enabling Images, then set `images.unoptimized: false` in `next.config.mjs`.
+	// https://opennext.js.org/cloudflare/howtos/image
+	// ,
+	// "images": {
+	//   "binding": "IMAGES"
+	// }
+}
