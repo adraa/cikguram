@@ -26,6 +26,7 @@ const spaceGrotesk = Space_Grotesk({
   style: ['normal'],
   variable: '--font-space-grotesk',
   display: 'swap',
+  preload: false,
 });
 
 /** Testimonials: Google-style typography without affecting the rest of the site. */
@@ -35,6 +36,7 @@ const roboto = Roboto({
   style: ['normal'],
   variable: '--font-google',
   display: 'swap',
+  preload: false,
 });
 
 export const viewport: Viewport = {

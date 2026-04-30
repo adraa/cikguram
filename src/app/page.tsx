@@ -9,7 +9,6 @@ import TestimonialsSection from '@/app/home/components/TestimonialsSection';
 import StillHaveQuestionsSection from '@/app/home/components/StillHaveQuestionsSection';
 import ReserveFormSection from '@/app/home/components/ReserveFormSection';
 import StatsBarSection from '@/app/home/components/StatsBarSection';
-import StickyMobileCTA from '@/app/home/components/StickyMobileCTA';
 import ScrollRevealInit from '@/app/home/components/ScrollRevealInit';
 
 export default function HomePage() {
@@ -33,7 +32,6 @@ export default function HomePage() {
       <TestimonialsSection />
       <StillHaveQuestionsSection />
       <Footer />
-      <StickyMobileCTA />
       <ScrollRevealInit />
     </main>
   );

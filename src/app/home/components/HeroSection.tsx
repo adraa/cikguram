@@ -97,6 +97,7 @@ export default function HeroSection() {
           height={2752}
           className="block h-auto w-full max-w-none"
           priority
+          fetchPriority="high"
           sizes="100vw"
           quality={85}
         />
@@ -113,6 +114,7 @@ export default function HeroSection() {
           fill
           className="object-cover"
           priority
+          fetchPriority="high"
           sizes="100vw"
           quality={85}
         />

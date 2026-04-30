@@ -36,10 +36,10 @@ export default function ScrollRevealInit() {
 
     const alreadyVisible = new Set<Element>();
     for (const el of list) {
-      if (intersectsRevealRoot(el)) {
-        el.classList.add('visible');
-        alreadyVisible.add(el);
-      }
+      if (intersectsRevealRoot(el)) alreadyVisible.add(el);
+    }
+    for (const el of alreadyVisible) {
+      el.classList.add('visible');
     }
 
     const observer = new IntersectionObserver((entries) => {
