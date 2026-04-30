@@ -17,14 +17,13 @@
   }
 
   /**
-   * Testimonial body: Roboto for Latin; emoji codepoints resolve to Apple Color Emoji
-   * on iOS/macOS (system). Other platforms use their native color emoji — Apple’s font
-   * is not redistributable for web embedding.
+   * Testimonial body: system sans (Roboto on Android); emoji resolve to native color fonts.
    */
   .testimonial-emoji-copy {
     font-family:
-      var(--font-google), Roboto, ui-sans-serif, system-ui, 'Helvetica Neue', Helvetica, Arial,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji;
+      Roboto, Droid Sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      'Helvetica Neue', Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji', emoji;
     font-variant-emoji: emoji;
   }
 }

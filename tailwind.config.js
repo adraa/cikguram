@@ -39,8 +39,22 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-display)', 'DM Sans', 'sans-serif'],
         body: ['var(--font-body)', 'Manrope', 'sans-serif'],
-        space: ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
-        google: ['var(--font-google)', 'Roboto', 'sans-serif'],
+        /** Same as display: drops a third webfont (Space Grotesk) to shorten HTML→CSS→.woff2 critical chain. */
+        space: ['var(--font-display)', 'DM Sans', 'sans-serif'],
+        /** System stack: Roboto ships on Android; no webfont = less render-blocking CSS than next/font Roboto. */
+        google: [
+          'Roboto',
+          'Droid Sans',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          '"Helvetica Neue"',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
       },
       fontSize: {
         '7xl': ['4.5rem', { lineHeight: '1' }],

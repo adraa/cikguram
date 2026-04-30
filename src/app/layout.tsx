@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, Manrope, Space_Grotesk, Roboto } from 'next/font/google';
+import { DM_Sans, Manrope } from 'next/font/google';
 import '../styles/tailwind.css';
 
 /** Only weights/styles used in the app — fewer @font-face blocks in CSS (Lighthouse critical path). */
@@ -18,25 +18,6 @@ const manrope = Manrope({
   style: ['normal'],
   variable: '--font-body',
   display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['700'],
-  style: ['normal'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-  preload: false,
-});
-
-/** Testimonials: Google-style typography without affecting the rest of the site. */
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal'],
-  variable: '--font-google',
-  display: 'swap',
-  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -87,10 +68,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${dmSans.variable} ${manrope.variable} ${spaceGrotesk.variable} ${roboto.variable}`}
-    >
+    <html lang="en" className={`${dmSans.variable} ${manrope.variable}`}>
       <body>{children}</body>
     </html>
   );
