@@ -1,6 +1,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	// Worker script produced by `pnpm run build:cf`
+	// Worker + OpenNext CLI (`pnpm run deploy` / `preview`). Always pass `--config wrangler.jsonc`
+	// because `wrangler.toml` exists for Cloudflare Pages Git only (see CLOUDFLARE.md).
 	"main": ".open-next/worker.js",
 	// Dashboard / routes name — change for staging (e.g. cikguram-preview) and update `services[].service` below to match.
 	"name": "cikguram",

@@ -1,0 +1,8 @@
+# Cloudflare Pages (Git) — minimal Wrangler shape Pages validates.
+# Do not add `main` / Workers `assets` here: Pages reserves `ASSETS`; full Worker config lives in `wrangler.jsonc`.
+# OpenNext CLI always uses `--config wrangler.jsonc` (see package.json scripts).
+
+name = "cikguram"
+pages_build_output_dir = ".open-next"
+compatibility_date = "2026-04-30"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]

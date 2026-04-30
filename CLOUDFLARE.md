@@ -11,6 +11,30 @@ This app uses **[OpenNext Cloudflare](https://opennext.js.org/cloudflare)** (`@o
 
 Do **not** use “Framework: None” with only `pnpm build` and an empty output directory on classic Pages static hosting—that targets `.next` incorrectly.
 
+## Cloudflare Pages (Git integration)
+
+Pages validates a **Wrangler** file that includes **`pages_build_output_dir`**. Putting that field in the same file as OpenNext’s Workers **`assets` → `ASSETS`** binding makes Wrangler error (**`ASSETS` is reserved** on Pages).
+
+This repo uses **two files**:
+
+| File | Purpose |
+|------|--------|
+| **`wrangler.toml`** | **Pages only**: `pages_build_output_dir`, `name`, `compatibility_*`. No `main` / no Worker `assets` block. Cloudflare’s Git build reads this so you should **not** see “Skipping file and continuing.” |
+| **`wrangler.jsonc`** | **OpenNext + `wrangler deploy`**: `main`, `assets` (`ASSETS`), `services`. All **`pnpm`** scripts that invoke OpenNext/Wrangler pass **`--config wrangler.jsonc`** so the Worker config wins locally and in Workers Builds. |
+
+Use the **[V2 build system](https://developers.cloudflare.com/pages/configuration/build-image/#v2-build-system)** for Wrangler-based Pages config.
+
+| Dashboard field | Suggested value |
+|-----------------|-----------------|
+| Framework preset | **None** (or **Next.js** if your UI offers the current full-stack preset) |
+| Build command | `pnpm install && pnpm run build:cf` |
+| Build output directory | `.open-next` |
+| Root directory | `/` (unless the app lives in a monorepo subfolder) |
+
+**pnpm on CI:** `package.json` lists **`esbuild`** and **`workerd`** under **`pnpm.onlyBuiltDependencies`** so install scripts are not skipped.
+
+After each deploy, smoke-test **`/home`** and **`POST /api/lead`** on the live hostname.
+
 ## Environment variables (dashboard)
 
 Add under **Variables and Secrets** for Production (and Preview if you test forms there):
@@ -38,10 +62,10 @@ Optional: `NEXT_PUBLIC_GOOGLE_MAPS_URL`, `NEXT_PUBLIC_NEXT_INTAKE_DATE` (see `.e
 
 Point the domain’s **nameservers** to Cloudflare, attach the domain to your Worker/Pages project, and enable **Full (strict)** SSL once DNS is active.
 
-## Worker name (`wrangler.jsonc`)
+## Worker name (`wrangler.jsonc` + `wrangler.toml`)
 
-- **`name`** — Worker id in the Cloudflare dashboard and default `*.workers.dev` hostname.
-- **`services[0].service`** — Must match **`name`** exactly (OpenNext self-reference binding).
+- **`name`** in **both** **`wrangler.toml`** and **`wrangler.jsonc`** should stay identical (e.g. `cikguram`).
+- **`services[0].service`** in **`wrangler.jsonc`** must match that **`name`** (OpenNext self-reference binding).
 
 For a **staging** Worker, duplicate the project or use Wrangler **[environments](https://developers.cloudflare.com/workers/wrangler/environments/)** and set both `name` (or env-specific name) and `services[].service` to the same value.
 
