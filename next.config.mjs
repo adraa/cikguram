@@ -10,6 +10,9 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   productionBrowserSourceMaps: false,
   distDir: process.env.DIST_DIR || '.next',
+  experimental: {
+    optimizeCss: true,
+  },
   typescript: {
     ignoreBuildErrors: false,
   },
