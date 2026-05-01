@@ -36,23 +36,26 @@ const nextConfig = {
     // Next.js dev mode uses eval() for HMR / React Fast Refresh — allow it locally only
     const isDev = process.env.NODE_ENV === 'development';
 
+    // Google Tag Manager + GA4: https://developers.google.com/tag-platform/security/guides/csp
+    const gtmScript =
+      'https://www.googletagmanager.com https://*.googletagmanager.com https://tagmanager.google.com https://googletagmanager.com';
+    const gaScript = 'https://www.google-analytics.com';
+    const scriptExtras = `${gtmScript} ${gaScript}`;
+    const inlineAndEval = `'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`;
+
     const csp = [
       "default-src 'self'",
-      // unsafe-eval: dev only (webpack HMR + React Fast Refresh require it); stripped in production
-      // unsafe-inline: required for Next.js hydration scripts and GA tag manager
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com`,
-      // Tailwind + inline styles used throughout
+      // unsafe-eval: dev only (HMR); unsafe-inline: Next hydration + GTM bootstrap (see Google CSP guide)
+      `script-src 'self' ${inlineAndEval} ${scriptExtras}`,
+      // External <script src>; mirrors script hosts so tools that emphasize script-src-elem stay aligned
+      `script-src-elem 'self' ${inlineAndEval} ${scriptExtras}`,
       "style-src 'self' 'unsafe-inline'",
-      // next/font self-hosts Google Fonts at build time — no external font CDN needed
       "font-src 'self'",
-      // Images: self + Next.js image proxy + allowed remote hosts
-      "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://images.pixabay.com",
-      // Fetch targets: Google Forms (lead capture) + Google Analytics
-      "connect-src 'self' https://docs.google.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com",
-      // Form POST target
+      "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://images.pixabay.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com",
+      "connect-src 'self' https://docs.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net",
       "form-action 'self' https://docs.google.com",
-      // Disallow embedding in iframes (anti-clickjacking)
       "frame-ancestors 'none'",
+      "frame-src 'self' https://www.googletagmanager.com",
       "base-uri 'self'",
       "object-src 'none'",
     ].join('; ');
