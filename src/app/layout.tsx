@@ -102,7 +102,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>{children}</body>
-      <GoogleTagManager gtmId="GTM-5ZLH8SB9a" />
+      <GoogleTagManager gtmId="GTM-5ZLH8SB9" />
     </html>
   );
 }
