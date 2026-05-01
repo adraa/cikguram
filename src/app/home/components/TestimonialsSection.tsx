@@ -18,17 +18,30 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
     const seg1 = seg1Ref.current;
     const sync = () => {
       if (!track || !seg1) return;
-      const g = parseFloat(getComputedStyle(track).gap || '0') || 20;
-      track.style.setProperty('--marquee-w', `${seg1.offsetWidth + g}px`);
+      // Single geometry read + CSS --marquee-gap (see tailwind.css) — no getComputedStyle
+      track.style.setProperty(
+        '--marquee-w',
+        `calc(${seg1.offsetWidth}px + var(--marquee-gap))`,
+      );
+    };
+    let raf = 0;
+    const scheduleSync = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        sync();
+      });
     };
     sync();
-    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(sync) : null;
+    const ro =
+      typeof ResizeObserver !== 'undefined' ? new ResizeObserver(scheduleSync) : null;
     if (seg1) ro?.observe(seg1);
     if (track) ro?.observe(track);
-    window.addEventListener('resize', sync);
+    window.addEventListener('resize', scheduleSync);
     return () => {
+      if (raf) cancelAnimationFrame(raf);
       ro?.disconnect();
-      window.removeEventListener('resize', sync);
+      window.removeEventListener('resize', scheduleSync);
     };
   }, [items]);
 

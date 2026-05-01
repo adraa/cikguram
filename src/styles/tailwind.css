@@ -231,6 +231,18 @@ h6 {
   width: max-content;
   will-change: transform;
   animation: testimonials-marquee 72s linear infinite;
+  /* Matches flex gap on this row (gap-5 sm:gap-6 md:gap-7) — avoids getComputedStyle in JS */
+  --marquee-gap: 1.25rem;
+}
+@media (min-width: 640px) {
+  .testimonials-marquee-track {
+    --marquee-gap: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .testimonials-marquee-track {
+    --marquee-gap: 1.75rem;
+  }
 }
 
 /**

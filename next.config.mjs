@@ -57,9 +57,13 @@ const nextConfig = {
       "object-src 'none'",
     ].join('; ');
 
-    /** LCP hero — start fetch early (pairs with `fetchpriority="high"` on the img). */
+    /**
+     * LCP hero — HTTP preload is parsed before `<img>`; without `fetchpriority=high` it can load at
+     * low priority and Lighthouse still fails “fetchpriority=high” even when the img has it (see
+     * HeroSection `priority` + `fetchPriority="high"`).
+     */
     const lcpImagePreload =
-      '</cikgu-ram-westport-driving-academy-mobile-hero-828.webp>; rel=preload; as=image';
+      '</cikgu-ram-westport-driving-academy-mobile-hero-828.webp>; rel=preload; as=image; fetchpriority=high';
 
     /** RFC 8288 / RFC 9727: homepage advertises API catalog and docs for agent discovery */
     const homepageDiscoveryLink = [
