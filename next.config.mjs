@@ -102,6 +102,16 @@ const nextConfig = {
           { key: 'Cache-Control', value: homepageCacheControl },
         ],
       },
+      /** OG image: long cache + `no-transform` so CDNs/proxies avoid re-encoding or resizing the asset. */
+      {
+        source: '/og-main.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, no-transform',
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [
