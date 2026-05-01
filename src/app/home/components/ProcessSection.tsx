@@ -2,10 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import {
-  PricingInlineCountdown,
-  usePricingCountdown,
-} from '@/app/home/components/PricingInlineCountdown';
+import { PricingInlineCountdown } from '@/app/home/components/PricingInlineCountdown';
 
 const PROCESS_IMAGE = '/cikgu-ram-westport-driving-academy-manual-automatic-process.webp';
 const PROCESS_ALT =
@@ -20,8 +17,6 @@ function scrollToRegisterForm() {
 }
 
 export default function ProcessSection() {
-  const timeLeft = usePricingCountdown(23);
-
   return (
     <section id="process" className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-bg" />
@@ -65,7 +60,7 @@ export default function ProcessSection() {
                 SAVE RM299
               </span>
               <span className="hidden h-3 w-px shrink-0 bg-black/[0.08] sm:block" aria-hidden />
-              <PricingInlineCountdown timeLeft={timeLeft} />
+              <PricingInlineCountdown targetHours={23} />
             </div>
             <p className="mt-2 max-w-sm text-center text-base leading-snug text-black/50 font-body sm:mt-2.5">
               Complete package · Zero hidden fees

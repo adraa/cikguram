@@ -4,10 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
 import bonusFlash from '@/assets/bonus-flash.webp';
-import {
-  PricingInlineCountdown,
-  usePricingCountdown,
-} from '@/app/home/components/PricingInlineCountdown';
+import { PricingInlineCountdown } from '@/app/home/components/PricingInlineCountdown';
 import TrustStatsGrid from '@/app/home/components/TrustStatsGrid';
 
 const coreItems = [
@@ -28,8 +25,6 @@ const bonusItems = [
 ];
 
 export default function PricingCard() {
-  const timeLeft = usePricingCountdown(23);
-
   return (
     <section
       id="pricing"
@@ -87,7 +82,7 @@ export default function PricingCard() {
                   SAVE RM299
                 </span>
                 <span className="hidden h-3 w-px shrink-0 bg-black/[0.08] sm:block" aria-hidden />
-                <PricingInlineCountdown timeLeft={timeLeft} />
+                <PricingInlineCountdown targetHours={23} />
               </div>
               <p className="mt-2 max-w-sm text-center text-base leading-snug text-black/50 font-body sm:mt-2.5">
                 Complete package · Zero hidden fees

@@ -9,7 +9,7 @@ import TestimonialsSection from '@/app/home/components/TestimonialsSection';
 import StillHaveQuestionsSection from '@/app/home/components/StillHaveQuestionsSection';
 import ReserveFormSection from '@/app/home/components/ReserveFormSection';
 import StatsBarSection from '@/app/home/components/StatsBarSection';
-import ScrollRevealInit from '@/app/home/components/ScrollRevealInit';
+import DeferredHomeClient from '@/app/home/components/DeferredHomeClient';
 
 export default function HomePage() {
   return (
@@ -32,7 +32,9 @@ export default function HomePage() {
       <TestimonialsSection />
       <StillHaveQuestionsSection />
       <Footer />
-      <ScrollRevealInit />
+
+      {/* 3. Render deferred components at the very end (dynamic + ssr:false lives in client module) */}
+      <DeferredHomeClient />
     </main>
   );
 }

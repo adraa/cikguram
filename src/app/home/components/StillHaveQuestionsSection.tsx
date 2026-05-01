@@ -2,10 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import {
-  PricingInlineCountdown,
-  usePricingCountdown,
-} from '@/app/home/components/PricingInlineCountdown';
+import { PricingInlineCountdown } from '@/app/home/components/PricingInlineCountdown';
 import { ReviewCard } from '@/app/home/components/ReviewCard';
 import { GOOGLE_REVIEWS_STATIC } from '@/data/google-reviews-static';
 import TrustStatsGrid from '@/app/home/components/TrustStatsGrid';
@@ -94,7 +91,6 @@ const FAQ_CHIP_ICON_MEDIA_CLASS = 'h-6 w-6 shrink-0';
 
 /** Price pill markup with FAQ `ReviewCard` warm ring + lift (`FAQ_WARM_OUTLINE`). */
 function FaqPricingPill() {
-  const timeLeft = usePricingCountdown(23);
   return (
     <div
       className={`${FAQ_WARM_OUTLINE} bg-white px-4 py-3.5 text-center sm:flex sm:flex-col sm:items-center sm:px-5 sm:py-3.5`}
@@ -124,7 +120,7 @@ function FaqPricingPill() {
         </div>
         <div className="flex min-w-0 items-center justify-center gap-x-2 sm:contents">
           <span className="hidden h-3 w-px shrink-0 bg-black/[0.08] sm:block" aria-hidden />
-          <PricingInlineCountdown timeLeft={timeLeft} />
+          <PricingInlineCountdown targetHours={23} />
         </div>
       </div>
     </div>
@@ -167,7 +163,7 @@ export default function StillHaveQuestionsSection() {
                             <VerifiedSealBadge className={FAQ_CHIP_ICON_MEDIA_CLASS} />
                           ) : item.avatar.kind === 'jpj' ? (
                             <Image
-                              src="/jpj-logo.png"
+                              src="/jpj-logo.webp"
                               alt=""
                               width={24}
                               height={24}

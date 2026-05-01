@@ -33,10 +33,13 @@ export function usePricingCountdown(targetHours: number): PricingTimeLeft {
   return timeLeft;
 }
 
-export function PricingInlineCountdown({ timeLeft }: { timeLeft: PricingTimeLeft }) {
+const countdownShellClass =
+  'inline-flex items-center gap-0.5 text-[13px] font-display font-700 text-[#CC0000] tabular-nums';
+
+function CountdownDigits({ timeLeft }: { timeLeft: PricingTimeLeft }) {
   const fmt = (n: number) => String(n).padStart(2, '0');
   return (
-    <span className="inline-flex items-center gap-0.5 text-[13px] font-display font-700 text-[#CC0000] tabular-nums">
+    <span className={countdownShellClass}>
       <span className="mr-0.5 text-[13px] leading-none">⏰</span>
       {fmt(timeLeft.hours)}
       <span className="mx-0.5 opacity-60">:</span>
@@ -45,4 +48,30 @@ export function PricingInlineCountdown({ timeLeft }: { timeLeft: PricingTimeLeft
       {fmt(timeLeft.seconds)}
     </span>
   );
+}
+
+/** Countdown ticks are isolated here so parent sections do not re-render every second. */
+export function PricingInlineCountdown({ targetHours }: { targetHours: number }) {
+  const [isMounted, setIsMounted] = useState(false);
+  const timeLeft = usePricingCountdown(targetHours);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    // Reserve layout; same markup shape as live timer to avoid hydration mismatch vs first client paint
+    return (
+      <span className={`${countdownShellClass} invisible`} aria-hidden>
+        <span className="mr-0.5 text-[13px] leading-none">⏰</span>
+        {'00'}
+        <span className="mx-0.5 opacity-60">:</span>
+        {'00'}
+        <span className="mx-0.5 opacity-60">:</span>
+        {'00'}
+      </span>
+    );
+  }
+
+  return <CountdownDigits timeLeft={timeLeft} />;
 }
