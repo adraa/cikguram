@@ -9,9 +9,6 @@
   .font-700 {
     font-weight: 700;
   }
-  .font-800 {
-    font-weight: 800;
-  }
   .font-900 {
     font-weight: 900;
   }
@@ -775,7 +772,7 @@ h6 {
 /* Countdown digit */
 .countdown-digit {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   transition: all 0.3s ease;
 }

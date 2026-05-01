@@ -164,7 +164,7 @@ export default function ReserveFormSection() {
               <div className="w-16 h-16 rounded-full bg-[#1A7A3C]/12 flex items-center justify-center mx-auto mb-5">
                 <Icon name="CheckCircleIcon" size={32} variant="solid" className="text-[#1A7A3C]" />
               </div>
-              <h3 className="font-display font-800 text-xl sm:text-2xl text-[#111111] mb-3 tracking-tight">
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-[#111111] mb-3 tracking-tight">
                 Spot Reserved!
               </h3>
               <p className="text-black/55 font-body text-sm sm:text-base leading-[1.7] mb-6">

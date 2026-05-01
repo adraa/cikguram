@@ -6,7 +6,7 @@ import '../styles/tailwind.css';
 /** Only weights/styles used in the app — fewer @font-face blocks in CSS (Lighthouse critical path). */
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700', '900'],
   style: ['normal'],
   variable: '--font-display',
   display: 'swap',
