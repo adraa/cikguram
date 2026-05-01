@@ -72,6 +72,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${manrope.variable}`}>
+      {/*
+        Same URL as HeroSection + Link header in next.config.mjs. In-document preload with
+        fetchPriority lets Cloudflare Early Hints (HTTP 103) align with high priority; header-only
+        preload often appears in 103 without fetchpriority and Lighthouse still fails LCP discovery.
+      */}
+      <head>
+        <link
+          rel="preload"
+          href="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
+          as="image"
+          fetchPriority="high"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
