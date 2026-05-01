@@ -33,6 +33,10 @@ const defaultSite = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'htt
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultSite),
+  icons: {
+    icon: [{ url: '/cikgu-ram-westport-driving-academy-new-favicon.jpg', type: 'image/jpeg' }],
+    apple: [{ url: '/cikgu-ram-westport-driving-academy-new-favicon.jpg', type: 'image/jpeg' }],
+  },
   title: 'CikguRam | Get Your Driving License Fast in Malaysia',
   description:
     'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed. Save RM299 today.',
