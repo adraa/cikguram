@@ -47,7 +47,19 @@ const nextConfig = {
       "object-src 'none'",
     ].join('; ');
 
+    /** RFC 8288 / RFC 9727: homepage advertises API catalog and docs for agent discovery */
+    const homepageDiscoveryLink = [
+      '</.well-known/api-catalog>; rel="api-catalog"',
+      '</docs/api/spec>; rel="service-desc"',
+      '</docs/api>; rel="service-doc"',
+      '</docs/api/spec>; rel="describedby"',
+    ].join(', ');
+
     return [
+      {
+        source: '/',
+        headers: [{ key: 'Link', value: homepageDiscoveryLink }],
+      },
       {
         source: '/(.*)',
         headers: [

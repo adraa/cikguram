@@ -23,6 +23,12 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.19(tailwindcss@3.4.6)
+      http-message-sig:
+        specifier: ^0.2.0
+        version: 0.2.0
+      jsonwebkey-thumbprint:
+        specifier: ^0.1.0
+        version: 0.1.0
       next:
         specifier: ^15.5.15
         version: 15.5.15(react-dom@19.0.3(react@19.0.3))(react@19.0.3)
@@ -2503,6 +2509,9 @@ packages:
     resolution: {integrity: sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==}
     engines: {node: '>= 0.8'}
 
+  http-message-sig@0.2.0:
+    resolution: {integrity: sha512-9fXSmxsdWDuMgk6Rd5Jc8Fa/wEblmRXZyO89KPkRrGsdeAwYlUkvS5oSOw6aOKKK/qKHNTq3jCHHTRCEid6RaQ==}
+
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
@@ -2699,6 +2708,9 @@ packages:
   json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
+
+  jsonwebkey-thumbprint@0.1.0:
+    resolution: {integrity: sha512-4m/gJEUQH8N2NfvZFjCL8/E+vlt0FlrmHoR4T93CEXQRkC64qwRi6oQri4/eqLVXqEqXYCss0+Q7pLx6vJBqzw==}
 
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -3354,6 +3366,10 @@ packages:
 
   strnum@2.2.3:
     resolution: {integrity: sha512-oKx6RUCuHfT3oyVjtnrmn19H1SiCqgJSg+54XqURKp5aCMbrXrhLjRN9TjuwMjiYstZ0MzDrHqkGZ5dFTKd+zg==}
+
+  structured-headers@2.0.2:
+    resolution: {integrity: sha512-IUul56vVHuMg2UxWhwDj9zVJE6ztYEQQkynr1FQ/NydPhivtk5+Qb2N1RS36owEFk2fNUriTguJ2R7htRObcdA==}
+    engines: {node: '>=18', npm: '>=6'}
 
   styled-jsx@5.1.6:
     resolution: {integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==}
@@ -6598,6 +6614,10 @@ snapshots:
       statuses: 2.0.2
       toidentifier: 1.0.1
 
+  http-message-sig@0.2.0:
+    dependencies:
+      structured-headers: 2.0.2
+
   human-signals@2.1.0: {}
 
   humanize-ms@1.2.1:
@@ -6787,6 +6807,8 @@ snapshots:
   json5@1.0.2:
     dependencies:
       minimist: 1.2.8
+
+  jsonwebkey-thumbprint@0.1.0: {}
 
   jsx-ast-utils@3.3.5:
     dependencies:
@@ -7509,6 +7531,8 @@ snapshots:
   strip-json-comments@3.1.1: {}
 
   strnum@2.2.3: {}
+
+  structured-headers@2.0.2: {}
 
   styled-jsx@5.1.6(react@19.0.3):
     dependencies:
