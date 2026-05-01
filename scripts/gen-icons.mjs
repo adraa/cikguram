@@ -23,7 +23,7 @@ async function main() {
   const logoBuffer = await sharp(SRC).resize(logoSize, logoSize, { fit: 'contain' }).png().toBuffer();
   await sharp({ create: { width: 1200, height: 630, channels: 3, background: BRAND_BG } })
     .composite([{ input: logoBuffer, gravity: 'center' }])
-    .jpeg({ quality: 82, mozjpeg: true })
+    .jpeg({ quality: 82, progressive: false, chromaSubsampling: '4:2:0' })
     .toFile(path.join(APP_DIR, 'opengraph-image.jpg'));
 
   console.log('generated: icon.png, apple-icon.png, opengraph-image.jpg');
