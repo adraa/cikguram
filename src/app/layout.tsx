@@ -97,9 +97,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           fetchPriority="high"
         />
       </head>
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
       <GoogleTagManager gtmId="GTM-5ZLH8SB9a" />
     </html>
   );
