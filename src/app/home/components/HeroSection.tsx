@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { ArrowDownIcon } from '@heroicons/react/24/solid';
 
 const HERO_IMAGE_ALT =
@@ -88,37 +87,28 @@ export default function HeroSection() {
         weeks.
       </h1>
 
-      {/* Mobile: full-bleed; intrinsic ~828px wide WebP — smaller decode vs legacy 1080px master (pnpm optimize:perf-images). */}
-      <div className="relative w-full bg-[#121212] md:hidden">
-        <Image
-          src="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
-          alt={HERO_IMAGE_ALT}
-          width={828}
-          height={1483}
-          className="block h-auto w-full max-w-none"
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          quality={85}
-        />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-16">
-          <HeroOverlayCTAs />
-        </div>
-      </div>
-
-      {/* Desktop: frame matches asset 2752×1536 */}
-      <div className="relative hidden aspect-[2752/1536] w-full overflow-hidden md:block">
-        <Image
-          src="/cikgu-ram-westport-driving-academy-desktop-hero-section.webp"
-          alt={HERO_IMAGE_ALT}
-          fill
-          className="object-cover"
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          quality={85}
-        />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-4 pt-12 sm:pb-5 sm:pt-16 md:pb-6 md:pt-20">
+      {/*
+        One `<picture>` / one selected asset: two separate `next/image` heroes both had `priority`,
+        which commonly triggers eager fetches for the hidden breakpoint image too — extra decode
+        bandwidth before first contentful paint. `next.config` + layout preloads use `media` to match.
+      */}
+      <div className="relative w-full bg-[#121212] md:aspect-[2752/1536] md:overflow-hidden">
+        <picture className="block md:absolute md:inset-0 md:h-full md:w-full">
+          <source
+            media="(min-width: 768px)"
+            srcSet="/cikgu-ram-westport-driving-academy-desktop-hero-section.webp"
+          />
+          <img
+            src="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
+            alt={HERO_IMAGE_ALT}
+            width={828}
+            height={1483}
+            className="block h-auto w-full max-w-none md:h-full md:w-full md:object-cover"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-16 md:pb-6 md:pt-20">
           <HeroOverlayCTAs />
         </div>
       </div>

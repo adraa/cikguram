@@ -73,15 +73,23 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${dmSans.variable} ${manrope.variable}`}>
       {/*
-        Same URL as HeroSection + Link header in next.config.mjs. In-document preload with
-        fetchPriority lets Cloudflare Early Hints (HTTP 103) align with high priority; header-only
-        preload often appears in 103 without fetchpriority and Lighthouse still fails LCP discovery.
+        URLs + `media` match HeroSection `<picture>` + `Link` header in next.config.mjs. In-document
+        preload with fetchPriority helps discovery; header preloads use matching `media` so only the
+        viewport-relevant hero is advertised.
       */}
       <head>
         <link
           rel="preload"
           href="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
           as="image"
+          media="(max-width: 767px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/cikgu-ram-westport-driving-academy-desktop-hero-section.webp"
+          as="image"
+          media="(min-width: 768px)"
           fetchPriority="high"
         />
       </head>

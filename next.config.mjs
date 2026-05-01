@@ -62,12 +62,15 @@ const nextConfig = {
      * low priority and Lighthouse still fails “fetchpriority=high” even when the img has it (see
      * HeroSection `priority` + `fetchPriority="high"`).
      */
-    const lcpImagePreload =
-      '</cikgu-ram-westport-driving-academy-mobile-hero-828.webp>; rel=preload; as=image; fetchpriority=high';
+    const lcpPreloadMobile =
+      '</cikgu-ram-westport-driving-academy-mobile-hero-828.webp>; rel=preload; as=image; fetchpriority=high; media=(max-width:767px)';
+    const lcpPreloadDesktop =
+      '</cikgu-ram-westport-driving-academy-desktop-hero-section.webp>; rel=preload; as=image; fetchpriority=high; media=(min-width:768px)';
 
     /** RFC 8288 / RFC 9727: homepage advertises API catalog and docs for agent discovery */
     const homepageDiscoveryLink = [
-      lcpImagePreload,
+      lcpPreloadMobile,
+      lcpPreloadDesktop,
       '</.well-known/api-catalog>; rel="api-catalog"',
       '</docs/api/spec>; rel="service-desc"',
       '</docs/api>; rel="service-doc"',
