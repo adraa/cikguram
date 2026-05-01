@@ -35,11 +35,6 @@ export const metadata: Metadata = {
   title: 'CikguRam | Get Your Driving License Fast in Malaysia',
   description:
     'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed. Save RM299 today.',
-  icons: {
-    icon: [{ url: '/cikgu-ram-westport-driving-academy-favicon.png', type: 'image/png' }],
-    shortcut: '/cikgu-ram-westport-driving-academy-favicon.png',
-    apple: '/cikgu-ram-westport-driving-academy-favicon.png',
-  },
   alternates: {
     canonical: '/',
   },
@@ -51,14 +46,12 @@ export const metadata: Metadata = {
     title: 'CikguRam | Get Your Driving License Fast in Malaysia',
     description:
       'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed.',
-    images: [{ url: '/assets/images/app_logo.png', width: 512, height: 512, alt: 'CikguRam' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CikguRam | Get Your Driving License Fast in Malaysia',
     description:
       'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport.',
-    images: ['/assets/images/app_logo.png'],
   },
   robots: {
     index: true,
