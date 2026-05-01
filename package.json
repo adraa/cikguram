@@ -29,6 +29,16 @@
     "upload": "opennextjs-cloudflare build --config wrangler.jsonc && opennextjs-cloudflare upload --config wrangler.jsonc",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts --config wrangler.jsonc"
   },
+  "browserslist": [
+    "chrome >= 93",
+    "edge >= 93",
+    "firefox >= 92",
+    "safari >= 15.4",
+    "ios_saf >= 15.4",
+    "opera >= 79",
+    "samsung >= 19",
+    "not dead"
+  ],
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@opennextjs/cloudflare": "^1.19.5",
