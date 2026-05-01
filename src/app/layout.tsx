@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans, Manrope } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import '../styles/tailwind.css';
 
 /** Only weights/styles used in the app — fewer @font-face blocks in CSS (Lighthouse critical path). */
@@ -67,6 +68,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    'fb:app_id': '2814770908874678',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -93,7 +97,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           fetchPriority="high"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
+      <GoogleTagManager gtmId="GTM-5ZLH8SB9a" />
     </html>
   );
 }
