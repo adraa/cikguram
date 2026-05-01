@@ -9,6 +9,25 @@ import { MetadataRoute } from 'next';
  * PerplexityBot, OAI-SearchBot) so ordinary search and live citations can
  * still work; tighten those separately if you want zero AI access.
  */
+/**
+ * Link-preview / unfurl crawlers used by social platforms and chat apps.
+ * Explicitly allowed (not just covered by `*`) so debuggers like Facebook's
+ * Sharing Debugger don't conservatively report "blocked by robots.txt" when
+ * they see sibling Meta/Facebook UAs in the disallow list.
+ */
+const LINK_PREVIEW_USER_AGENTS = [
+  'facebookexternalhit', // Facebook + WhatsApp link previews
+  'meta-externalfetcher', // Newer Meta unfurl crawler
+  'Twitterbot', // X / Twitter cards
+  'LinkedInBot', // LinkedIn previews
+  'Slackbot', // Slack unfurls
+  'Slackbot-LinkExpanding',
+  'Discordbot', // Discord embeds
+  'TelegramBot', // Telegram link previews
+  'WhatsApp', // WhatsApp legacy preview UA
+  'Pinterest',
+] as const;
+
 const AI_TRAINING_USER_AGENTS = [
   'GPTBot', // OpenAI model training
   'Google-Extended', // Google Gemini / generative features training (not Google Search ranking)
@@ -33,6 +52,13 @@ export default function robots(): MetadataRoute.Robots {
   const raw = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const baseUrl = raw.replace(/\/$/, '');
 
+  const linkPreviewAllowRules: MetadataRoute.Robots['rules'] = LINK_PREVIEW_USER_AGENTS.map(
+    (userAgent) => ({
+      userAgent,
+      allow: '/',
+    })
+  );
+
   const trainingOptOutRules: MetadataRoute.Robots['rules'] = AI_TRAINING_USER_AGENTS.map(
     (userAgent) => ({
       userAgent,
@@ -42,6 +68,7 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
+      ...linkPreviewAllowRules,
       ...trainingOptOutRules,
       {
         userAgent: '*',
