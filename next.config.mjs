@@ -54,10 +54,11 @@ const nextConfig = {
       `script-src-elem 'self' ${inlineAndEval} ${scriptExtras}`,
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
-      "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://images.pixabay.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com",
+      "img-src 'self' data: blob: https://cikguram.com https://www.cikguram.com https://images.unsplash.com https://images.pexels.com https://images.pixabay.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com",
       `connect-src 'self' https://docs.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net ${cfInsightConnect}`,
       "form-action 'self' https://docs.google.com",
-      "frame-ancestors 'none'",
+      // Framing: omit legacy X-Frame-Options so CSP controls embedding (DENY would block Facebook tooling).
+      "frame-ancestors 'self' https://www.facebook.com https://developers.facebook.com",
       "frame-src 'self' https://www.googletagmanager.com",
       "base-uri 'self'",
       "object-src 'none'",
@@ -87,6 +88,12 @@ const nextConfig = {
     const homepageCacheControl =
       'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400';
 
+    /**
+     * X-Content-Type-Options: nosniff on `/(.*)` — compatible with images when `Content-Type` matches
+     * bytes (e.g. image/png from `public/`). It blocks MIME sniffing, not valid images. Next.js
+     * headers lack a simple “non-image only” matcher without duplicating this header block per route.
+     */
+
     return [
       {
         source: '/',
@@ -99,7 +106,7 @@ const nextConfig = {
         source: '/(.*)',
         headers: [
           { key: 'Content-Security-Policy',       value: csp },
-          { key: 'X-Frame-Options',               value: 'DENY' },
+          // Framing policy is frame-ancestors in CSP only (see csp array).
           { key: 'X-Content-Type-Options',        value: 'nosniff' },
           { key: 'Referrer-Policy',               value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',            value: 'camera=(), microphone=(), geolocation=(), payment=()' },

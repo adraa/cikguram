@@ -4,6 +4,9 @@ import { DM_Sans, Manrope } from 'next/font/google';
 import { GoogleTagManager } from '@next/third-parties/google';
 import '../styles/tailwind.css';
 
+/** Production origin — absolute OG/Twitter image URLs and metadataBase (no relative resolution). */
+const defaultSite = 'https://cikguram.com';
+
 /** Only weights/styles used in the app — fewer @font-face blocks in CSS (Lighthouse critical path). */
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -29,8 +32,6 @@ export const viewport: Viewport = {
   themeColor: '#CC0000',
 };
 
-const defaultSite = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'http://localhost:3000';
-
 export const metadata: Metadata = {
   metadataBase: new URL(defaultSite),
   icons: {
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
       'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed.',
     images: [
       {
-        url: '/opengraph-image.png',
+        url: `${defaultSite}/opengraph-image.png`,
         width: 1200,
         height: 630,
         type: 'image/png',
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     title: 'CikguRam | Get Your Driving License Fast in Malaysia',
     description:
       'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport.',
-    images: ['/opengraph-image.png'],
+    images: [`${defaultSite}/opengraph-image.png`],
   },
   robots: {
     index: true,
