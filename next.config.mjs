@@ -5,6 +5,12 @@ import { imageHosts } from './image-hosts.config.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/**
+ * `package.json` defines `browserslist` for SWC/autoprefixer. Next’s webpack CSS path uses a
+ * vendored Browserslist that does not support `baseline widely available` yet, so we use
+ * explicit minimum versions aligned with Baseline-style support (see web.dev baseline + polyfills).
+ */
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingRoot: __dirname,
