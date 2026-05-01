@@ -44,10 +44,10 @@ export default function PricingCard() {
 
         {/* Main pricing card: top + sides only; bottom attaches to scarcity strip (sibling under section) */}
         <div className="reveal delay-100 max-w-2xl mx-auto rounded-t-2xl border border-black/8 border-b-0 bg-white shadow-card relative">
-          {/* Square promo art (1:1) on all breakpoints; WebP from scripts/encode-pricing-webp.cjs */}
+          {/* Square promo art (1:1); WebP max 704px — scripts/optimize-perf-images.cjs & encode-pricing-webp.cjs */}
           <div className="relative aspect-square overflow-hidden rounded-t-2xl">
             <Image
-              src="/cikgu-ram-westport-driving-academy-mobile-desktop-price-section.webp"
+              src="/cikgu-ram-westport-driving-academy-mobile-desktop-price-section-704.webp"
               alt="Manual and automatic D and DA driving license — save RM299, free transport, WhatsApp support, register online"
               fill
               className="object-cover object-center"

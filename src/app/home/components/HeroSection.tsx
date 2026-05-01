@@ -88,13 +88,13 @@ export default function HeroSection() {
         weeks.
       </h1>
 
-      {/* Mobile: full-bleed; width/height set aspect. Optimized srcset — source WebP is ~4MB, do not use unoptimized. */}
+      {/* Mobile: full-bleed; intrinsic ~828px wide WebP — smaller decode vs legacy 1080px master (pnpm optimize:perf-images). */}
       <div className="relative w-full bg-[#121212] md:hidden">
         <Image
-          src="/cikgu-ram-westport-driving-academy-mobile-hero-section.webp"
+          src="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
           alt={HERO_IMAGE_ALT}
-          width={1536}
-          height={2752}
+          width={828}
+          height={1483}
           className="block h-auto w-full max-w-none"
           priority
           fetchPriority="high"

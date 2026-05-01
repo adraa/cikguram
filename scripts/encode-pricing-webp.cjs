@@ -1,5 +1,5 @@
 /**
- * PNG → WebP for pricing hero (square asset, max side 1536 ≈ 2× 672px card).
+ * PNG → WebP for pricing hero (square asset; max side 704 ≈ 2× ~672px card).
  * Run: pnpm run optimize:pricing-image
  */
 const fs = require('fs');
@@ -16,10 +16,11 @@ const input = path.join(
 const output = path.join(
   root,
   'public',
-  'cikgu-ram-westport-driving-academy-mobile-desktop-price-section.webp',
+  'cikgu-ram-westport-driving-academy-mobile-desktop-price-section-704.webp',
 );
 
-const MAX_SIDE = 1536;
+/** Card art max ~672 CSS px — ~704 covers 2× without oversized intrinsic bytes (see optimize-perf-images.cjs). */
+const MAX_SIDE = 704;
 
 async function main() {
   if (!fs.existsSync(input)) {
@@ -42,7 +43,7 @@ async function main() {
   }
 
   await pipeline
-    .webp({ quality: 86, effort: 6, smartSubsample: true })
+    .webp({ quality: 73, effort: 6, smartSubsample: true })
     .toFile(output);
 
   const inB = fs.statSync(input).size;

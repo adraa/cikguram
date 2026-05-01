@@ -16,6 +16,10 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   productionBrowserSourceMaps: false,
   distDir: process.env.DIST_DIR || '.next',
+  experimental: {
+    /** Tree-shake icon barrel imports — smaller shared chunks + fewer legacy polyfill deps surfaced in Lighthouse. */
+    optimizePackageImports: ['@heroicons/react'],
+  },
   typescript: {
     ignoreBuildErrors: false,
   },

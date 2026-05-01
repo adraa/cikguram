@@ -15,7 +15,7 @@ export default function StatsBarSection() {
           <div className="stats-orb stats-orb-1">
             <div className="absolute inset-0 overflow-hidden">
               <Image
-                src="/stats-bg-1.jpg"
+                src="/stats-bg-1.webp"
                 alt=""
                 fill
                 quality={75}
@@ -28,7 +28,7 @@ export default function StatsBarSection() {
           <div className="stats-orb stats-orb-2">
             <div className="absolute inset-0 overflow-hidden">
               <Image
-                src="/stats-bg-2.jpg"
+                src="/stats-bg-2.webp"
                 alt=""
                 fill
                 quality={75}
