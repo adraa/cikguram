@@ -19,10 +19,7 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
     const sync = () => {
       if (!track || !seg1) return;
       // Single geometry read + CSS --marquee-gap (see tailwind.css) — no getComputedStyle
-      track.style.setProperty(
-        '--marquee-w',
-        `calc(${seg1.offsetWidth}px + var(--marquee-gap))`,
-      );
+      track.style.setProperty('--marquee-w', `calc(${seg1.offsetWidth}px + var(--marquee-gap))`);
     };
     let raf = 0;
     const scheduleSync = () => {
@@ -33,8 +30,7 @@ function TestimonialsMarqueeTrack({ items }: { items: DisplayReview[] }) {
       });
     };
     sync();
-    const ro =
-      typeof ResizeObserver !== 'undefined' ? new ResizeObserver(scheduleSync) : null;
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(scheduleSync) : null;
     if (seg1) ro?.observe(seg1);
     if (track) ro?.observe(track);
     window.addEventListener('resize', scheduleSync);
