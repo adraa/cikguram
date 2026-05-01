@@ -13,7 +13,7 @@ interface AppLogoProps {
 }
 
 const AppLogo = memo(function AppLogo({
-  src = '/assets/images/app_logo.png',
+  src = '/assets/images/app_logo.webp',
   iconName = 'SparklesIcon',
   size = 64,
   className = '',
@@ -37,7 +37,6 @@ const AppLogo = memo(function AppLogo({
           width={size}
           height={size}
           className="flex-shrink-0"
-          priority={true}
           unoptimized={src.endsWith('.svg')}
         />
       ) : (
