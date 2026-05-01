@@ -40,19 +40,22 @@ const nextConfig = {
     const gtmScript =
       'https://www.googletagmanager.com https://*.googletagmanager.com https://tagmanager.google.com https://googletagmanager.com';
     const gaScript = 'https://www.google-analytics.com';
-    const scriptExtras = `${gtmScript} ${gaScript}`;
+    // Cloudflare Web Analytics / Insights (beacon.js + POST target)
+    const cfInsightScript = 'https://static.cloudflareinsights.com';
+    const cfInsightConnect = 'https://cloudflareinsights.com';
+    const scriptExtras = `${gtmScript} ${gaScript} ${cfInsightScript}`;
     const inlineAndEval = `'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`;
 
     const csp = [
       "default-src 'self'",
       // unsafe-eval: dev only (HMR); unsafe-inline: Next hydration + GTM bootstrap (see Google CSP guide)
       `script-src 'self' ${inlineAndEval} ${scriptExtras}`,
-      // External <script src>; mirrors script hosts so tools that emphasize script-src-elem stay aligned
+      // External <script src> (GTM, GA, Cloudflare beacon)
       `script-src-elem 'self' ${inlineAndEval} ${scriptExtras}`,
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
       "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://images.pixabay.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com",
-      "connect-src 'self' https://docs.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net",
+      `connect-src 'self' https://docs.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net ${cfInsightConnect}`,
       "form-action 'self' https://docs.google.com",
       "frame-ancestors 'none'",
       "frame-src 'self' https://www.googletagmanager.com",
