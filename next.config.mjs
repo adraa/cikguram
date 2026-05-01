@@ -57,18 +57,30 @@ const nextConfig = {
       "object-src 'none'",
     ].join('; ');
 
+    /** LCP hero — start fetch early (pairs with `fetchpriority="high"` on the img). */
+    const lcpImagePreload =
+      '</cikgu-ram-westport-driving-academy-mobile-hero-828.webp>; rel=preload; as=image';
+
     /** RFC 8288 / RFC 9727: homepage advertises API catalog and docs for agent discovery */
     const homepageDiscoveryLink = [
+      lcpImagePreload,
       '</.well-known/api-catalog>; rel="api-catalog"',
       '</docs/api/spec>; rel="service-desc"',
       '</docs/api>; rel="service-doc"',
       '</docs/api/spec>; rel="describedby"',
     ].join(', ');
 
+    /** Edge/CDN may cache HTML at POPs; browsers revalidate (`max-age=0`) so updates propagate after deploy + CDN TTL. */
+    const homepageCacheControl =
+      'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400';
+
     return [
       {
         source: '/',
-        headers: [{ key: 'Link', value: homepageDiscoveryLink }],
+        headers: [
+          { key: 'Link', value: homepageDiscoveryLink },
+          { key: 'Cache-Control', value: homepageCacheControl },
+        ],
       },
       {
         source: '/(.*)',

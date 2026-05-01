@@ -11,6 +11,9 @@ import ReserveFormSection from '@/app/home/components/ReserveFormSection';
 import StatsBarSection from '@/app/home/components/StatsBarSection';
 import DeferredHomeClient from '@/app/home/components/DeferredHomeClient';
 
+/** Lock prerendered HTML for `/` so OpenNext/Workers don’t treat it as dynamic (stable TTFB). */
+export const dynamic = 'force-static';
+
 export default function HomePage() {
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">

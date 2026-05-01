@@ -86,6 +86,36 @@ To use **Cloudflare Images** optimization later:
 
 3. In **`next.config.mjs`**, set **`images.unoptimized`** to **`false`** (and tune loader per [OpenNext image how-to](https://opennext.js.org/cloudflare/howtos/image) if you use a custom loader).
 
+## Performance (Lighthouse / TTFB)
+
+Lab audits often show **slow document response** and a large **Time to First Byte** slice in **LCP breakdown**. On this stack, reducing edge latency matters more than shrinking images alone.
+
+**What the app already does**
+
+- **`src/app/page.tsx`** exports **`dynamic = 'force-static'`** so `/` is prerendered (no per-request React SSR for the homepage).
+- **`next.config.mjs`** sends **`Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=86400`** for **`/`** so **Cloudflare can cache HTML at the edge** (`s-maxage`) while browsers revalidate (`max-age=0`).
+- The same `/` response includes a **`Link: rel=preload`** for the **LCP hero WebP** so the browser can start the image fetch early.
+
+**Verify after deploy**
+
+```bash
+curl -sI "https://cikguram.com/" | findstr /i "cache-control cf-cache-status link"
+```
+
+- **`cf-cache-status: HIT`** on repeat requests means the edge served cached HTML (good for TTFB). **`MISS`** then **`DYNAMIC`** is normal on first request or after purge.
+
+**Dashboard levers (optional)**
+
+| Area | Why it matters |
+|------|----------------|
+| **Caching** | If needed, add a **Cache Rule** for URI Path equals `/` that respects origin cache headers or sets edge TTL — usually redundant once origin sends `s-maxage`. |
+| **Bots / challenges** | Aggressive bot modes can inject **`/cdn-cgi/challenge-platform/...`** and inflate **TBT** in Lighthouse. Tune **Security Level**, **Bot Fight Mode**, and Super Bot Fight only if you see unnecessary challenges on normal traffic. |
+| **Geography** | Worker + asset POP latency varies by region; compare PSI runs from multiple locales if audiences are global. |
+
+**Optional (advanced)**
+
+- OpenNext **[incremental cache with R2](https://opennext.js.org/cloudflare/caching)** — uncomment `incrementalCache` in **`open-next.config.ts`** and add an R2 bucket + binding if you need ISR-scale caching beyond edge HTML TTL.
+
 ## References
 
 - [Next.js on Cloudflare Workers](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/)
