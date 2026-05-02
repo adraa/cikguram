@@ -7,7 +7,7 @@ import '../styles/tailwind.css';
 /** Production origin — absolute OG/Twitter image URLs and metadataBase (no relative resolution). */
 const defaultSite = 'https://cikguram.com';
 
-/** Facebook App ID for Sharing Debugger (`property="fb:app_id"`). */
+/** Facebook App ID — only `facebook.appId` emits `property="fb:app_id"`; never put `fb:app_id` in `metadata.other` (Next uses `name`). */
 const FB_APP_ID = '2814770908874678';
 
 /** Only weights/styles used in the app — fewer @font-face blocks in CSS (Lighthouse critical path). */
@@ -64,11 +64,7 @@ export const metadata: Metadata = {
         alt: 'CikguRam | Get Your Driving License Fast in Malaysia',
       },
     ],
-    other: {
-      'fb:app_id': FB_APP_ID,
-    },
-  } as Metadata['openGraph'],
-  // Next.js does not render `openGraph.other` as tags; `facebook.appId` emits `<meta property="fb:app_id">`.
+  },
   facebook: {
     appId: FB_APP_ID,
   },
