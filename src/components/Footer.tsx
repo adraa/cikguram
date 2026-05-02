@@ -86,16 +86,16 @@ export default function Footer() {
                   <section>
                     <h3 className="mb-2 font-medium text-black">Data collection</h3>
                     <p>
-                      We only collect information that you voluntarily provide when you submit a lead
-                      or enquiry through our website—for example, your name, phone number, or email
-                      address.
+                      We only collect information that you voluntarily provide when you submit a
+                      lead or enquiry through our website—for example, your name, phone number, or
+                      email address.
                     </p>
                   </section>
                   <section>
                     <h3 className="mb-2 font-medium text-black">Purpose</h3>
                     <p>
-                      We use this information solely to contact you about driving lessons and related
-                      enquiries for Cikgu Ram.
+                      We use this information solely to contact you about driving lessons and
+                      related enquiries for Cikgu Ram.
                     </p>
                   </section>
                   <section>
