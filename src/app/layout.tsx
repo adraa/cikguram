@@ -7,6 +7,9 @@ import '../styles/tailwind.css';
 /** Production origin — absolute OG/Twitter image URLs and metadataBase (no relative resolution). */
 const defaultSite = 'https://cikguram.com';
 
+/** Facebook App ID for Sharing Debugger (`property="fb:app_id"`). */
+const FB_APP_ID = '2814770908874678';
+
 /** Only weights/styles used in the app — fewer @font-face blocks in CSS (Lighthouse critical path). */
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -61,6 +64,13 @@ export const metadata: Metadata = {
         alt: 'CikguRam | Get Your Driving License Fast in Malaysia',
       },
     ],
+    other: {
+      'fb:app_id': FB_APP_ID,
+    },
+  } as Metadata['openGraph'],
+  // Next.js does not render `openGraph.other` as tags; `facebook.appId` emits `<meta property="fb:app_id">`.
+  facebook: {
+    appId: FB_APP_ID,
   },
   twitter: {
     card: 'summary_large_image',
@@ -72,9 +82,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-  },
-  other: {
-    'fb:app_id': '2814770908874678',
   },
 };
 
