@@ -19,6 +19,12 @@ const nextConfig = {
   experimental: {
     /** Tree-shake icon barrel imports — smaller shared chunks + fewer legacy polyfill deps surfaced in Lighthouse. */
     optimizePackageImports: ['@heroicons/react'],
+    /**
+     * Inline global CSS into HTML on first load — avoids HTML→stylesheet critical chain (Lighthouse
+     * “Network dependency tree”). Tailwind stays compact; repeat visitors still cache other assets.
+     * @see https://nextjs.org/docs/app/api-reference/config/next-config-js/inlineCss
+     */
+    inlineCss: true,
   },
   typescript: {
     ignoreBuildErrors: false,
