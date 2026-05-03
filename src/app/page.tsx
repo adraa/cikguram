@@ -19,6 +19,7 @@ export default function HomePage() {
     <main className="bg-white min-h-screen overflow-x-hidden">
       <HeroSection />
       <Header />
+      <TestimonialsSection />
       <PricingCard />
 
       {/* Visual break between pricing and register */}
@@ -32,7 +33,6 @@ export default function HomePage() {
       <StatsBarSection />
       <SocialProofSection />
       <ProcessSection />
-      <TestimonialsSection />
       <StillHaveQuestionsSection />
       <Footer />
 

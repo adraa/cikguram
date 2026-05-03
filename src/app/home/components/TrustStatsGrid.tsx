@@ -1,8 +1,8 @@
 import React from 'react';
+import { FAQ_WARM_OUTLINE } from '@/lib/faq-warm-outline';
 
-/** Outer chrome: same lift as pricing price pill (`shadow-[0_10px_36px_…]`) so the strip reads floating. */
-const TRUST_STATS_SHELL =
-  'overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[0_10px_36px_rgba(0,0,0,0.1)]';
+/** Outer chrome: gold hairline + soft lift (same as FAQ chips tray / pricing inset in `StillHaveQuestionsSection`). */
+const TRUST_STATS_SHELL = `${FAQ_WARM_OUTLINE} bg-white`;
 
 /** Trust strip: generous vertical rhythm + min height so each column feels tappable on phones. */
 const TRUST_CELL_CLASS =

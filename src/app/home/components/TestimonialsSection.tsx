@@ -89,13 +89,8 @@ export default function TestimonialsSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="reveal mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-16">
-          <h2 className="mx-auto mb-0 flex max-w-[min(100%,20rem)] flex-col items-center gap-1.5 text-pretty text-center sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-2.5 sm:gap-y-0">
-            <span className="text-pretty font-display font-700 text-3xl text-[#111111] tracking-tight leading-[1.15] sm:text-4xl md:text-5xl">
-              Success Stories Of
-            </span>
-            <span className="text-pretty font-space font-700 text-3xl leading-[1.15] tracking-[-0.02em] text-[#CC0000] sm:text-4xl md:text-5xl">
-              CIKGU RAM 🇲🇾
-            </span>
+          <h2 className="mx-auto mb-0 max-w-[min(100%,22rem)] text-pretty text-center font-display font-700 text-3xl leading-[1.15] tracking-tight text-[#111111] sm:max-w-none sm:text-4xl md:text-5xl">
+            Testimonies From Our Students
           </h2>
           <a
             href={GOOGLE_BUSINESS_MAPS_URL}
