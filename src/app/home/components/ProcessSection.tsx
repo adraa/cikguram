@@ -3,18 +3,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { PricingInlineCountdown } from '@/app/home/components/PricingInlineCountdown';
+import { scrollToFullNameInput } from '@/lib/scroll-to-full-name-input';
 
 const PROCESS_IMAGE = '/cikgu-ram-westport-driving-academy-manual-automatic-process.webp';
 const PROCESS_ALT =
   'Eight-step infographic: registration, KPP01 theory, computerised theory test and LDL, KPP02 circuit training, KPP03 on-road training, pre-test evaluation, JPJ practical test, then probationary P-license.';
-
-function scrollToRegisterForm() {
-  const el = document.getElementById('full-name-input');
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(() => el.focus(), 650);
-  }
-}
 
 export default function ProcessSection() {
   return (
@@ -71,7 +64,7 @@ export default function ProcessSection() {
                 href="#register"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToRegisterForm();
+                  scrollToFullNameInput();
                 }}
                 className="btn-primary inline-flex min-h-[44px] w-auto max-w-full items-center justify-center whitespace-nowrap rounded-xl px-7 py-3 text-sm font-display font-700 uppercase tracking-wide sm:px-9 sm:text-[15px]"
               >

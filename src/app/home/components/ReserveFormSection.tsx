@@ -25,6 +25,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { WhatsAppMark } from '@/components/icons/WhatsAppMark';
 // Form submissions go through /api/lead — Google Form credentials stay server-side only.
 const WA_LINK = process.env.NEXT_PUBLIC_WHATSAPP_LINK ?? 'https://wa.me/60111234567';
 
@@ -314,19 +315,19 @@ export default function ReserveFormSection() {
                   </div>
                 </div>
 
-                {/* Citizenship selector (sliding pill) */}
+                {/* Nationality selector (sliding pill; field name remains `citizenship` for API) */}
                 <div className="mb-7">
                   <p
                     id="citizenship-label"
                     className="block text-[13px] font-display font-600 text-[#374151] uppercase tracking-[0.08em] mb-3"
                   >
-                    Citizenship<span className="text-[#EF4444]"> *</span>
+                    Nationality<span className="text-[#EF4444]">*</span>
                   </p>
                   {/* p-1.5 = 6px padding; gap-1.5 = 6px → pill width = calc(50% - 9px) */}
                   <div
                     role="group"
                     aria-labelledby="citizenship-label"
-                    className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5"
+                    className="relative flex rounded-2xl border border-solid border-black/[0.12] bg-[#FFD100]/35 p-1.5 shadow-[0_2px_24px_rgba(0,0,0,0.07)] gap-1.5"
                   >
                     {/* Sliding pill — FAQ yellow */}
                     <div
@@ -391,7 +392,7 @@ export default function ReserveFormSection() {
                   <div
                     role="group"
                     aria-labelledby="license-type-label"
-                    className="relative flex rounded-2xl bg-[#FFD100]/35 p-1.5 gap-1.5"
+                    className="relative flex rounded-2xl border border-solid border-black/[0.12] bg-[#FFD100]/35 p-1.5 shadow-[0_2px_24px_rgba(0,0,0,0.07)] gap-1.5"
                   >
                     {/* Sliding pill — FAQ yellow */}
                     <div
@@ -477,10 +478,11 @@ export default function ReserveFormSection() {
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="btn-primary flex items-center justify-center gap-2 min-w-[220px] px-10 py-3.5 rounded-2xl text-[15px] font-display font-700"
+                    className="btn-whatsapp relative z-0 inline-flex min-h-[48px] min-w-[220px] items-center justify-center gap-2 rounded-2xl px-10 py-3.5 text-[15px] font-display font-700 [-webkit-tap-highlight-color:transparent] touch-manipulation motion-safe:active:brightness-[0.96] motion-reduce:active:brightness-100 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1814]/65 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                     suppressHydrationWarning
                   >
-                    Submit
+                    <WhatsAppMark className="relative z-10 h-[18px] w-[18px] shrink-0 text-white" />
+                    <span className="relative z-10">SUBMIT</span>
                   </button>
                 </div>
 

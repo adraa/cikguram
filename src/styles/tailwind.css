@@ -81,6 +81,65 @@
   }
 }
 
+/* Hero bottom stack: one-time enter + urgency pulse (see HeroSection) */
+@keyframes hero-bottom-stack-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.6rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-bottom-stack-enter {
+  animation: hero-bottom-stack-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-urgency-card-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 4px 14px rgba(0, 0, 0, 0.14),
+      0 0 0 0 rgba(204, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow:
+      0 10px 36px rgba(0, 0, 0, 0.22),
+      0 0 0 3px rgba(204, 0, 0, 0.42),
+      0 0 44px rgba(204, 0, 0, 0.32);
+    border-color: rgba(204, 0, 0, 0.55);
+  }
+}
+
+.hero-urgency-card-pulse {
+  will-change: transform, box-shadow;
+  animation: hero-urgency-card-pulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bottom-stack-enter,
+  .hero-urgency-card-pulse {
+    animation: none !important;
+    will-change: auto;
+  }
+
+  .hero-bottom-stack-enter {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-urgency-card-pulse {
+    transform: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+}
+
 /* Fonts loaded via next/font/google in layout.tsx: no @import needed */
 
 :root {
@@ -624,6 +683,41 @@ h6 {
   opacity: 1;
 }
 .btn-primary:active {
+  transform: translateY(0);
+}
+
+/* WhatsApp-style CTA: dark brand green (depth similar to #cc0000 primary), white label */
+.btn-whatsapp {
+  position: relative;
+  background: #128c7e;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 48px;
+  touch-action: manipulation;
+}
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-whatsapp:hover {
+  background: #169b87;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(18, 140, 126, 0.42);
+}
+.btn-whatsapp:hover::before {
+  opacity: 1;
+}
+.btn-whatsapp:active {
   transform: translateY(0);
 }
 
