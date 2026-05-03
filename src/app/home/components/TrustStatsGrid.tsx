@@ -46,7 +46,10 @@ type TrustStatsGridProps = {
 /**
  * Three-column trust bar (Google / years / students): shared by hero, pricing, and track-record.
  */
-export default function TrustStatsGrid({ variant = 'default', className = '' }: TrustStatsGridProps) {
+export default function TrustStatsGrid({
+  variant = 'default',
+  className = '',
+}: TrustStatsGridProps) {
   const shell = variant === 'compact' ? TRUST_STATS_SHELL_COMPACT : TRUST_STATS_SHELL;
   const cell = variant === 'compact' ? TRUST_CELL_COMPACT : TRUST_CELL_CLASS;
   const glyph = variant === 'compact' ? TRUST_GLYPH_ROW_COMPACT : TRUST_GLYPH_ROW;
