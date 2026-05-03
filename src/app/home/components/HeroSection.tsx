@@ -92,8 +92,8 @@ export default function HeroSection() {
         which commonly triggers eager fetches for the hidden breakpoint image too — extra decode
         bandwidth before first contentful paint. `next.config` + layout preloads use `media` to match.
       */}
-      <div className="relative w-full bg-[#121212] md:aspect-[2752/1536] md:overflow-hidden">
-        <picture className="block md:absolute md:inset-0 md:h-full md:w-full">
+      <div className="relative w-full overflow-hidden bg-[#121212] max-md:h-[min(78dvh,760px)] max-md:min-h-[260px] md:aspect-[2752/1536]">
+        <picture className="absolute inset-0 block h-full w-full">
           <source
             media="(min-width: 768px)"
             srcSet="/cikgu-ram-westport-driving-academy-desktop-hero-section.webp"
@@ -103,12 +103,12 @@ export default function HeroSection() {
             alt={HERO_IMAGE_ALT}
             width={828}
             height={1483}
-            className="block h-auto w-full max-w-none md:h-full md:w-full md:object-cover"
+            className="block h-full w-full max-w-none object-cover object-top md:object-center"
             fetchPriority="high"
             decoding="async"
           />
         </picture>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-16 md:pb-6 md:pt-20">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-8 md:pb-6 md:pt-20">
           <HeroOverlayCTAs />
         </div>
       </div>
