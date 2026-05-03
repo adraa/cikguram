@@ -34,9 +34,9 @@ async function main() {
 
   await sharp(ogBuffer)
     .png({ compressionLevel: 9 })
-    .toFile(path.join(PUBLIC_DIR, 'og-main.png'));
+    .toFile(path.join(PUBLIC_DIR, 'og-share-v2.png'));
 
-  console.log('generated: icon.png, apple-icon.png, public/opengraph-image.jpg, public/og-main.png');
+  console.log('generated: icon.png, apple-icon.png, public/opengraph-image.jpg, public/og-share-v2.png');
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

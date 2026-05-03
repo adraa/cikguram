@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport, 600+ students passed.',
     images: [
       {
-        url: `${defaultSite}/og-main.png`,
+        url: `${defaultSite}/og-share-v2.png`,
         width: 1200,
         height: 630,
         type: 'image/png',
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: 'CikguRam | Get Your Driving License Fast in Malaysia',
     description:
       'Register online with Cikgu Ram at Westport Driving Academy. RM2,349 all-in package, free transport.',
-    images: [`${defaultSite}/og-main.png`],
+    images: [`${defaultSite}/og-share-v2.png`],
   },
   robots: {
     index: true,

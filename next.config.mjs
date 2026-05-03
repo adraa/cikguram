@@ -110,7 +110,7 @@ const nextConfig = {
       },
       /** OG image: long cache + `no-transform` so CDNs/proxies avoid re-encoding or resizing the asset. */
       {
-        source: '/og-main.png',
+        source: '/og-share-v2.png',
         headers: [
           {
             key: 'Cache-Control',
