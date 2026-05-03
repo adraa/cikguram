@@ -76,9 +76,9 @@ const nextConfig = {
      * HeroSection `priority` + `fetchPriority="high"`).
      */
     const lcpPreloadMobile =
-      '</cikgu-ram-westport-driving-academy-mobile-hero-828.webp>; rel=preload; as=image; fetchpriority=high; media=(max-width:767px)';
+      '</cikgu-ram-westport-driving-academy-new-mobile-hero-828.webp>; rel=preload; as=image; fetchpriority=high; media=(max-width:767px)';
     const lcpPreloadDesktop =
-      '</cikgu-ram-westport-driving-academy-desktop-hero-section.webp>; rel=preload; as=image; fetchpriority=high; media=(min-width:768px)';
+      '</cikgu-ram-westport-driving-academy-new-desktop-hero-section.webp>; rel=preload; as=image; fetchpriority=high; media=(min-width:768px)';
 
     /** RFC 8288 / RFC 9727: homepage advertises API catalog and docs for agent discovery */
     const homepageDiscoveryLink = [

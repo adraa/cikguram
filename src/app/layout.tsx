@@ -92,14 +92,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link
           rel="preload"
-          href="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
+          href="/cikgu-ram-westport-driving-academy-new-mobile-hero-828.webp"
           as="image"
           media="(max-width: 767px)"
           fetchPriority="high"
         />
         <link
           rel="preload"
-          href="/cikgu-ram-westport-driving-academy-desktop-hero-section.webp"
+          href="/cikgu-ram-westport-driving-academy-new-desktop-hero-section.webp"
           as="image"
           media="(min-width: 768px)"
           fetchPriority="high"

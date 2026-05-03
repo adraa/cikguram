@@ -45,7 +45,7 @@ Add under **Variables and Secrets** for Production (and Preview if you test form
 | `NEXT_PUBLIC_WHATSAPP_LINK` | No | Full `https://wa.me/...` link. |
 | `MAKE_WEBHOOK_URL` | **Yes** | Webhook URL; never `NEXT_PUBLIC_*`. |
 
-Optional: `NEXT_PUBLIC_GOOGLE_MAPS_URL`, `NEXT_PUBLIC_NEXT_INTAKE_DATE` (see `.env.example`).
+Optional: `NEXT_PUBLIC_NEXT_INTAKE_DATE` (see `.env.example`).
 
 **Lead API:** In production, if `MAKE_WEBHOOK_URL` is missing, `/api/lead` returns **503** so visitors are not told “success” when nothing was forwarded.
 

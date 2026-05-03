@@ -92,17 +92,17 @@ export default function HeroSection() {
         which commonly triggers eager fetches for the hidden breakpoint image too — extra decode
         bandwidth before first contentful paint. `next.config` + layout preloads use `media` to match.
       */}
-      <div className="relative w-full overflow-hidden bg-[#121212] max-md:h-[min(78dvh,760px)] max-md:min-h-[260px] md:aspect-[2752/1536]">
+      <div className="relative w-full overflow-hidden bg-[#121212] max-md:h-[min(78dvh,760px)] max-md:min-h-[260px] md:aspect-[1536/1024]">
         <picture className="absolute inset-0 block h-full w-full">
           <source
             media="(min-width: 768px)"
-            srcSet="/cikgu-ram-westport-driving-academy-desktop-hero-section.webp"
+            srcSet="/cikgu-ram-westport-driving-academy-new-desktop-hero-section.webp"
           />
           <img
-            src="/cikgu-ram-westport-driving-academy-mobile-hero-828.webp"
+            src="/cikgu-ram-westport-driving-academy-new-mobile-hero-828.webp"
             alt={HERO_IMAGE_ALT}
             width={828}
-            height={1483}
+            height={1242}
             className="block h-full w-full max-w-none object-cover object-top md:object-center"
             fetchPriority="high"
             decoding="async"

@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import Icon from '@/components/ui/AppIcon';
 import { GOOGLE_REVIEWS_STATIC } from '@/data/google-reviews-static';
-import { GOOGLE_BUSINESS_MAPS_URL } from '@/lib/site-urls';
 import type { DisplayReview } from '@/types/display-review';
 import { ReviewCard } from '@/app/home/components/ReviewCard';
 
@@ -92,21 +90,6 @@ export default function TestimonialsSection() {
           <h2 className="mx-auto mb-0 max-w-[min(100%,22rem)] text-pretty text-center font-display font-700 text-3xl leading-[1.15] tracking-tight text-[#111111] sm:max-w-none sm:text-4xl md:text-5xl">
             Testimonies From Our Students
           </h2>
-          <a
-            href={GOOGLE_BUSINESS_MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-auto mt-5 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-black/[0.1] bg-white px-5 py-2.5 font-google text-[15px] font-semibold leading-snug tracking-tight text-[#202124] shadow-sm transition-colors hover:bg-black/[0.03] active:bg-black/[0.05] sm:mt-6 sm:px-6 sm:py-3 sm:text-sm sm:font-bold md:mt-7"
-          >
-            <span>See reviews on Google</span>
-            <Icon
-              name="ArrowTopRightOnSquareIcon"
-              size={16}
-              variant="outline"
-              className="shrink-0 text-[#5F6368]"
-              aria-hidden
-            />
-          </a>
         </div>
       </div>
 

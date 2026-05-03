@@ -5,8 +5,9 @@ import path from 'node:path';
 const BACKUP_DIR = 'assets-src/originals';
 
 const targets = [
-  { src: 'public/cikgu-ram-westport-driving-academy-mobile-hero-section.webp',  resize: { width: 1080 }, format: 'webp', quality: 72 },
-  { src: 'public/cikgu-ram-westport-driving-academy-desktop-hero-section.webp', resize: { width: 1920 }, format: 'webp', quality: 74 },
+  { src: 'public/cikgu-ram-westport-driving-academy-new-mobile-hero-section.webp',  resize: { width: 1080 }, format: 'webp', quality: 72 },
+  { src: 'public/cikgu-ram-westport-driving-academy-new-mobile-hero-828.webp', resize: { width: 828 }, format: 'webp', quality: 72 },
+  { src: 'public/cikgu-ram-westport-driving-academy-new-desktop-hero-section.webp', resize: { width: 1920 }, format: 'webp', quality: 74 },
   { src: 'public/cikgu-ram-westport-driving-academy-mobile-desktop-price-section.webp', resize: { width: 768 }, format: 'webp', quality: 75 },
   { src: 'public/stats-bg-1.jpg', resize: { width: 1920 }, format: 'jpeg', quality: 70 },
   { src: 'public/stats-bg-2.jpg', resize: { width: 1920 }, format: 'jpeg', quality: 70 },

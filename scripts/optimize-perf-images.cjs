@@ -17,7 +17,8 @@ async function writeWebpFromFile(inputRel, outputRel, resizeWidth, webpOpts) {
     process.exit(1);
   }
 
-  let pipeline = sharp(input);
+  const inputBuf = fs.readFileSync(input);
+  let pipeline = sharp(inputBuf);
   if (resizeWidth) {
     pipeline = pipeline.resize(resizeWidth, null, {
       fit: 'inside',
@@ -42,12 +43,19 @@ async function writeWebpFromFile(inputRel, outputRel, resizeWidth, webpOpts) {
 }
 
 async function main() {
-  // Hero (mobile-only asset): write a new filename — Windows often locks the canonical hero WebP while editors sync it.
+  // Hero mobile: 828px wide WebP (2:3 → 828×1242) — separate filename avoids Windows locks when `pnpm dev` serves the hero.
   await writeWebpFromFile(
-    'public/cikgu-ram-westport-driving-academy-mobile-hero-section.webp',
-    'public/cikgu-ram-westport-driving-academy-mobile-hero-828.webp',
+    'public/cikgu-ram-westport-driving-academy-new-mobile-hero-section.webp',
+    'public/cikgu-ram-westport-driving-academy-new-mobile-hero-828.webp',
     828,
     { quality: 84, effort: 6, smartSubsample: true },
+  );
+
+  await writeWebpFromFile(
+    'public/cikgu-ram-westport-driving-academy-new-desktop-hero-section.webp',
+    'public/cikgu-ram-westport-driving-academy-new-desktop-hero-section.webp',
+    1920,
+    { quality: 74, effort: 6, smartSubsample: true },
   );
 
   // Stats band: displayed ~721px wide on Moto G-style audits — serve ~960px WebP instead of 1920 JPG.
