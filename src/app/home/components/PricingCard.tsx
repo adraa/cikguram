@@ -199,8 +199,8 @@ export default function PricingCard() {
             ⚠️ ONLY 15 STUDENTS PER MONTH ⚠️
           </p>
           <p className="mt-3 text-center text-sm text-white/85 font-body leading-relaxed">
-            Cikgu Ram limits intake to guarantee personal attention. Spots for this month are filling
-            up now.
+            Cikgu Ram limits intake to guarantee personal attention. Spots for this month are
+            filling up now.
           </p>
         </div>
       </div>
