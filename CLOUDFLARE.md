@@ -47,7 +47,7 @@ Add under **Variables and Secrets** for Production (and Preview if you test form
 
 Optional: `NEXT_PUBLIC_NEXT_INTAKE_DATE` (see `.env.example`).
 
-**Lead API:** In production, if `MAKE_WEBHOOK_URL` is missing, `/api/lead` returns **503** so visitors are not told “success” when nothing was forwarded.
+**Lead API:** In production, if `MAKE_WEBHOOK_URL` is missing, `/api/lead` returns **503** so visitors are not told “success” when nothing was forwarded. If the webhook rejects or fails to accept a submission, `/api/lead` returns **502** for the same reason.
 
 ## Local development
 
