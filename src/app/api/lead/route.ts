@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Store only in Cloudflare dashboard secrets or .env.local — never NEXT_PUBLIC_* or git.
 // MAKE_WEBHOOK_URL=https://hook.eu2.make.com/<your-webhook-id>
 const MAKE_WEBHOOK_URL = process.env.MAKE_WEBHOOK_URL ?? '';
+const LEAD_FORWARDING_ERROR = 'Registration is temporarily unavailable. Please try again later.';
 
 const MY_PHONE_RE = /^(\+?60|0)[1-9]\d{7,9}$/;
 const normalisePhone = (v: string) => v.replace(/[\s\-().]/g, '');
@@ -25,12 +26,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
   }
 
-  const webhookConfigured = MAKE_WEBHOOK_URL.trim().length > 0;
-  if (process.env.NODE_ENV === 'production' && !webhookConfigured) {
-    return NextResponse.json(
-      { error: 'Registration is temporarily unavailable. Please try again later.' },
-      { status: 503 }
-    );
+  const webhookUrl = MAKE_WEBHOOK_URL.trim();
+  if (process.env.NODE_ENV === 'production' && !webhookUrl) {
+    return NextResponse.json({ error: LEAD_FORWARDING_ERROR }, { status: 503 });
   }
 
   let body: Record<string, string>;
@@ -63,21 +61,30 @@ export async function POST(req: NextRequest) {
   if (!['D', 'DA'].includes(licenseType))
     return NextResponse.json({ error: 'Invalid license type.' }, { status: 400 });
 
-  // Forward to Make.com webhook — URL never leaves the server
-  if (MAKE_WEBHOOK_URL) {
-    await fetch(MAKE_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        fullName: name.trim(),
-        phone: normPhone,
-        category,
-        citizenship,
-        licenseType,
-      }),
-    }).catch(() => {
-      /* log in production */
-    });
+  // Forward to Make.com webhook — only report success after the lead is accepted upstream.
+  if (webhookUrl) {
+    let webhookRes: Response;
+    try {
+      webhookRes = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: name.trim(),
+          phone: normPhone,
+          category,
+          citizenship,
+          licenseType,
+        }),
+      });
+    } catch (error) {
+      console.error('Lead webhook request failed', error);
+      return NextResponse.json({ error: LEAD_FORWARDING_ERROR }, { status: 502 });
+    }
+
+    if (!webhookRes.ok) {
+      console.error('Lead webhook returned non-success status', { status: webhookRes.status });
+      return NextResponse.json({ error: LEAD_FORWARDING_ERROR }, { status: 502 });
+    }
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });
