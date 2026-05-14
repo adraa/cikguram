@@ -33,6 +33,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: '#CC0000',
+  viewportFit: 'cover',
 };
 
 export const metadata: Metadata = {
@@ -92,7 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link
           rel="preload"
-          href="/cikgu-ram-westport-driving-academy-new-mobile-hero-828.webp"
+          href="/cikgu-ram-westport-driving-academy-mobile-hero-section-final.webp"
           as="image"
           media="(max-width: 767px)"
           fetchPriority="high"

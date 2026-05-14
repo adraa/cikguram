@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="relative z-50 w-full overflow-hidden bg-[#F8F8F6] md:z-20 md:border-b md:border-black/[0.06]">
+    <header className="relative z-50 w-full overflow-hidden bg-[#F8F8F6] max-md:bg-[#F4F5EF] md:z-20 md:border-b md:border-black/[0.06]">
       <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden />
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 md:py-5 lg:py-6">
         <Link

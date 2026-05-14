@@ -43,6 +43,21 @@ async function writeWebpFromFile(inputRel, outputRel, resizeWidth, webpOpts) {
 }
 
 async function main() {
+  // LCP mobile hero: PNG master → WebP (≤828w wide, ~2× for common phone widths; q78 balances size vs clarity).
+  await writeWebpFromFile(
+    'public/cikgu-ram-westport-driving-academy-mobile-hero-section-final.png',
+    'public/cikgu-ram-westport-driving-academy-mobile-hero-section-final.webp',
+    828,
+    { quality: 78, effort: 6, smartSubsample: true },
+  );
+
+  await writeWebpFromFile(
+    'public/cikgu-ram-westport-driving-academy-mobile-hero-section-new.png',
+    'public/cikgu-ram-westport-driving-academy-mobile-hero-section-new.webp',
+    828,
+    { quality: 78, effort: 6, smartSubsample: true },
+  );
+
   // Hero mobile: 828px wide WebP (2:3 → 828×1242) — separate filename avoids Windows locks when `pnpm dev` serves the hero.
   await writeWebpFromFile(
     'public/cikgu-ram-westport-driving-academy-new-mobile-hero-section.webp',
