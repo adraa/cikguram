@@ -59,7 +59,9 @@ export default function TrustStatsGrid({
   const cell = supporting ? `${TRUST_CELL_CLASS} ${TRUST_CELL_SUPPORTING}` : TRUST_CELL_CLASS;
   const glyph = supporting ? `${TRUST_GLYPH_ROW} ${TRUST_GLYPH_SUPPORTING}` : TRUST_GLYPH_ROW;
   const value = supporting ? `${TRUST_VALUE_ROW} ${TRUST_VALUE_SUPPORTING}` : TRUST_VALUE_ROW;
-  const caption = supporting ? `${TRUST_CAPTION_CLASS} ${TRUST_CAPTION_SUPPORTING}` : TRUST_CAPTION_CLASS;
+  const caption = supporting
+    ? `${TRUST_CAPTION_CLASS} ${TRUST_CAPTION_SUPPORTING}`
+    : TRUST_CAPTION_CLASS;
 
   const gridDivide = supporting
     ? `grid min-h-0 grid-cols-3 items-stretch divide-x divide-black/8 [contain:paint] ${TRUST_GRID_DIVIDE_SUPPORTING}`
