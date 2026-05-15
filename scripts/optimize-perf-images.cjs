@@ -43,6 +43,14 @@ async function writeWebpFromFile(inputRel, outputRel, resizeWidth, webpOpts) {
 }
 
 async function main() {
+  // LCP mobile hero (45-day fast-track creative): PNG master → WebP.
+  await writeWebpFromFile(
+    'public/cikgu-ram-westport-driving-academy-mobile-hero-45-days-fast-track.png',
+    'public/cikgu-ram-westport-driving-academy-mobile-hero-45-days-fast-track.webp',
+    828,
+    { quality: 78, effort: 6, smartSubsample: true },
+  );
+
   // LCP mobile hero: PNG master → WebP (≤828w wide, ~2× for common phone widths; q78 balances size vs clarity).
   await writeWebpFromFile(
     'public/cikgu-ram-westport-driving-academy-mobile-hero-section-final.png',
