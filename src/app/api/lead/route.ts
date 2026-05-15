@@ -6,6 +6,7 @@ const MAKE_WEBHOOK_URL = process.env.MAKE_WEBHOOK_URL ?? '';
 
 const MY_PHONE_RE = /^(\+?60|0)[1-9]\d{7,9}$/;
 const normalisePhone = (v: string) => v.replace(/[\s\-().]/g, '');
+const WEBHOOK_ERROR_MESSAGE = 'Registration is temporarily unavailable. Please try again later.';
 
 // Simple in-memory rate limiter: max 5 submissions per IP per minute
 const ipTimestamps = new Map<string, number[]>();
@@ -18,8 +19,17 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+function getClientIp(req: NextRequest): string {
+  return (
+    req.headers.get('cf-connecting-ip')?.trim() ||
+    req.headers.get('true-client-ip')?.trim() ||
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    'unknown'
+  );
+}
+
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? 'unknown';
+  const ip = getClientIp(req);
 
   if (isRateLimited(ip)) {
     return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
@@ -27,13 +37,10 @@ export async function POST(req: NextRequest) {
 
   const webhookConfigured = MAKE_WEBHOOK_URL.trim().length > 0;
   if (process.env.NODE_ENV === 'production' && !webhookConfigured) {
-    return NextResponse.json(
-      { error: 'Registration is temporarily unavailable. Please try again later.' },
-      { status: 503 }
-    );
+    return NextResponse.json({ error: WEBHOOK_ERROR_MESSAGE }, { status: 503 });
   }
 
-  let body: Record<string, string>;
+  let body: Record<string, unknown>;
   try {
     body = await req.json();
   } catch {
@@ -46,38 +53,48 @@ export async function POST(req: NextRequest) {
   if (!name || typeof name !== 'string' || name.trim().length < 2 || name.trim().length > 100)
     return NextResponse.json({ error: 'Invalid name.' }, { status: 400 });
 
-  const normPhone = normalisePhone(phone ?? '');
+  if (typeof phone !== 'string')
+    return NextResponse.json({ error: 'Invalid phone number.' }, { status: 400 });
+
+  const normPhone = normalisePhone(phone);
   if (!MY_PHONE_RE.test(normPhone))
     return NextResponse.json({ error: 'Invalid phone number.' }, { status: 400 });
 
   if (
+    typeof category !== 'string' ||
     !['University Student', 'Parent registering for a teen', 'Working Professional'].includes(
       category
     )
   )
     return NextResponse.json({ error: 'Invalid category.' }, { status: 400 });
 
-  if (!['Malaysian', 'Non-Malaysian'].includes(citizenship))
+  if (typeof citizenship !== 'string' || !['Malaysian', 'Non-Malaysian'].includes(citizenship))
     return NextResponse.json({ error: 'Invalid citizenship.' }, { status: 400 });
 
-  if (!['D', 'DA'].includes(licenseType))
+  if (typeof licenseType !== 'string' || !['D', 'DA'].includes(licenseType))
     return NextResponse.json({ error: 'Invalid license type.' }, { status: 400 });
 
   // Forward to Make.com webhook — URL never leaves the server
   if (MAKE_WEBHOOK_URL) {
-    await fetch(MAKE_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        fullName: name.trim(),
-        phone: normPhone,
-        category,
-        citizenship,
-        licenseType,
-      }),
-    }).catch(() => {
-      /* log in production */
-    });
+    try {
+      const webhookResponse = await fetch(MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: name.trim(),
+          phone: normPhone,
+          category,
+          citizenship,
+          licenseType,
+        }),
+      });
+
+      if (!webhookResponse.ok) {
+        return NextResponse.json({ error: WEBHOOK_ERROR_MESSAGE }, { status: 502 });
+      }
+    } catch {
+      return NextResponse.json({ error: WEBHOOK_ERROR_MESSAGE }, { status: 502 });
+    }
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });
