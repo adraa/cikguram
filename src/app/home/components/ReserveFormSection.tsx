@@ -3,30 +3,20 @@
 /**
  * ReserveFormSection
  *
- * GOOGLE FORMS / SHEETS SETUP (required for submissions to reach your spreadsheet):
+ * LEAD SUBMISSION SETUP:
  *
- * 1. Go to forms.google.com → Create a new form
- * 2. Add 3 "Short answer" questions:  "Full Name",  "Phone Number",  "License Type"
- * 3. Click ⋮ (top-right) → "Get pre-filled link" → fill dummy values → Copy link
- * 4. From the pre-filled URL extract:
- *    • The form action URL  (everything before the query string, replace /viewform with /formResponse)
- *    • The three  entry.XXXXXXXXXX  field IDs from the query params
- * 5. Create / update  .env.local  with (server-side only — NOT prefixed with NEXT_PUBLIC_):
+ * 1. Create a Make.com webhook that persists or routes registration leads.
+ * 2. Create / update .env.local or Cloudflare dashboard secrets with:
  *
- *      GF_FORM_ACTION_URL=https://docs.google.com/forms/d/e/<YOUR_ID>/formResponse
- *      GF_ENTRY_NAME=entry.XXXXXXXXXX
- *      GF_ENTRY_PHONE=entry.XXXXXXXXXX
- *      GF_ENTRY_LICENSE=entry.XXXXXXXXXX
- *      GF_ENTRY_CATEGORY=entry.XXXXXXXXXX
- *      GF_ENTRY_CITIZENSHIP=entry.XXXXXXXXXX
+ *      MAKE_WEBHOOK_URL=https://hook.eu2.make.com/<your-webhook-id>
  *
- * 6. In Google Forms → Responses tab → click the Sheets icon to link to Google Sheets
+ * 3. See CLOUDFLARE.md for production deployment requirements.
  */
 
 import React, { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { WhatsAppMark } from '@/components/icons/WhatsAppMark';
-// Form submissions go through /api/lead — Google Form credentials stay server-side only.
+// Form submissions go through /api/lead — webhook credentials stay server-side only.
 const WA_LINK = process.env.NEXT_PUBLIC_WHATSAPP_LINK ?? 'https://wa.me/60111234567';
 
 interface FormData {
