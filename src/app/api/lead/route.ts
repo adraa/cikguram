@@ -63,21 +63,34 @@ export async function POST(req: NextRequest) {
   if (!['D', 'DA'].includes(licenseType))
     return NextResponse.json({ error: 'Invalid license type.' }, { status: 400 });
 
-  // Forward to Make.com webhook — URL never leaves the server
-  if (MAKE_WEBHOOK_URL) {
-    await fetch(MAKE_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        fullName: name.trim(),
-        phone: normPhone,
-        category,
-        citizenship,
-        licenseType,
-      }),
-    }).catch(() => {
-      /* log in production */
-    });
+  // Forward to Make.com webhook — URL never leaves the server.
+  if (webhookConfigured) {
+    let webhookResponse: Response;
+    try {
+      webhookResponse = await fetch(MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: name.trim(),
+          phone: normPhone,
+          category,
+          citizenship,
+          licenseType,
+        }),
+      });
+    } catch {
+      return NextResponse.json(
+        { error: 'Registration could not be completed. Please try again later.' },
+        { status: 502 }
+      );
+    }
+
+    if (!webhookResponse.ok) {
+      return NextResponse.json(
+        { error: 'Registration could not be completed. Please try again later.' },
+        { status: 502 }
+      );
+    }
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });

@@ -55,6 +55,7 @@ const SPEC = {
           },
           '400': { description: 'Validation error' },
           '429': { description: 'Rate limited' },
+          '502': { description: 'Webhook delivery failed' },
           '503': { description: 'Service unavailable (e.g. webhook not configured in production)' },
         },
       },
